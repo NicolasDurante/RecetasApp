@@ -1,6 +1,6 @@
-# Título del Proyecto
+# RecetasApp
 
-_Acá va un párrafo que describa lo que es el proyecto_
+_Aplicacion de red social para compartir recetas de cocina._
 
 ## Comenzando 🚀
 
@@ -102,4 +102,4 @@ Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md
 
 
 ---
-⌨️ con ❤️ por [Villanuevand](https://github.com/Villanuevand) 😊
+⌨️ con ❤️ por [NicolasDurante](https://github.com/NicolasDurante) 😊
