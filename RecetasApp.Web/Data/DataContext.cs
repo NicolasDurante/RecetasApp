@@ -10,6 +10,7 @@
     public class DataContext : DbContext
     {
         public DbSet<Receta> Recetas { get; set; }
+        public object Products { get; internal set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {

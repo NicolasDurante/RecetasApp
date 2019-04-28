@@ -12,29 +12,28 @@ namespace RecetasApp.Web.Controllers
 {
     public class RecetasController : Controller
     {
-        private readonly DataContext _context;
+        private readonly IRepository repository;
 
-        public RecetasController(DataContext context)
+        public RecetasController(IRepository repository)
         {
-            _context = context;
+            this.repository = repository;
         }
 
         // GET: Recetas
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Recetas.ToListAsync());
+            return View(this.repository.GetRecetas());
         }
 
         // GET: Recetas/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var receta = await _context.Recetas
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var receta = this.repository.GetReceta(id.Value);
             if (receta == null)
             {
                 return NotFound();
@@ -50,30 +49,28 @@ namespace RecetasApp.Web.Controllers
         }
 
         // POST: Recetas/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Descripcion,ImagenUrl,UrlVideo,Categoria,Dificultad,Tiempo,Temporada,Region,Pasos,Raciones,NumIngredientes,MedidaIngredientes,Ingredientes,Observaciones,Comentarios,PublicadaEn,Stock")] Receta receta)
+        public async Task<IActionResult> Create(Receta receta)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(receta);
-                await _context.SaveChangesAsync();
+                this.repository.AddReceta(receta);
+                await this.repository.SaveAllAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(receta);
         }
 
         // GET: Recetas/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var receta = await _context.Recetas.FindAsync(id);
+            var receta = this.repository.GetReceta(id.Value);
             if (receta == null)
             {
                 return NotFound();
@@ -82,27 +79,20 @@ namespace RecetasApp.Web.Controllers
         }
 
         // POST: Recetas/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Descripcion,ImagenUrl,UrlVideo,Categoria,Dificultad,Tiempo,Temporada,Region,Pasos,Raciones,NumIngredientes,MedidaIngredientes,Ingredientes,Observaciones,Comentarios,PublicadaEn,Stock")] Receta receta)
+        public async Task<IActionResult> Edit(Receta receta)
         {
-            if (id != receta.Id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(receta);
-                    await _context.SaveChangesAsync();
+                    this.repository.UpdateReceta(receta);
+                    await this.repository.SaveAllAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!RecetaExists(receta.Id))
+                    if (!this.repository.RecetaExists(receta.Id))
                     {
                         return NotFound();
                     }
@@ -117,15 +107,14 @@ namespace RecetasApp.Web.Controllers
         }
 
         // GET: Recetas/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var receta = await _context.Recetas
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var receta = this.repository.GetReceta(id.Value);
             if (receta == null)
             {
                 return NotFound();
@@ -139,15 +128,11 @@ namespace RecetasApp.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var receta = await _context.Recetas.FindAsync(id);
-            _context.Recetas.Remove(receta);
-            await _context.SaveChangesAsync();
+            var receta = this.repository.GetReceta(id);
+            this.repository.RemoveReceta(receta);
+            await this.repository.SaveAllAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool RecetaExists(int id)
-        {
-            return _context.Recetas.Any(e => e.Id == id);
-        }
     }
 }
