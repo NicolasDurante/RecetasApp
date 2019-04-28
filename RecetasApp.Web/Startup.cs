@@ -8,8 +8,9 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using RecetasApp.Web.Data;
-    using RecetasApp.Web.Data.Entities;
+    using Data;
+    using Data.Entities;
+    using Helpers;
 
     public class Startup
     {
@@ -43,7 +44,9 @@
 
             services.AddTransient<SeedDb>();
 
-            services.AddScoped<IRepository, Repository>();
+            services.AddScoped<IRecetaRepository, RecetaRepository>();
+
+            services.AddScoped<IUserHelper, UserHelper>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {

@@ -1,39 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using RecetasApp.Web.Data;
-using RecetasApp.Web.Data.Entities;
-
-namespace RecetasApp.Web.Controllers
+﻿namespace RecetasApp.Web.Controllers
 {
+    using System.Threading.Tasks;
+    using Data;
+    using Data.Entities;
+    using Helpers;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+
     public class RecetasController : Controller
     {
-        private readonly IRepository repository;
+        private readonly IRecetaRepository recetaRepository;
 
-        public RecetasController(IRepository repository)
+        private readonly IUserHelper userHelper;
+
+        public RecetasController(IRecetaRepository recetaRepository, IUserHelper userHelper)
         {
-            this.repository = repository;
+            this.recetaRepository = recetaRepository;
+            this.userHelper = userHelper;
         }
 
         // GET: Recetas
         public IActionResult Index()
         {
-            return View(this.repository.GetRecetas());
+            return View(this.recetaRepository.GetAll());
         }
 
         // GET: Recetas/Details/5
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var receta = this.repository.GetReceta(id.Value);
+            var receta = await this.recetaRepository.GetByIdAsync(id.Value);
             if (receta == null)
             {
                 return NotFound();
@@ -55,26 +55,29 @@ namespace RecetasApp.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                this.repository.AddReceta(receta);
-                await this.repository.SaveAllAsync();
+                // TODO: Pending to change to: this.User.Identity.Name
+                receta.User = await this.userHelper.GetUserByEmailAsync("fer-nicolas-durante@hotmail.com");
+                await this.recetaRepository.CreateAsync(receta);
                 return RedirectToAction(nameof(Index));
             }
+
             return View(receta);
         }
 
         // GET: Recetas/Edit/5
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var receta = this.repository.GetReceta(id.Value);
+            var receta = await this.recetaRepository.GetByIdAsync(id.Value);
             if (receta == null)
             {
                 return NotFound();
             }
+
             return View(receta);
         }
 
@@ -87,12 +90,13 @@ namespace RecetasApp.Web.Controllers
             {
                 try
                 {
-                    this.repository.UpdateReceta(receta);
-                    await this.repository.SaveAllAsync();
+                    // TODO: Pending to change to: this.User.Identity.Name
+                    receta.User = await this.userHelper.GetUserByEmailAsync("fer-nicolas-durante@hotmail.com");
+                    await this.recetaRepository.UpdateAsync(receta);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!this.repository.RecetaExists(receta.Id))
+                    if (!await this.recetaRepository.ExistAsync(receta.Id))
                     {
                         return NotFound();
                     }
@@ -103,18 +107,19 @@ namespace RecetasApp.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             return View(receta);
         }
 
         // GET: Recetas/Delete/5
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var receta = this.repository.GetReceta(id.Value);
+            var receta = await this.recetaRepository.GetByIdAsync(id.Value);
             if (receta == null)
             {
                 return NotFound();
@@ -128,11 +133,10 @@ namespace RecetasApp.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var receta = this.repository.GetReceta(id);
-            this.repository.RemoveReceta(receta);
-            await this.repository.SaveAllAsync();
+            var receta = await this.recetaRepository.GetByIdAsync(id);
+            await this.recetaRepository.DeleteAsync(receta);
             return RedirectToAction(nameof(Index));
         }
-
     }
+
 }
