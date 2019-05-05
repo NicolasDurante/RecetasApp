@@ -2,6 +2,7 @@
 {
     using System;
     using System.IO;
+    using System.Linq;
     using System.Threading.Tasks;
     using Data;
     using Data.Entities;
@@ -25,7 +26,7 @@
         // GET: Recetas
         public IActionResult Index()
         {
-            return View(this.recetaRepository.GetAll());
+            return View(this.recetaRepository.GetAll().OrderBy(r=> r.Nombre));
         }
 
         // GET: Recetas/Details/5

@@ -75,5 +75,18 @@
 
         public User User { get; set; }
 
+        public string ImageFullPath
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.ImagenUrl))
+                {
+                    return null;
+
+                }
+                return $"http://192.168.0.23/CoreReceta2" +this.ImagenUrl.Substring(1);
+            }
+        }
+
     }
 }

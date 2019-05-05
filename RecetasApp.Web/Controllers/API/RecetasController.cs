@@ -16,7 +16,7 @@
         [HttpGet]
         public IActionResult GetRecetas()
         {
-            return Ok(this.recetaRepository.GetAll());
+            return Ok(this.recetaRepository.GetAllWithUsers());
         }
     }
 }
