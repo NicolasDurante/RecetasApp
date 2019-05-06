@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace RecetasApp.UIForms.ViewModels
+﻿namespace RecetasApp.UIForms.ViewModels
 {
     public class MainViewModel
     {
+        public LoginViewModel Login { get; set; }
+        public MainViewModel()
+        {
+            this.Login = new LoginViewModel(); 
+        }
     }
 }
