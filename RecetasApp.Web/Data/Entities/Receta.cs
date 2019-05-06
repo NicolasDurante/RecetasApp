@@ -84,7 +84,7 @@
                     return null;
 
                 }
-                return $"http://192.168.0.23/CoreReceta2" +this.ImagenUrl.Substring(1);
+                return $"http://192.168.0.23/CoreReceta" +this.ImagenUrl.Substring(1);
             }
         }
 
