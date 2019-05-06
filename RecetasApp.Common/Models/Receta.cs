@@ -69,5 +69,10 @@ namespace RecetasApp.Common.Models
 
         [JsonProperty("imageFullPath")]
         public Uri ImageFullPath { get; set; }
+
+        public override string ToString()
+        {
+            return $"{this.Nombre} {this.Descripcion:C2}";
+        }
     }
 }

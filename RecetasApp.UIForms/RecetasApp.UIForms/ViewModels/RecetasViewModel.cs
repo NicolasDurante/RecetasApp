@@ -10,10 +10,17 @@
     {
         private readonly ApiService apiSevice;
         private ObservableCollection<Receta> recetas;
+        private bool isRefreshing;
+
         public ObservableCollection<Receta> Recetas
         {
             get { return this.recetas; }
             set { this.SetValue(ref this.recetas, value); }
+        }
+        public bool IsRefreshing
+        {
+            get { return this.isRefreshing; }
+            set { this.SetValue(ref this.isRefreshing, value); }
         }
 
 
@@ -25,10 +32,15 @@
 
         private async void LoadRecetas()
         {
+            this.IsRefreshing = true;
+
             var response = await this.apiSevice.GetListAsync<Receta>(
                 "http://192.168.0.23/CoreReceta/", 
                 "api", 
                 "/Recetas");
+
+            this.IsRefreshing = false;
+
 
             if (!response.IsSuccess)
             {
