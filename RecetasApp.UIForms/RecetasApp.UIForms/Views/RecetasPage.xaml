@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RecetasApp.UIForms.Views.RecetasPage"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Title="Recetas">
+    <ContentPage.Content>
+        <StackLayout
+            BindingContext="{Binding Recetas}"
+            Padding="8">
+            <ListView
+                HasUnevenRows="True"
+                ItemsSource="{Binding Recetas}">
+                
+                
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

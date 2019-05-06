@@ -1,6 +1,7 @@
 ﻿namespace RecetasApp.UIForms.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
+    using RecetasApp.UIForms.Views;
     using System;
     using System.Windows.Input;
     using Xamarin.Forms;
@@ -41,11 +42,17 @@
                     "Error",
                     "Usuario o contraseña incorrectos",
                     "Aceptar");
+                return;
             }
+            /*
             await Application.Current.MainPage.DisplayAlert(
                     "Ok",
                     "Abarajame la bañera",
                     "Aceptar");
+            */
+
+            MainViewModel.GetInstance().Recetas = new RecetasViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new RecetasPage());
         }
     }
 }
