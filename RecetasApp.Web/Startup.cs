@@ -43,9 +43,7 @@
             });
 
             services.AddTransient<SeedDb>();
-
             services.AddScoped<IRecetaRepository, RecetaRepository>();
-
             services.AddScoped<IUserHelper, UserHelper>();
 
             services.Configure<CookiePolicyOptions>(options =>

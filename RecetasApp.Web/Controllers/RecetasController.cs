@@ -7,10 +7,12 @@
     using Data;
     using Data.Entities;
     using Helpers;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using RecetasApp.Web.Models;
 
+    [Authorize]
     public class RecetasController : Controller
     {
         private readonly IRecetaRepository recetaRepository;
@@ -82,8 +84,8 @@
 
                 var receta = this.ToReceta(view, path);
 
-                    // TODO: Pending to change to: this.User.Identity.Name
-                    receta.User = await this.userHelper.GetUserByEmailAsync("fer-nicolas-durante@hotmail.com");
+                    
+                    receta.User = await this.userHelper.GetUserByEmailAsync(this.User.Identity.Name);
                 await this.recetaRepository.CreateAsync(receta);
                 return RedirectToAction(nameof(Index));
             }
@@ -196,8 +198,7 @@
 
                     var receta = this.ToReceta(view, path);
 
-                    // TODO: Pending to change to: this.User.Identity.Name
-                    receta.User = await this.userHelper.GetUserByEmailAsync("fer-nicolas-durante@hotmail.com");
+                    receta.User = await this.userHelper.GetUserByEmailAsync(this.User.Identity.Name);
                     await this.recetaRepository.UpdateAsync(receta);
                 }
                 catch (DbUpdateConcurrencyException)

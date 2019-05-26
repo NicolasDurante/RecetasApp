@@ -35,7 +35,7 @@
             this.IsRefreshing = true;
 
             var response = await this.apiSevice.GetListAsync<Receta>(
-                "http://192.168.0.23/CoreReceta/", 
+                "http://192.168.0.10/RecetasApp.Web/", 
                 "api", 
                 "/Recetas");
 
