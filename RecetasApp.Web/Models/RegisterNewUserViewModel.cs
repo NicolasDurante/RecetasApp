@@ -25,6 +25,7 @@ namespace RecetasApp.Web.Models
         [MinLength(6)]
         public string Password { get; set; }
 
+        //compara Confirm con Password
         [Required]
         [Compare("Password")]
         public string Confirm { get; set; }
