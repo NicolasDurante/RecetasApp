@@ -11,6 +11,8 @@
     using Data;
     using Data.Entities;
     using Helpers;
+    using Microsoft.IdentityModel.Tokens;
+    using System.Text;
 
     public class Startup
     {
@@ -37,25 +39,37 @@
             .AddEntityFrameworkStores<DataContext>();
 
 
-            services.AddDbContext<DataContext>(cfg =>
-            {
-                cfg.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection"));
-            });
+            services.AddAuthentication()
+                .AddCookie()
+                .AddJwtBearer(cfg =>
+                {
+                    cfg.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidIssuer = this.Configuration["Tokens:Issuer"],
+                        ValidAudience = this.Configuration["Tokens:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.Configuration["Tokens:Key"]))
+                    };
+                });
 
-            services.AddTransient<SeedDb>();
-            services.AddScoped<IRecetaRepository, RecetaRepository>();
-            services.AddScoped<IUserHelper, UserHelper>();
+                services.AddDbContext<DataContext>(cfg =>
+                {
+                    cfg.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection"));
+                });
 
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
+                services.AddTransient<SeedDb>();
+                services.AddScoped<IRecetaRepository, RecetaRepository>();
+                services.AddScoped<IUserHelper, UserHelper>();
+
+                services.Configure<CookiePolicyOptions>(options =>
+                {
+                    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                    options.CheckConsentNeeded = context => true;
+                    options.MinimumSameSitePolicy = SameSiteMode.None;
+                });
 
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-        }
+                services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

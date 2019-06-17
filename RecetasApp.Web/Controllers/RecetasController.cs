@@ -12,7 +12,7 @@
     using Microsoft.EntityFrameworkCore;
     using RecetasApp.Web.Models;
 
-    [Authorize]
+    
     public class RecetasController : Controller
     {
         private readonly IRecetaRepository recetaRepository;
@@ -25,7 +25,6 @@
             this.userHelper = userHelper;
         }
 
-        // GET: Recetas
         public IActionResult Index()
         {
             return View(this.recetaRepository.GetAll().OrderBy(r=> r.Nombre));
@@ -48,7 +47,7 @@
             return View(receta);
         }
 
-        // GET: Recetas/Create
+        [Authorize(Roles= "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -121,7 +120,7 @@
             };
         }
 
-        // GET: Recetas/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)

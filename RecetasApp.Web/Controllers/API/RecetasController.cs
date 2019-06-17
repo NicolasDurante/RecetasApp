@@ -1,9 +1,13 @@
 ﻿namespace RecetasApp.Web.Controllers.API
 {
     using Data;
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
+
     [Route("api/[Controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class RecetasController : Controller
     {
         private readonly IRecetaRepository recetaRepository;
