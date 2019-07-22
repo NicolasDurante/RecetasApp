@@ -233,6 +233,11 @@
 
             return this.BadRequest();
         }
+
+        public IActionResult NotAuthorized()
+        {
+            return this.View();
+        }
     }
 
 }

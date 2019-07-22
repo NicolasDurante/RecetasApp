@@ -35,13 +35,13 @@
         {
             if (id == null)
             {
-                return NotFound();
+                return new NotFoundViewResult("ProductNotFound");
             }
 
             var receta = await this.recetaRepository.GetByIdAsync(id.Value);
             if (receta == null)
             {
-                return NotFound();
+                return new NotFoundViewResult("ProductNotFound");
             }
 
             return View(receta);
@@ -125,13 +125,13 @@
         {
             if (id == null)
             {
-                return NotFound();
+                return new NotFoundViewResult("ProductNotFound");
             }
 
             var receta = await this.recetaRepository.GetByIdAsync(id.Value);
             if (receta == null)
             {
-                return NotFound();
+                return new NotFoundViewResult("ProductNotFound");
             }
 
             var view = this.ToRecetaViewModel(receta);
@@ -222,13 +222,13 @@
         {
             if (id == null)
             {
-                return NotFound();
+                return new NotFoundViewResult("ProductNotFound");
             }
 
             var receta = await this.recetaRepository.GetByIdAsync(id.Value);
             if (receta == null)
             {
-                return NotFound();
+                return new NotFoundViewResult("ProductNotFound");
             }
 
             return View(receta);
@@ -242,6 +242,11 @@
             var receta = await this.recetaRepository.GetByIdAsync(id);
             await this.recetaRepository.DeleteAsync(receta);
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult ProductNotFound()
+        {
+            return this.View();
         }
     }
 
