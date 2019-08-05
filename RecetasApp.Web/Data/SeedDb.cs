@@ -63,20 +63,16 @@
         }
 
         private void AddReceta(string name, User user)
-        {
+        { 
             this.context.Recetas.Add(new Receta
             {
                 Nombre = name,
                 Descripcion= "pepe",
-                Categoria= "pepe",
-                Dificultad= "pepe",
-                Tiempo= "pepe",
-                Pasos= "pepe",
-                Raciones= this.random.Next(100),
-                NumIngredientes= this.random.Next(100),
-                MedidaIngredientes= "pepe",
-                Ingredientes= "pepe",
-                Stock = this.random.Next(100),
+                Tiempo= "Media Hora",
+                Raciones = this.random.Next(100),
+                Dificultad = "Facil",
+                Temporada ="Invierno",
+                Comentarios=true,
                 User = user
                 
             });

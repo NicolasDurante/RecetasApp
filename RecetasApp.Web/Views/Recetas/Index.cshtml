@@ -19,52 +19,28 @@
                 @Html.DisplayNameFor(model => model.Descripcion)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Tiempo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Raciones)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.ImagenUrl)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.UrlVideo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Categoria)
+                @Html.DisplayNameFor(model => model.Temporada)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Dificultad)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Tiempo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Temporada)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Region)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pasos)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Raciones)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumIngredientes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MedidaIngredientes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ingredientes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Observaciones)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Comentarios)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PublicadaEn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Stock)
+                @Html.DisplayNameFor(model => model.NumLikes)
             </th>
             <th></th>
         </tr>
@@ -79,6 +55,12 @@
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Tiempo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Raciones)
+            </td>
+            <td>
                 @if (!string.IsNullOrEmpty(item.ImagenUrl))
                 {
                     <img src="@Url.Content(item.ImagenUrl)" alt="Image" style="width:100px;height:150px;max-width: 100%; height: auto;" />
@@ -89,47 +71,25 @@
                 @Html.DisplayFor(modelItem => item.UrlVideo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Categoria)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dificultad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tiempo)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Temporada)
             </td>
+
             <td>
-                @Html.DisplayFor(modelItem => item.Region)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pasos)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Raciones)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumIngredientes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MedidaIngredientes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ingredientes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Observaciones)
+                @Html.DisplayFor(modelItem => item.Dificultad)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Comentarios)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PublicadaEn)
+                @Html.DisplayFor(modelItem => item.NumLikes)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Stock)
-            </td>
+
+
+
+
+
+
+
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Editar</a>
                 <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Detalles</a>

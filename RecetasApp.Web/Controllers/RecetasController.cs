@@ -97,25 +97,18 @@
             return new Receta
             {
                 Id= view.Id,
-                ImagenUrl= path,
-                Categoria=view.Categoria,
-                Comentarios= view.Comentarios,
-                Descripcion= view.Descripcion,
-                Dificultad=view.Dificultad,
-                Ingredientes=view.Ingredientes,
-                MedidaIngredientes=view.MedidaIngredientes,
-                Nombre=view.Nombre,
-                NumIngredientes=view.NumIngredientes,
-                Observaciones=view.Observaciones,
-                Pasos=view.Pasos,
-                PublicadaEn=view.PublicadaEn,
-                Raciones=view.Raciones,
-                Region=view.Region,
-                Temporada=view.Temporada,
+                Nombre = view.Nombre,
+                Descripcion = view.Descripcion,
                 Tiempo=view.Tiempo,
-                UrlVideo=view.UrlVideo,
-                Stock=view.Stock,
-                User=view.User
+                Raciones=view.Raciones,
+                ImagenUrl = path,
+                UrlVideo = view.UrlVideo,
+                Temporada = view.Temporada,
+                Dificultad = view.Dificultad,
+                User=view.User,
+                Comentarios = view.Comentarios,
+                NumLikes=view.NumLikes
+
 
             };
         }
@@ -142,26 +135,19 @@
         {
             return new RecetaViewModel
             {
+              
                 Id = receta.Id,
-                Categoria = receta.Categoria,
-                ImagenUrl= receta.ImagenUrl,
-                Comentarios = receta.Comentarios,
-                Descripcion = receta.Descripcion,
-                Dificultad = receta.Dificultad,
-                Ingredientes = receta.Ingredientes,
-                MedidaIngredientes = receta.MedidaIngredientes,
                 Nombre = receta.Nombre,
-                NumIngredientes = receta.NumIngredientes,
-                Observaciones = receta.Observaciones,
-                Pasos = receta.Pasos,
-                PublicadaEn = receta.PublicadaEn,
-                Raciones = receta.Raciones,
-                Region = receta.Region,
-                Temporada = receta.Temporada,
+                Descripcion = receta.Descripcion,
                 Tiempo = receta.Tiempo,
+                Raciones = receta.Raciones,
+                ImagenUrl = receta.ImagenUrl,
                 UrlVideo = receta.UrlVideo,
-                Stock = receta.Stock,
-                User = receta.User
+                Temporada = receta.Temporada,
+                Dificultad = receta.Dificultad,
+                User = receta.User,
+                Comentarios = receta.Comentarios,
+                NumLikes = receta.NumLikes
             };
         }
 

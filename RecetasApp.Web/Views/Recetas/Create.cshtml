@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create" enctype="multipart/form-data" >
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
@@ -26,6 +26,18 @@
             </div>
 
             <div class="form-group">
+                <label asp-for="Tiempo" class="control-label"></label>
+                <input asp-for="Tiempo" class="form-control" />
+                <span asp-validation-for="Tiempo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Raciones" class="control-label"></label>
+                <input asp-for="Raciones" class="form-control" />
+                <span asp-validation-for="Raciones" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
                 <label asp-for="ImageFile" class="control-label"></label>
                 <input asp-for="ImageFile" class="form-control" type="file" />
                 <span asp-validation-for="ImageFile" class="text-danger"></span>
@@ -38,9 +50,9 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Categoria" class="control-label"></label>
-                <input asp-for="Categoria" class="form-control" />
-                <span asp-validation-for="Categoria" class="text-danger"></span>
+                <label asp-for="Temporada" class="control-label"></label>
+                <input asp-for="Temporada" class="form-control" />
+                <span asp-validation-for="Temporada" class="text-danger"></span>
             </div>
 
             <div class="form-group">
@@ -50,76 +62,19 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Tiempo" class="control-label"></label>
-                <input asp-for="Tiempo" class="form-control" />
-                <span asp-validation-for="Tiempo" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Temporada" class="control-label"></label>
-                <input asp-for="Temporada" class="form-control" />
-                <span asp-validation-for="Temporada" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Region" class="control-label"></label>
-                <input asp-for="Region" class="form-control" />
-                <span asp-validation-for="Region" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Pasos" class="control-label"></label>
-                <input asp-for="Pasos" class="form-control" />
-                <span asp-validation-for="Pasos" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Raciones" class="control-label"></label>
-                <input asp-for="Raciones" class="form-control" />
-                <span asp-validation-for="Raciones" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="NumIngredientes" class="control-label"></label>
-                <input asp-for="NumIngredientes" class="form-control" />
-                <span asp-validation-for="NumIngredientes" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="MedidaIngredientes" class="control-label"></label>
-                <input asp-for="MedidaIngredientes" class="form-control" />
-                <span asp-validation-for="MedidaIngredientes" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Ingredientes" class="control-label"></label>
-                <input asp-for="Ingredientes" class="form-control" />
-                <span asp-validation-for="Ingredientes" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Observaciones" class="control-label"></label>
-                <input asp-for="Observaciones" class="form-control" />
-                <span asp-validation-for="Observaciones" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
                 <div class="checkbox">
                     <label>
                         <input asp-for="Comentarios" /> @Html.DisplayNameFor(model => model.Comentarios)
                     </label>
                 </div>
             </div>
+
             <div class="form-group">
-                <label asp-for="PublicadaEn" class="control-label"></label>
-                <input asp-for="PublicadaEn" class="form-control" />
-                <span asp-validation-for="PublicadaEn" class="text-danger"></span>
+                <label asp-for="NumLikes" class="control-label"></label>
+                <input asp-for="NumLikes" class="form-control" />
+                <span asp-validation-for="NumLikes" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Stock" class="control-label"></label>
-                <input asp-for="Stock" class="form-control" />
-                <span asp-validation-for="Stock" class="text-danger"></span>
-            </div>
+
             <div class="form-group">
                 <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Create</button>
                 <a asp-action="Index" class="btn btn-success"><i class="fa fa-chevron-left"></i> Back to List</a>
