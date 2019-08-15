@@ -38,6 +38,10 @@
 
         public User User { get; set; }
 
+
+        [Required]
+        public Region Region { get; set; }
+
         [Display(Name = "Activar o desactivar Comentarios")]
         public bool Comentarios { get; set; }
 
