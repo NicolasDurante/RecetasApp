@@ -62,7 +62,7 @@
             }
         }
 
-        private void AddReceta(string name, User user)
+        private void AddReceta(string name, User user) 
         { 
             this.context.Recetas.Add(new Receta
             {
@@ -73,8 +73,11 @@
                 Dificultad = "Facil",
                 Temporada ="Invierno",
                 Comentarios=true,
-                User = user
+                User = user,
                 
+                
+                
+
             });
         }
     }

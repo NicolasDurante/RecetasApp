@@ -1,0 +1,104 @@
+﻿@model IEnumerable<RecetasApp.Web.Data.Entities.Receta>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            @if (this.User.IsInRole("Admin"))
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.User.FullName)
+                </th>
+            }
+
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tiempo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Raciones)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImagenUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UrlVideo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Temporada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dificultad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comentarios)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumLikes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+
+            @if (this.User.IsInRole("Admin"))
+            {
+            <th>
+                @Html.DisplayFor(modelItem => item.User.FullName)
+            </th>
+            }
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tiempo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Raciones)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImagenUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UrlVideo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Temporada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dificultad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comentarios)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumLikes)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

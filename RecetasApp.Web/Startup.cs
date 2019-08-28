@@ -13,6 +13,7 @@
     using Helpers;
     using Microsoft.IdentityModel.Tokens;
     using System.Text;
+    using RecetasApp.Web.Data.Repositories;
 
     public class Startup
     {
@@ -58,6 +59,7 @@
 
                 services.AddTransient<SeedDb>();
                 services.AddScoped<IRecetaRepository, RecetaRepository>();
+                services.AddScoped<IUsuarioRecetaRepository, UsuarioRecetaRepository>();
                 services.AddScoped<IUserHelper, UserHelper>();
 
                 services.Configure<CookiePolicyOptions>(options =>
