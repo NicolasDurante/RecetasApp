@@ -76,7 +76,25 @@
 
     </dl>
 </div>
+
+<script language="javascript" type="text/javascript">
+
+    function save() {
+        val = document.myform.text_area.value;
+        mydoc = document.open();
+        mydoc.write(val);
+        mydoc.execCommand("saveAs", true, ".txt"); //you can change the .txt to your extention
+        history.go(-1);
+    }
+
+</script>
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a> 
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
     <a asp-action="Index" class="btn btn-success">Back to List</a>
+
+    <button class="btn btn-primary " onclick="window.print();return false;" /> Imprimir
+    
 </div>
+
+

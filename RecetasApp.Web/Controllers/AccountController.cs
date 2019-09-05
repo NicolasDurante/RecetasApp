@@ -260,6 +260,64 @@
 
             return View();
         }
-    }
 
+        public IActionResult RecoverPassword()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RecoverPassword(RecoverPasswordViewModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                var user = await this.userHelper.GetUserByEmailAsync(model.Email);
+                if (user == null)
+                {
+                    ModelState.AddModelError(string.Empty, "El email no corresponde con un usuario registrado.");
+                    return this.View(model);
+                }
+
+                var myToken = await this.userHelper.GeneratePasswordResetTokenAsync(user);
+                var link = this.Url.Action(
+                    "ResetPassword",
+                    "Account",
+                    new { token = myToken }, protocol: HttpContext.Request.Scheme);
+                this.mailHelper.SendMail(model.Email, "RecetasApp reset de contraseña", $"<h1>RecetasApp reset de contraseña</h1>" +
+                    $"Para resetear la contraseña haga click en este link:</br></br>" +
+                    $"<a href = \"{link}\">Reset Contraseña</a>");
+                this.ViewBag.Message = "Las instrucciones para recuperar tu contraseña han sido enviadas a tu email.";
+                return this.View();
+
+            }
+
+            return this.View(model);
+        }
+
+        public IActionResult ResetPassword(string token)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            var user = await this.userHelper.GetUserByEmailAsync(model.UserName);
+            if (user != null)
+            {
+                var result = await this.userHelper.ResetPasswordAsync(user, model.Token, model.Password);
+                if (result.Succeeded)
+                {
+                    this.ViewBag.Message = "Contraseña reiniciada correctamente.";
+                    return this.View();
+                }
+
+                this.ViewBag.Message = "Error reiniciado la contraseña.";
+                return View(model);
+            }
+
+            this.ViewBag.Message = "Usuario no encontrado.";
+            return View(model);
+        }
+    }
 }
