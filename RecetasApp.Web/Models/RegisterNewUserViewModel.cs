@@ -18,8 +18,10 @@ namespace RecetasApp.Web.Models
         public string LastName { get; set; }
 
         [Required]
+        [Display(Name = "Email")]
         [DataType(DataType.EmailAddress)]
         public string Username { get; set; }
+
 
         [Required]
         [MinLength(6)]

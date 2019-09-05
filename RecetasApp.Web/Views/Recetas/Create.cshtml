@@ -28,7 +28,12 @@
 
             <div class="form-group">
                 <label asp-for="Tiempo" class="control-label"></label>
-                <input asp-for="Tiempo" class="form-control" />
+                <select asp-for="Tiempo" class="form-control">
+                    <option disabled selected></option>
+                    <option value="Menos de una hora">Menos de una hora</option>
+                    <option value="Una hora">Una Hora</option>
+                    <option value="Más de una hora">Más de una hora</option>
+                </select>
                 <span asp-validation-for="Tiempo" class="text-danger"></span>
             </div>
 
@@ -52,13 +57,24 @@
 
             <div class="form-group">
                 <label asp-for="Temporada" class="control-label"></label>
-                <input asp-for="Temporada" class="form-control" />
+                <select asp-for="Temporada" class="form-control">
+                    <option disabled selected></option>
+                    <option value="Verano">Verano</option>
+                    <option value="Primavera">Primavera</option>
+                    <option value="Invierno">Invierno</option>
+                    <option value="Otoño">Otoño</option>
+                </select>
                 <span asp-validation-for="Temporada" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Dificultad" class="control-label"></label>
-                <input asp-for="Dificultad" class="form-control" />
+                <select asp-for="Dificultad" class="form-control">
+                    <option disabled selected></option>
+                    <option value="Fácil">Fácil</option>
+                    <option value="Media">Media</option>
+                    <option value="Difícil">Difícil</option>
+                </select>
                 <span asp-validation-for="Dificultad" class="text-danger"></span>
             </div>
 

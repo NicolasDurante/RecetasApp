@@ -18,13 +18,16 @@
     public class AccountController : Controller
     {
         private readonly IUserHelper userHelper;
+        private readonly IMailHelper mailHelper;
         private readonly IConfiguration configuration;
 
         public AccountController(
             IUserHelper userHelper,
+            IMailHelper mailHelper,
             IConfiguration configuration)
         {
             this.userHelper = userHelper;
+            this.mailHelper = mailHelper;
             this.configuration = configuration;
         }
         public IActionResult Login()
@@ -65,8 +68,11 @@
         }
         public IActionResult Register()
         {
+           
+
             return this.View();
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Register(RegisterNewUserViewModel model)
@@ -76,12 +82,14 @@
                 var user = await this.userHelper.GetUserByEmailAsync(model.Username);
                 if (user == null)
                 {
+                   
                     user = new User
                     {
                         FirstName = model.FirstName,
                         LastName = model.LastName,
                         Email = model.Username,
-                        UserName = model.Username
+                        UserName = model.Username,
+                       
                     };
 
                     var result = await this.userHelper.AddUserAsync(user, model.Password);
@@ -91,32 +99,24 @@
                         return this.View(model);
                     }
 
-
-                    var loginViewModel = new LoginViewModel
+                    var myToken = await this.userHelper.GenerateEmailConfirmationTokenAsync(user);
+                    var tokenLink = this.Url.Action("ConfirmEmail", "Account", new
                     {
-                        Password = model.Password,
-                        RememberMe = false,
-                        Username = model.Username
-                    };
+                        userid = user.Id,
+                        token = myToken
+                    }, protocol: HttpContext.Request.Scheme);
 
-                    var result2 = await this.userHelper.LoginAsync(loginViewModel);
-
-                    if (result2.Succeeded)
-                    {
-                        return this.RedirectToAction("Index", "Home");
-                    }
-
-                    this.ModelState.AddModelError(string.Empty, "The user couldn't be login.");
+                    this.mailHelper.SendMail(model.Username, "Email de confirmación de RecetasApp", $"<h1>Confirmacion de Email</h1>" +
+                        $"Para permitir al usuario, " +
+                        $"Por favor haga click en el link:</br></br><a href = \"{tokenLink}\">Confirmar Email</a>");
+                    this.ViewBag.Message = "La instruciones para habilitar a tu usuario han sido enviadas a tu email.";
                     return this.View(model);
-
-
                 }
 
-                this.ModelState.AddModelError(string.Empty, "The username is already registered.");
+                this.ModelState.AddModelError(string.Empty, "El usuario ya esta registrado.");
             }
 
             return this.View(model);
-
         }
         public async Task<IActionResult> ChangeUser()
         {
@@ -237,6 +237,28 @@
         public IActionResult NotAuthorized()
         {
             return this.View();
+        }
+
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
+        {
+            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(token))
+            {
+                return this.NotFound();
+            }
+
+            var user = await this.userHelper.GetUserByIdAsync(userId);
+            if (user == null)
+            {
+                return this.NotFound();
+            }
+
+            var result = await this.userHelper.ConfirmEmailAsync(user, token);
+            if (!result.Succeeded)
+            {
+                return this.NotFound();
+            }
+
+            return View();
         }
     }
 
