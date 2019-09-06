@@ -40,6 +40,12 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                     <li><a asp-area="" asp-controller="Recetas" asp-action="Index">Recetas</a></li>
                     <li><a asp-area="" asp-controller="UsuarioReceta" asp-action="Index">UsuarioRecetas</a></li>
+                    @if  (this.User.IsInRole("Admin"))
+                    {
+                        <li><a asp-area="" asp-controller="Account" asp-action="Index">Users</a></li>
+                    }
+
+
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (this.User.Identity.IsAuthenticated)
