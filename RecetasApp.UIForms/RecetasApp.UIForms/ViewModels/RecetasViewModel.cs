@@ -8,7 +8,7 @@
 
     public class RecetasViewModel : BaseViewModel
     {
-        private readonly ApiService apiSevice;
+        private readonly ApiService apiService;
         private ObservableCollection<Receta> recetas;
         private bool isRefreshing;
 
@@ -26,7 +26,7 @@
 
         public RecetasViewModel()
         {
-            this.apiSevice = new ApiService();
+            this.apiService = new ApiService();
             this.LoadRecetas();
         }
 
@@ -34,10 +34,15 @@
         {
             this.IsRefreshing = true;
 
-            var response = await this.apiSevice.GetListAsync<Receta>(
-                "http://192.168.0.10/RecetasApp.Web/", 
-                "api", 
-                "/Recetas");
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var response = await this.apiService.GetListAsync<Receta>(
+                url,
+                "api",
+                "/Recetas",
+                "bearer",
+                MainViewModel.GetInstance().Token.Token);
+
+            
 
             this.IsRefreshing = false;
 

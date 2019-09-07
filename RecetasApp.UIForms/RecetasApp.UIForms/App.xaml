@@ -5,8 +5,14 @@
              x:Class="RecetasApp.UIForms.App">
     <Application.Resources>
         <ResourceDictionary>
+            
             <!-- Locator -->
             <infra:InstanceLocator x:Key="Locator"/>
+
+            <!-- Parameters -->
+            <x:String x:Key="UrlAPI">http://192.168.0.22/RecetasApp.Web/</x:String>
+
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

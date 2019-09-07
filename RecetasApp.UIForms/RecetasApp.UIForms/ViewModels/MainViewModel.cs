@@ -1,8 +1,13 @@
-﻿namespace RecetasApp.UIForms.ViewModels
+﻿using RecetasApp.Common.Models;
+
+namespace RecetasApp.UIForms.ViewModels
 {
     public class MainViewModel
     {
         private static MainViewModel instance;
+
+        public TokenResponse Token { get; set; }
+
         public LoginViewModel Login { get; set; }
 
         public RecetasViewModel Recetas { get; set; }
