@@ -4,10 +4,13 @@ using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace RecetasApp.UIForms
 {
     public partial class App : Application
     {
+        public static NavigationPage Navigator { get; internal set; }
+
         public App()
         {
             InitializeComponent();

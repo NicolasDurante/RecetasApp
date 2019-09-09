@@ -22,8 +22,6 @@ namespace RecetasApp.Common.Models
         [JsonProperty("urlVideo")]
         public object UrlVideo { get; set; }
 
-        [JsonProperty("categoria")]
-        public string Categoria { get; set; }
 
         [JsonProperty("dificultad")]
         public string Dificultad { get; set; }
@@ -37,32 +35,16 @@ namespace RecetasApp.Common.Models
         [JsonProperty("region")]
         public object Region { get; set; }
 
-        [JsonProperty("pasos")]
-        public string Pasos { get; set; }
 
         [JsonProperty("raciones")]
         public long Raciones { get; set; }
 
-        [JsonProperty("numIngredientes")]
-        public long NumIngredientes { get; set; }
-
-        [JsonProperty("medidaIngredientes")]
-        public string MedidaIngredientes { get; set; }
-
-        [JsonProperty("ingredientes")]
-        public string Ingredientes { get; set; }
-
-        [JsonProperty("observaciones")]
-        public object Observaciones { get; set; }
-
+        
+       
         [JsonProperty("comentarios")]
         public bool Comentarios { get; set; }
 
-        [JsonProperty("publicadaEn")]
-        public DateTimeOffset PublicadaEn { get; set; }
-
-        [JsonProperty("stock")]
-        public long Stock { get; set; }
+       
 
         [JsonProperty("user")]
         public User User { get; set; }

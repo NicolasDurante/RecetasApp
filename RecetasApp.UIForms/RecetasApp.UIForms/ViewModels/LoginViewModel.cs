@@ -83,7 +83,7 @@
             var mainViewModel = MainViewModel.GetInstance();
             mainViewModel.Token = token;
             mainViewModel.Recetas = new RecetasViewModel();
-            await Application.Current.MainPage.Navigation.PushAsync(new RecetasPage());
+            Application.Current.MainPage = new MasterPage();
         }
     }
 }
