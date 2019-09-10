@@ -1,10 +1,15 @@
 ﻿using RecetasApp.Common.Models;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace RecetasApp.UIForms.ViewModels
 {
     public class MainViewModel
     {
         private static MainViewModel instance;
+
+        public ObservableCollection<MenuItemViewModel> Menus { get; set; }
 
         public TokenResponse Token { get; set; }
 
@@ -14,6 +19,42 @@ namespace RecetasApp.UIForms.ViewModels
         public MainViewModel()
         {
             instance = this;
+            this.LoadMenus();
+        }
+
+        private void LoadMenus()
+        {
+            var menus = new List<Menu>
+            {
+                new Menu
+                {
+                    Icon = "ic_info_outline",
+                    PageName = "AboutPage",
+                    Title = "Acerca de"
+                },
+
+                new Menu
+                {
+                    Icon = "ic_phonelink_setup",
+                    PageName = "SetupPage",
+                    Title = "Configuración"
+                },
+
+                new Menu
+                {
+                    Icon = "ic_exit_to_app",
+                    PageName = "LoginPage",
+                    Title = "Cerrar Seccion"
+                }
+            };
+
+            this.Menus = new ObservableCollection<MenuItemViewModel>(
+                menus.Select(m => new MenuItemViewModel
+            {
+                Icon = m.Icon,
+                PageName = m.PageName,
+                Title = m.Title
+            }).ToList());
         }
 
         public static MainViewModel GetInstance()

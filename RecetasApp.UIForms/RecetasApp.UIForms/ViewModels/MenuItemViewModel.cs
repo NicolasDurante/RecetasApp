@@ -13,6 +13,8 @@
 
         private async void SelectMenu()
         {
+            App.Master.IsPresented = false;
+
             var mainViewModel = MainViewModel.GetInstance();
 
             switch (this.PageName)
