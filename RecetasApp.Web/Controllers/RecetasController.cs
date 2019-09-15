@@ -47,7 +47,7 @@
             return View(receta);
         }
 
-        [Authorize(Roles= "Admin")]
+        //[Authorize(Roles= "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -113,7 +113,7 @@
             };
         }
 
-        [Authorize(Roles = "Admin")]
+        
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
