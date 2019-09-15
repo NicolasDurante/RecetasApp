@@ -38,8 +38,6 @@
 
         public User User { get; set; }
 
-
-
         public Region Region { get; set; }
 
         [Display(Name = "Activar o desactivar Comentarios")]
@@ -48,7 +46,6 @@
         [Required]
         [Display(Name = "NumLikes")]
         public int NumLikes { get; set; }
-
 
 
         public string ImageFullPath
@@ -60,7 +57,7 @@
                     return null;
 
                 }
-                return $"http://192.168.0.22/RecetasApp.Web/" +this.ImagenUrl.Substring(1);
+                return $"http://192.168.0.30/RecetasApp.Web" +this.ImagenUrl.Substring(1);
             }
         }
     }

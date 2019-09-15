@@ -33,7 +33,6 @@
         public DbSet<Medida> Medidas { get; set; }
 
 
-        public object Products { get; internal set; }
         public IQueryable<Region> Region { get; internal set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
