@@ -2,12 +2,10 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-
     public class PasosReceta : IEntity
     {
         public int Id { get; set; }
 
-        [Required]
         public Receta Receta { get; set; }
 
         [Required]
@@ -16,7 +14,6 @@
 
         [Display(Name = "Instrucciones")]
         public string Instrucciones { get; set; }
-
     }
 
 }

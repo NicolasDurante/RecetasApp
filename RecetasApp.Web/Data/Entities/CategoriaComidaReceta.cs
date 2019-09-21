@@ -6,10 +6,10 @@
     {
         public int Id { get; set; }
 
-        [Required]
         public Receta Receta { get; set; }
 
-        [Required]
-        public CategoriaComida CategoriaComida { get; set; }
+        public CategoriaComida CategoriaComidas { get; set; }
+
+
     }
 }

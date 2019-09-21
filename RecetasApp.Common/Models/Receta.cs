@@ -41,7 +41,7 @@ namespace RecetasApp.Common.Models
         public object Region { get; set; }
 
         [JsonProperty("comentarios")]
-        public bool Comentarios { get; set; }
+        public bool ActiComentarios { get; set; }
 
         [JsonProperty("imageFullPath")]
         public Uri ImageFullPath { get; set; }

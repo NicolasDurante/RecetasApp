@@ -51,8 +51,8 @@
                 Tiempo = receta.Tiempo,
                 //Raciones = receta.Raciones,
                 Dificultad = receta.Dificultad,
-               // Region = receta.Region,
-                Comentarios = receta.Comentarios,
+                // Region = receta.Region,
+                ActiComentarios = receta.ActiComentarios,
                 //NumLikes = receta.NumLikes,
                 //Region = receta.Region,
 
@@ -89,7 +89,7 @@
                 //oldReceta.Raciones = receta.Raciones;
                 oldReceta.Dificultad = receta.Dificultad;
                 // oldReceta.Region = receta.Region;
-                oldReceta.Comentarios = receta.Comentarios;
+                oldReceta.ActiComentarios = receta.ActiComentarios;
                 //oldReceta.NumLikes = receta.NumLikes;
                 //oldReceta.Region = receta.Region;
 

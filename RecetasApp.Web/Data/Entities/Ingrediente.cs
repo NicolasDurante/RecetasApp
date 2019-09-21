@@ -1,5 +1,6 @@
 ﻿namespace RecetasApp.Web.Data.Entities
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     public class Ingrediente : IEntity
@@ -9,7 +10,8 @@
         [Display(Name = "Ingrediente")]
         public string Ingredient { get; set; }
 
-        
+        public ICollection<RecetaIngrediente> RecetaIngredientes { get; set; }
+
 
     }
 }

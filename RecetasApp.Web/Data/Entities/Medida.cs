@@ -1,5 +1,6 @@
 ﻿namespace RecetasApp.Web.Data.Entities
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     public class Medida : IEntity
@@ -12,6 +13,7 @@
         [Required]
         public string Abreviacion  { get; set; }
 
+        public ICollection<RecetaIngrediente> RecetaIngredientes { get; set; }
 
     }
 }

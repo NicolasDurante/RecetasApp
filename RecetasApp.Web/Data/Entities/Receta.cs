@@ -1,6 +1,7 @@
 ﻿namespace RecetasApp.Web.Data.Entities
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     public class Receta : IEntity
@@ -40,8 +41,21 @@
 
         public Region Region { get; set; }
 
+        public ICollection<PasosReceta> PasosRecetas { get; set; }
+
+        public ICollection<RecetaIngrediente> RecetaIngredientes { get; set; }
+
+        public ICollection<Comentario> Comentarios { get; set; }
+
+        public ICollection<Observacion> Observacions { get; set; }
+
+        public ICollection<CategoriaComidaReceta> CategoriaComidaRecetas { get; set; }
+        public ICollection<Like> Likes { get; set; }
+
+
+
         [Display(Name = "Activar o desactivar Comentarios")]
-        public bool Comentarios { get; set; }
+        public bool ActiComentarios { get; set; }
 
         [Required]
         [Display(Name = "NumLikes")]
@@ -57,7 +71,7 @@
                     return null;
 
                 }
-                return $"http://192.168.0.30/RecetasApp.Web" +this.ImagenUrl.Substring(1);
+                return $"http://192.168.0.222/RecetasApp.Web" +this.ImagenUrl.Substring(1);
             }
         }
     }

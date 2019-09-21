@@ -1,5 +1,6 @@
 ﻿namespace RecetasApp.Web.Data.Entities
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     public class CategoriaComida : IEntity
@@ -8,6 +9,8 @@
 
         [Display(Name = "Categoria de Comida")]
         public string Categoria { get; set; }
+
+        public ICollection<CategoriaComidaReceta> CategoriaComidaRecetas { get; set; }
 
     }
 }

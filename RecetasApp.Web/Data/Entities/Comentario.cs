@@ -6,10 +6,8 @@
     {
         public int Id { get; set; }
 
-        [Required]
         public Receta Receta { get; set; }
 
-        [Required]
         public User User { get; set; }
 
         [Display(Name = "Comentario")]

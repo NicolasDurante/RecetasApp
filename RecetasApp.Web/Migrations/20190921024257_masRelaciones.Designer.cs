@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RecetasApp.Web.Data;
 
 namespace RecetasApp.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20190921024257_masRelaciones")]
+    partial class masRelaciones
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -148,9 +150,9 @@ namespace RecetasApp.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoriaComidasId");
+                    b.Property<int>("CategoriaComidasId");
 
-                    b.Property<int?>("RecetaId");
+                    b.Property<int>("RecetaId");
 
                     b.HasKey("Id");
 
@@ -169,9 +171,10 @@ namespace RecetasApp.Web.Migrations
 
                     b.Property<string>("Comentari");
 
-                    b.Property<int?>("RecetaId");
+                    b.Property<int>("RecetaId");
 
-                    b.Property<string>("UserId");
+                    b.Property<string>("UserId")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -201,9 +204,10 @@ namespace RecetasApp.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("RecetaId");
+                    b.Property<int>("RecetaId");
 
-                    b.Property<string>("UserId");
+                    b.Property<string>("UserId")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -238,7 +242,7 @@ namespace RecetasApp.Web.Migrations
 
                     b.Property<string>("Observacio");
 
-                    b.Property<int?>("RecetaId");
+                    b.Property<int>("RecetaId");
 
                     b.HasKey("Id");
 
@@ -257,7 +261,7 @@ namespace RecetasApp.Web.Migrations
 
                     b.Property<int>("NumPaso");
 
-                    b.Property<int?>("RecetaId");
+                    b.Property<int>("RecetaId");
 
                     b.HasKey("Id");
 
@@ -318,11 +322,11 @@ namespace RecetasApp.Web.Migrations
 
                     b.Property<int>("Cantidad");
 
-                    b.Property<int?>("IngredientesId");
+                    b.Property<int>("IngredientesId");
 
-                    b.Property<int?>("MedidasId");
+                    b.Property<int>("MedidasId");
 
-                    b.Property<int?>("RecetaId");
+                    b.Property<int>("RecetaId");
 
                     b.HasKey("Id");
 
@@ -452,47 +456,55 @@ namespace RecetasApp.Web.Migrations
                 {
                     b.HasOne("RecetasApp.Web.Data.Entities.CategoriaComida", "CategoriaComidas")
                         .WithMany("CategoriaComidaRecetas")
-                        .HasForeignKey("CategoriaComidasId");
+                        .HasForeignKey("CategoriaComidasId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("RecetasApp.Web.Data.Entities.Receta", "Receta")
                         .WithMany("CategoriaComidaRecetas")
-                        .HasForeignKey("RecetaId");
+                        .HasForeignKey("RecetaId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("RecetasApp.Web.Data.Entities.Comentario", b =>
                 {
                     b.HasOne("RecetasApp.Web.Data.Entities.Receta", "Receta")
                         .WithMany("Comentarios")
-                        .HasForeignKey("RecetaId");
+                        .HasForeignKey("RecetaId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("RecetasApp.Web.Data.Entities.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("RecetasApp.Web.Data.Entities.Like", b =>
                 {
                     b.HasOne("RecetasApp.Web.Data.Entities.Receta", "Receta")
                         .WithMany("Likes")
-                        .HasForeignKey("RecetaId");
+                        .HasForeignKey("RecetaId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("RecetasApp.Web.Data.Entities.User", "User")
                         .WithMany("Likes")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("RecetasApp.Web.Data.Entities.Observacion", b =>
                 {
                     b.HasOne("RecetasApp.Web.Data.Entities.Receta", "Receta")
                         .WithMany("Observacions")
-                        .HasForeignKey("RecetaId");
+                        .HasForeignKey("RecetaId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("RecetasApp.Web.Data.Entities.PasosReceta", b =>
                 {
                     b.HasOne("RecetasApp.Web.Data.Entities.Receta", "Receta")
                         .WithMany("PasosRecetas")
-                        .HasForeignKey("RecetaId");
+                        .HasForeignKey("RecetaId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("RecetasApp.Web.Data.Entities.Receta", b =>
@@ -510,15 +522,18 @@ namespace RecetasApp.Web.Migrations
                 {
                     b.HasOne("RecetasApp.Web.Data.Entities.Ingrediente", "Ingredientes")
                         .WithMany("RecetaIngredientes")
-                        .HasForeignKey("IngredientesId");
+                        .HasForeignKey("IngredientesId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("RecetasApp.Web.Data.Entities.Medida", "Medidas")
                         .WithMany("RecetaIngredientes")
-                        .HasForeignKey("MedidasId");
+                        .HasForeignKey("MedidasId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("RecetasApp.Web.Data.Entities.Receta", "Receta")
                         .WithMany("RecetaIngredientes")
-                        .HasForeignKey("RecetaId");
+                        .HasForeignKey("RecetaId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 #pragma warning restore 612, 618
         }

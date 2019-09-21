@@ -12,11 +12,11 @@
     {
         public DbSet<Receta> Recetas { get; set; }
 
-        public DbSet<Observacion> Observaciones { get; set; }
+        public DbSet<Observacion> Observacions { get; set; }
 
         public DbSet<PasosReceta> PasosRecetas { get; set; }
 
-        public DbSet<Region> Regiones { get; set; }
+        public DbSet<Region> Regions { get; set; }
 
         public DbSet<CategoriaComida> CategoriaComidas { get; set; }
 
@@ -31,9 +31,7 @@
         public DbSet<Ingrediente> Ingredientes { get; set; }
 
         public DbSet<Medida> Medidas { get; set; }
-
-
-        public IQueryable<Region> Region { get; internal set; }
+        public object Receta { get; internal set; }
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
