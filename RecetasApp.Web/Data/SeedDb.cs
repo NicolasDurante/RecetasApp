@@ -27,10 +27,10 @@
             await this.userHelper.CheckRoleAsync("Admin");
             await this.userHelper.CheckRoleAsync("Customer");
             await CheckRegionsAsync();
-           /*
+           
             await CheckCategoriaComidasAsync();
-            */
             
+           
             
             await CheckIngredientesAsync();
             await CheckMedidasAsync();
@@ -112,7 +112,7 @@
                 await context.SaveChangesAsync();
             }
         }
-        /*
+        
         private async Task CheckCategoriaComidasAsync()
         {
             if (!context.CategoriaComidas.Any())
@@ -133,7 +133,7 @@
                 await context.SaveChangesAsync();
             }
         }
-        */
+        
         private async Task CheckRegionsAsync()
         {
             if (!context.Regions.Any())

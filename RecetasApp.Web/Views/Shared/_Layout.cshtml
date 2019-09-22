@@ -31,18 +31,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">RecetasApp.Web</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">RecetApp</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Inicio</a></li>
+                    
                     <li><a asp-area="" asp-controller="Recetas" asp-action="Index">Recetas</a></li>
-                    <li><a asp-area="" asp-controller="UsuarioReceta" asp-action="Index">UsuarioRecetas</a></li>
-                    @if  (this.User.IsInRole("Admin"))
+                    <li><a asp-area="" asp-controller="CategoriaComidas" asp-action="Index">Categorias Comidas</a></li>
+                    <li><a asp-area="" asp-controller="Ingredientes" asp-action="Index">Ingredientes</a></li>
+                    <li><a asp-area="" asp-controller="Medidas" asp-action="Index">Medidas</a></li>
+                    <li><a asp-area="" asp-controller="Regions" asp-action="Index">Regiones</a></li>
+
+                    @if (this.User.IsInRole("Admin"))
                     {
-                        <li><a asp-area="" asp-controller="Account" asp-action="Index">Users</a></li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Index">Usuarios</a></li>
                     }
 
 
@@ -51,11 +54,11 @@
                     @if (this.User.Identity.IsAuthenticated)
                     {
                         <li><a asp-area="" asp-controller="Account" asp-action="ChangeUser">@this.User.Identity.Name</a></li>
-                        <li><a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Logout">Cerrar sesión</a></li>
                     }
                     else
                     {
-                        <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Login">Acceder</a></li>
                     }
                 </ul>
             </div>
@@ -68,7 +71,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2019 - RecetasApp.Web</p>
+            <p>&copy; 2019 - por Nico</p>
         </footer>
     </div>
 
