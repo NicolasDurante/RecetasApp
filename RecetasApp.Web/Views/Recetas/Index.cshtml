@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
 <br />
 
+<h2>Recetas</h2>
+
 <p>
     <a asp-action="Create" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Create New</a>
 </p>
@@ -22,10 +24,16 @@
                     <thead>
                         <tr>
                             <th>
+                                @Html.DisplayNameFor(model => model.User.FullName)
+                            </th>
+                            <th>
                                 @Html.DisplayNameFor(model => model.Nombre)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Descripcion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Region.NomRegion)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Tiempo)
@@ -35,6 +43,12 @@
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.ImagenUrl)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PasosRecetas)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.RecetaIngredientes)
                             </th>
                             
                             <th>
@@ -57,10 +71,16 @@
                         {
                         <tr>
                             <td>
+                                @Html.DisplayFor(modelItem => item.User.FullName)
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.Nombre)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Descripcion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Region.NomRegion)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Tiempo)
@@ -74,6 +94,13 @@
                                     <img src="@Url.Content(item.ImagenUrl)" alt="Image" style="width:75px;height:75px;max-width: 100%; height: auto;" />
                                 }
                             </td>
+
+                            <th>
+                                @Html.DisplayFor(modelItem => item.PasosRecetas)
+                            </th>
+                            <th>
+                                @Html.DisplayFor(modelItem => item.RecetaIngredientes)
+                            </th>
                             
                             <td>
                                 @Html.DisplayFor(modelItem => item.Temporada)

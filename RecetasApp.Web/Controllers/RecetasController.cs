@@ -27,7 +27,15 @@
 
         public IActionResult Index()
         {
-            return View(this.recetaRepository.GetAll().OrderBy(r=> r.Nombre));
+            return View(this.recetaRepository.GetAll().OrderBy(r=> r.Nombre)
+                .Include(r=> r.User)
+                .Include(r => r.Region)
+                .Include(r => r.PasosRecetas)
+                .Include(r => r.RecetaIngredientes)
+                .ThenInclude(r=>r.Ingredientes)
+                .Include(r => r.RecetaIngredientes)
+                .ThenInclude(r => r.Medidas));
+
         }
 
         // GET: Recetas/Details/5
@@ -39,6 +47,8 @@
             }
 
             var receta = await this.recetaRepository.GetByIdAsync(id.Value);
+
+
             if (receta == null)
             {
                 return new NotFoundViewResult("ProductNotFound");
@@ -102,7 +112,7 @@
                 Tiempo=view.Tiempo,
                 Raciones=view.Raciones,
                 ImagenUrl = path,
-                UrlVideo = view.UrlVideo,
+                
                 Temporada = view.Temporada,
                 Dificultad = view.Dificultad,
                 User=view.User,
@@ -142,7 +152,7 @@
                 Tiempo = receta.Tiempo,
                 Raciones = receta.Raciones,
                 ImagenUrl = receta.ImagenUrl,
-                UrlVideo = receta.UrlVideo,
+               
                 Temporada = receta.Temporada,
                 Dificultad = receta.Dificultad,
                 User = receta.User,

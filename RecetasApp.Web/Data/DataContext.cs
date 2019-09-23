@@ -10,6 +10,9 @@
 
     public class DataContext : IdentityDbContext<User>
     {
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
+        {
+        }
         public DbSet<Receta> Recetas { get; set; }
 
         public DbSet<Observacion> Observacions { get; set; }
@@ -31,11 +34,10 @@
         public DbSet<Ingrediente> Ingredientes { get; set; }
 
         public DbSet<Medida> Medidas { get; set; }
-        public object Receta { get; internal set; }
 
-        public DataContext(DbContextOptions<DataContext> options) : base(options)
-        {
-        }
+        //public object Receta { get; internal set; }
+
+       
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var cascadeFKs = modelBuilder.Model

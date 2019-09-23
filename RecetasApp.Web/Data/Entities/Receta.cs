@@ -1,6 +1,5 @@
 ﻿namespace RecetasApp.Web.Data.Entities
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -8,7 +7,7 @@
     {
         public int Id { get; set; }
 
-        [MaxLength(200 , ErrorMessage="El campo {0} only  can contain {1} character length.")]
+        [MaxLength(200, ErrorMessage = "El campo {0} only  can contain {1} character length.")]
         [Required]
         public string Nombre { get; set; }
 
@@ -27,15 +26,33 @@
         [Display(Name = "Imagen")]
         public string ImagenUrl { get; set; }
 
-        [Display(Name = "Url de Video Adjunto")]
-        public string UrlVideo { get; set; }
-
         [Display(Name = "Temporada para preparar")]
         public string Temporada { get; set; }
 
         [Required]
         [Display(Name = "Dificultad de recetas")]
         public string Dificultad { get; set; }
+
+        [Display(Name = "Activar o desactivar Comentarios")]
+        public bool ActiComentarios { get; set; }
+
+        [Required]
+        [Display(Name = "Numero de Likes")]
+        public int NumLikes { get; set; }
+
+
+        public string ImageFullPath
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.ImagenUrl))
+                {
+                    return null;
+
+                }
+                return $"http://192.168.0.222/RecetasApp.Web" + this.ImagenUrl.Substring(1);
+            }
+        }
 
         public User User { get; set; }
 
@@ -54,25 +71,5 @@
 
 
 
-        [Display(Name = "Activar o desactivar Comentarios")]
-        public bool ActiComentarios { get; set; }
-
-        [Required]
-        [Display(Name = "NumLikes")]
-        public int NumLikes { get; set; }
-
-
-        public string ImageFullPath
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(this.ImagenUrl))
-                {
-                    return null;
-
-                }
-                return $"http://192.168.0.222/RecetasApp.Web" +this.ImagenUrl.Substring(1);
-            }
-        }
     }
 }
