@@ -67,9 +67,7 @@
         public ICollection<Observacion> Observacions { get; set; }
 
         public ICollection<CategoriaComidaReceta> CategoriaComidaRecetas { get; set; }
+
         public ICollection<Like> Likes { get; set; }
-
-
-
     }
 }

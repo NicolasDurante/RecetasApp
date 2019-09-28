@@ -1,5 +1,4 @@
-﻿@model RecetasApp.Web.Models.RecetaViewModel
-
+﻿@model RecetasApp.Web.Data.Entities.Receta
 
 @{
     ViewData["Title"] = "Create";
@@ -11,139 +10,63 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create" enctype="multipart/form-data">
+        <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
             <div class="form-group">
                 <label asp-for="Nombre" class="control-label"></label>
                 <input asp-for="Nombre" class="form-control" />
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
-
             <div class="form-group">
                 <label asp-for="Descripcion" class="control-label"></label>
                 <input asp-for="Descripcion" class="form-control" />
                 <span asp-validation-for="Descripcion" class="text-danger"></span>
             </div>
-
             <div class="form-group">
                 <label asp-for="Tiempo" class="control-label"></label>
-                <select asp-for="Tiempo" class="form-control">
-                    <option disabled selected></option>
-                    <option value="Menos de una hora">Menos de una hora</option>
-                    <option value="Una hora">Una Hora</option>
-                    <option value="Más de una hora">Más de una hora</option>
-                </select>
+                <input asp-for="Tiempo" class="form-control" />
                 <span asp-validation-for="Tiempo" class="text-danger"></span>
             </div>
-
             <div class="form-group">
                 <label asp-for="Raciones" class="control-label"></label>
                 <input asp-for="Raciones" class="form-control" />
                 <span asp-validation-for="Raciones" class="text-danger"></span>
             </div>
-
             <div class="form-group">
-                <label asp-for="ImageFile" class="control-label"></label>
-                <input asp-for="ImageFile" class="form-control" type="file" />
-                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                <label asp-for="ImagenUrl" class="control-label"></label>
+                <input asp-for="ImagenUrl" class="form-control" />
+                <span asp-validation-for="ImagenUrl" class="text-danger"></span>
             </div>
-
-            
-
             <div class="form-group">
                 <label asp-for="Temporada" class="control-label"></label>
-                <select asp-for="Temporada" class="form-control">
-                    <option disabled selected></option>
-                    <option value="Verano">Verano</option>
-                    <option value="Primavera">Primavera</option>
-                    <option value="Invierno">Invierno</option>
-                    <option value="Otoño">Otoño</option>
-                </select>
+                <input asp-for="Temporada" class="form-control" />
                 <span asp-validation-for="Temporada" class="text-danger"></span>
             </div>
-
             <div class="form-group">
                 <label asp-for="Dificultad" class="control-label"></label>
-                <select asp-for="Dificultad" class="form-control">
-                    <option disabled selected></option>
-                    <option value="Fácil">Fácil</option>
-                    <option value="Media">Media</option>
-                    <option value="Difícil">Difícil</option>
-                </select>
+                <input asp-for="Dificultad" class="form-control" />
                 <span asp-validation-for="Dificultad" class="text-danger"></span>
             </div>
-
-
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        <input asp-for="Comentarios" /> @Html.DisplayNameFor(model => model.Comentarios)
+                        <input asp-for="ActiComentarios" /> @Html.DisplayNameFor(model => model.ActiComentarios)
                     </label>
                 </div>
             </div>
-
             <div class="form-group">
                 <label asp-for="NumLikes" class="control-label"></label>
                 <input asp-for="NumLikes" class="form-control" />
                 <span asp-validation-for="NumLikes" class="text-danger"></span>
             </div>
-
             <div class="form-group">
-                <button type="submit" class="btn btn-primary"><i class="fa fa-save" id="btnConfirm"></i> Create</button>
-                <a asp-action="Index" class="btn btn-success"><i class="fa fa-chevron-left"></i> Back to List</a>
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
-
-            <div id="confirmDialog" class="modal fade">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-window-close"></i></button>
-                            <h4 class="modal-title">Confirm</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>Do you want to confirm the order?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" id="btnYes">Yes</button>
-                            <button type="button" class="btn btn-success" id="btnNo">No</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
         </form>
     </div>
 </div>
 
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 
-
-
-
-@section Scripts {
-
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#btnConfirm").click(function () {
-                $("#confirmDialog").modal('show');
-                return false;
-            });
-
-            $("#btnNo").click(function () {
-                $("#confirmDialog").modal('hide');
-                return false;
-            });
-
-            $("#btnYes").click(function () {
-                window.location.href = '/Recetas';
-            });
-        });
-    </script>
-
-}

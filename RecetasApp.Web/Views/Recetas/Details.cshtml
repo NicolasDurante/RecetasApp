@@ -1,5 +1,6 @@
 ﻿@model RecetasApp.Web.Data.Entities.Receta
 
+
 @{
     ViewData["Title"] = "Details";
 }
@@ -23,6 +24,12 @@
             @Html.DisplayFor(model => model.Descripcion)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.User.FullName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.FullName)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Tiempo)
         </dt>
         <dd>
@@ -35,15 +42,115 @@
             @Html.DisplayFor(model => model.Raciones)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.Region.NomRegion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Region.NomRegion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PasosRecetas.FirstOrDefault().NumPaso)
+        </dt>
+        @foreach (var item in Model.PasosRecetas)
+        {
+            <dd>
+                @Html.DisplayFor(model => item.NumPaso)
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PasosRecetas.FirstOrDefault().Instrucciones)
+        </dt>
+        @foreach (var item in Model.PasosRecetas)
+        {
+            <dd>
+                @Html.DisplayFor(model => item.Instrucciones)
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecetaIngredientes.FirstOrDefault().Cantidad)
+        </dt>
+        @foreach (var item in Model.RecetaIngredientes)
+        {
+            <dd>
+                @Html.DisplayFor(model => item.Cantidad)
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecetaIngredientes.FirstOrDefault().Ingredientes.Ingredient)
+        </dt>
+        @foreach (var item in Model.RecetaIngredientes)
+        {
+            <dd>
+                @Html.DisplayFor(model => item.Ingredientes.Ingredient)
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecetaIngredientes.FirstOrDefault().Medidas.Abreviacion)
+        </dt>
+        @foreach (var item in Model.RecetaIngredientes)
+        {
+            <dd>
+                @Html.DisplayFor(model => item.Medidas.Abreviacion)
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecetaIngredientes.FirstOrDefault().Medidas.Medid)
+        </dt>
+        @foreach (var item in Model.RecetaIngredientes)
+        {
+            <dd>
+                @Html.DisplayFor(model => item.Medidas.Medid)
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comentarios.FirstOrDefault().Comentari)
+        </dt>
+        @foreach (var item in Model.Comentarios)
+        {
+            <dd>
+                @Html.DisplayFor(model => item.Comentari)
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observacions.FirstOrDefault().Observacio)
+        </dt>
+        @foreach (var item in Model.Observacions)
+        {
+            <dd>
+                @Html.DisplayFor(model => item.Observacio)
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoriaComidaRecetas.FirstOrDefault().CategoriaComidas.Categoria)
+        </dt>
+        @foreach (var item in Model.CategoriaComidaRecetas)
+        {
+            <dd>
+                @Html.DisplayFor(model => item.CategoriaComidas.Categoria)
+            </dd>
+        }
+
+        <dt>
+            #Likes
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Likes.Count)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.ImagenUrl)
         </dt>
         <dd>
-            @if (!string.IsNullOrEmpty(Model.ImagenUrl))
-            {
-                <img src="@Url.Content(Model.ImagenUrl)" alt="Image" style="width:300px;height:450px;max-width: 100%; height: auto;" />
-            }
+            @Html.DisplayFor(model => model.ImagenUrl)
         </dd>
-        
         <dt>
             @Html.DisplayNameFor(model => model.Temporada)
         </dt>
@@ -57,10 +164,10 @@
             @Html.DisplayFor(model => model.Dificultad)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Comentarios)
+            @Html.DisplayNameFor(model => model.ActiComentarios)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Comentarios)
+            @Html.DisplayFor(model => model.ActiComentarios)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.NumLikes)
@@ -68,28 +175,9 @@
         <dd>
             @Html.DisplayFor(model => model.NumLikes)
         </dd>
-
     </dl>
 </div>
-
-<script language="javascript" type="text/javascript">
-
-    function save() {
-        val = document.myform.text_area.value;
-        mydoc = document.open();
-        mydoc.write(val);
-        mydoc.execCommand("saveAs", true, ".txt"); //you can change the .txt to your extention
-        history.go(-1);
-    }
-
-</script>
-
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
-    <a asp-action="Index" class="btn btn-success">Back to List</a>
-
-    <button class="btn btn-primary " onclick="window.print();return false;" /> Imprimir
-    
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
 </div>
-
-

@@ -1,41 +1,31 @@
-﻿namespace RecetasApp.Web.Controllers
-{
-    using System;
-    using System.IO;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Data;
-    using Data.Entities;
-    using Helpers;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
-    using RecetasApp.Web.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using RecetasApp.Web.Data;
+using RecetasApp.Web.Data.Entities;
 
-    
+namespace RecetasApp.Web.Controllers
+{
     public class RecetasController : Controller
     {
-        private readonly IRecetaRepository recetaRepository;
+        private readonly DataContext _context;
 
-        private readonly IUserHelper userHelper;
-
-        public RecetasController(IRecetaRepository recetaRepository, IUserHelper userHelper)
+        public RecetasController(DataContext context)
         {
-            this.recetaRepository = recetaRepository;
-            this.userHelper = userHelper;
+            _context = context;
         }
 
+        // GET: Recetas
         public IActionResult Index()
         {
-            return View(this.recetaRepository.GetAll().OrderBy(r=> r.Nombre)
-                .Include(r=> r.User)
+            return View(_context.Recetas
+                .Include(r => r.User)
                 .Include(r => r.Region)
-                .Include(r => r.PasosRecetas)
-                .Include(r => r.RecetaIngredientes)
-                .ThenInclude(r=>r.Ingredientes)
-                .Include(r => r.RecetaIngredientes)
-                .ThenInclude(r => r.Medidas));
-
+                );
         }
 
         // GET: Recetas/Details/5
@@ -43,162 +33,96 @@
         {
             if (id == null)
             {
-                return new NotFoundViewResult("ProductNotFound");
+                return NotFound();
             }
 
-            var receta = await this.recetaRepository.GetByIdAsync(id.Value);
+            var receta = await _context.Recetas
+                .Include(r => r.User)
+                .Include(r => r.Region)
+                .Include(r => r.PasosRecetas)
+                .Include(r => r.RecetaIngredientes)
+                .ThenInclude(i => i.Ingredientes)
+                .Include(r => r.RecetaIngredientes)
+                .ThenInclude(i => i.Medidas)
+                .Include(r => r.Comentarios)
+                .Include(r => r.Observacions)
+                .Include(r => r.CategoriaComidaRecetas)
+                .ThenInclude(c => c.CategoriaComidas)
+                .Include(r => r.Likes)
+                .FirstOrDefaultAsync(m => m.Id == id);
 
+            
+                
+                
 
             if (receta == null)
             {
-                return new NotFoundViewResult("ProductNotFound");
+                return NotFound();
             }
 
             return View(receta);
         }
 
-        //[Authorize(Roles= "Admin")]
+        // GET: Recetas/Create
         public IActionResult Create()
         {
             return View();
         }
 
         // POST: Recetas/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(RecetaViewModel view)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,Descripcion,Tiempo,Raciones,ImagenUrl,Temporada,Dificultad,ActiComentarios,NumLikes")] Receta receta)
         {
             if (ModelState.IsValid)
             {
-                var path = string.Empty;
-
-                if (view.ImageFile != null && view.ImageFile.Length > 0)
-                {
-                    var guid = Guid.NewGuid().ToString();
-                    var file = $"{guid}.jpg";
-
-
-                    path = Path.Combine(
-                        Directory.GetCurrentDirectory(),
-                        "wwwroot\\images\\Recetas",
-                        file);
-
-                    using (var stream = new FileStream(path, FileMode.Create))
-                    {
-                        await view.ImageFile.CopyToAsync(stream);
-                    }
-
-                    path = $"~/images/Recetas/{file}";
-                }
-
-                var receta = this.ToReceta(view, path);
-
-                    
-                    receta.User = await this.userHelper.GetUserByEmailAsync(this.User.Identity.Name);
-                await this.recetaRepository.CreateAsync(receta);
+                _context.Add(receta);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-
-            return View(view);
+            return View(receta);
         }
 
-        private Receta ToReceta(RecetaViewModel view, string path)
-        {
-            return new Receta
-            {
-                Id= view.Id,
-                Nombre = view.Nombre,
-                Descripcion = view.Descripcion,
-                Tiempo=view.Tiempo,
-                Raciones=view.Raciones,
-                ImagenUrl = path,
-                
-                Temporada = view.Temporada,
-                Dificultad = view.Dificultad,
-                User=view.User,
-                Comentarios = view.Comentarios,
-                NumLikes=view.NumLikes
-
-
-            };
-        }
-
-        
+        // GET: Recetas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
-                return new NotFoundViewResult("ProductNotFound");
+                return NotFound();
             }
 
-            var receta = await this.recetaRepository.GetByIdAsync(id.Value);
+            var receta = await _context.Recetas.FindAsync(id);
             if (receta == null)
             {
-                return new NotFoundViewResult("ProductNotFound");
+                return NotFound();
             }
-
-            var view = this.ToRecetaViewModel(receta);
-            return View(view);
-        }
-
-        private RecetaViewModel ToRecetaViewModel(Receta receta)
-        {
-            return new RecetaViewModel
-            {
-              
-                Id = receta.Id,
-                Nombre = receta.Nombre,
-                Descripcion = receta.Descripcion,
-                Tiempo = receta.Tiempo,
-                Raciones = receta.Raciones,
-                ImagenUrl = receta.ImagenUrl,
-               
-                Temporada = receta.Temporada,
-                Dificultad = receta.Dificultad,
-                User = receta.User,
-                Comentarios = receta.Comentarios,
-                NumLikes = receta.NumLikes
-            };
+            return View(receta);
         }
 
         // POST: Recetas/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(RecetaViewModel view)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Descripcion,Tiempo,Raciones,ImagenUrl,Temporada,Dificultad,ActiComentarios,NumLikes")] Receta receta)
         {
+            if (id != receta.Id)
+            {
+                return NotFound();
+            }
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var path = view.ImagenUrl;
-
-                    if (view.ImageFile != null && view.ImageFile.Length > 0)
-                    {
-                        var guid = Guid.NewGuid().ToString();
-                        var file = $"{guid}.jpg";
-
-
-                        path = Path.Combine(
-                            Directory.GetCurrentDirectory(),
-                            "wwwroot\\images\\Recetas",
-                            file);
-
-                        using (var stream = new FileStream(path, FileMode.Create))
-                        {
-                            await view.ImageFile.CopyToAsync(stream);
-                        }
-
-                        path = $"~/images/Recetas/{file}";
-                    }
-
-                    var receta = this.ToReceta(view, path);
-
-                    receta.User = await this.userHelper.GetUserByEmailAsync(this.User.Identity.Name);
-                    await this.recetaRepository.UpdateAsync(receta);
+                    _context.Update(receta);
+                    await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!await this.recetaRepository.ExistAsync(view.Id))
+                    if (!RecetaExists(receta.Id))
                     {
                         return NotFound();
                     }
@@ -209,8 +133,7 @@
                 }
                 return RedirectToAction(nameof(Index));
             }
-
-            return View(view);
+            return View(receta);
         }
 
         // GET: Recetas/Delete/5
@@ -218,13 +141,14 @@
         {
             if (id == null)
             {
-                return new NotFoundViewResult("ProductNotFound");
+                return NotFound();
             }
 
-            var receta = await this.recetaRepository.GetByIdAsync(id.Value);
+            var receta = await _context.Recetas
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (receta == null)
             {
-                return new NotFoundViewResult("ProductNotFound");
+                return NotFound();
             }
 
             return View(receta);
@@ -235,15 +159,15 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var receta = await this.recetaRepository.GetByIdAsync(id);
-            await this.recetaRepository.DeleteAsync(receta);
+            var receta = await _context.Recetas.FindAsync(id);
+            _context.Recetas.Remove(receta);
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult ProductNotFound()
+        private bool RecetaExists(int id)
         {
-            return this.View();
+            return _context.Recetas.Any(e => e.Id == id);
         }
     }
-
 }

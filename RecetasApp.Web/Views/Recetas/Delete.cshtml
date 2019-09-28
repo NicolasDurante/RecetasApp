@@ -39,12 +39,8 @@
             @Html.DisplayNameFor(model => model.ImagenUrl)
         </dt>
         <dd>
-            @if (!string.IsNullOrEmpty(Model.ImagenUrl))
-            {
-                <img src="@Url.Content(Model.ImagenUrl)" alt="Image" style="width:300px;height:450px;max-width: 100%; height: auto;" />
-            }
+            @Html.DisplayFor(model => model.ImagenUrl)
         </dd>
-        
         <dt>
             @Html.DisplayNameFor(model => model.Temporada)
         </dt>
@@ -58,10 +54,10 @@
             @Html.DisplayFor(model => model.Dificultad)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Comentarios)
+            @Html.DisplayNameFor(model => model.ActiComentarios)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Comentarios)
+            @Html.DisplayFor(model => model.ActiComentarios)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.NumLikes)
@@ -69,12 +65,11 @@
         <dd>
             @Html.DisplayFor(model => model.NumLikes)
         </dd>
-
     </dl>
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index" class="btn btn-success">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
     </form>
 </div>

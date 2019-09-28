@@ -15,7 +15,7 @@
         [Display(Name = "Apellido")]
         public string LastName { get; set; }
 
-        [Display(Name ="Nombre Completo")]
+        [Display(Name ="Nombre usuario")]
         public string FullName { get { return $"{this.FirstName} {this.LastName}"; } }
 
         [Display(Name = "Email Confirmed")]
