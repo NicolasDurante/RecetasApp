@@ -1,5 +1,8 @@
 ﻿namespace RecetasApp.Web
 {
+    using Data;
+    using Data.Entities;
+    using Helpers;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -8,12 +11,9 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Data;
-    using Data.Entities;
-    using Helpers;
     using Microsoft.IdentityModel.Tokens;
-    using System.Text;
     using RecetasApp.Web.Data.Repositories;
+    using System.Text;
 
     public class Startup
     {
@@ -41,7 +41,7 @@
             })
             .AddDefaultTokenProviders()
             .AddEntityFrameworkStores<DataContext>();
-            
+
 
 
             services.AddAuthentication()
@@ -56,16 +56,17 @@
                     };
                 });
 
-                services.AddDbContext<DataContext>(cfg =>
-                {
-                    cfg.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection"));
-                });
+            services.AddDbContext<DataContext>(cfg =>
+            {
+                cfg.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection"));
+            });
 
-                services.AddTransient<SeedDb>();
-                services.AddScoped<IRecetaRepository, RecetaRepository>();
-                services.AddScoped<IUsuarioRecetaRepository, UsuarioRecetaRepository>();
-                services.AddScoped<IUserHelper, UserHelper>();
-                services.AddScoped<IMailHelper, MailHelper>();
+            services.AddTransient<SeedDb>();
+            services.AddScoped<IRecetaRepository, RecetaRepository>();
+            services.AddScoped<IUsuarioRecetaRepository, UsuarioRecetaRepository>();
+            services.AddScoped<IUserHelper, UserHelper>();
+            services.AddScoped<ICombosHelper, CombosHelper>();
+            services.AddScoped<IMailHelper, MailHelper>();
 
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -83,7 +84,7 @@
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            }
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

@@ -1,11 +1,5 @@
 ﻿namespace RecetasApp.Web.Controllers
 {
-    using System;
-    using System.IdentityModel.Tokens.Jwt;
-    using System.Linq;
-    using System.Security.Claims;
-    using System.Text;
-    using System.Threading.Tasks;
     using Data.Entities;
     using Helpers;
     using Microsoft.AspNetCore.Authorization;
@@ -14,7 +8,13 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.IdentityModel.Tokens;
     using Models;
-    
+    using System;
+    using System.IdentityModel.Tokens.Jwt;
+    using System.Linq;
+    using System.Security.Claims;
+    using System.Text;
+    using System.Threading.Tasks;
+
 
     public class AccountController : Controller
     {
@@ -69,7 +69,7 @@
         }
         public IActionResult Register()
         {
-           
+
 
             return this.View();
         }
@@ -83,14 +83,14 @@
                 var user = await this.userHelper.GetUserByEmailAsync(model.Username);
                 if (user == null)
                 {
-                   
+
                     user = new User
                     {
                         FirstName = model.FirstName,
                         LastName = model.LastName,
                         Email = model.Username,
                         UserName = model.Username,
-                       
+
                     };
 
                     var result = await this.userHelper.AddUserAsync(user, model.Password);
@@ -322,7 +322,7 @@
 
         }
 
-        [Authorize(Roles ="Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             var users = await this.userHelper.GetAllUsersAsync();

@@ -6,7 +6,7 @@
         public MainViewModel Main { get; set; }
         public InstanceLocator()
         {
-            this.Main = new MainViewModel(); 
+            this.Main = new MainViewModel();
         }
     }
 }

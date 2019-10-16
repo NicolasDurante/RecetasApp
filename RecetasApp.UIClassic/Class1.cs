@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RecetasApp.UIClassic
+﻿namespace RecetasApp.UIClassic
 {
     public class Class1
     {

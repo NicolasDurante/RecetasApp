@@ -15,7 +15,7 @@
         private readonly IRecetaRepository recetaRepository;
         private readonly IUserHelper userHelper;
 
-        public RecetasController(IRecetaRepository recetaRepository, IUserHelper userHelper )
+        public RecetasController(IRecetaRepository recetaRepository, IUserHelper userHelper)
         {
             this.recetaRepository = recetaRepository;
             this.userHelper = userHelper;
@@ -83,15 +83,15 @@
             }
 
             //TODO: Upload images
-                oldReceta.Nombre = receta.Nombre;
-                oldReceta.Descripcion = receta.Descripcion;
-                oldReceta.Tiempo = receta.Tiempo;
-                //oldReceta.Raciones = receta.Raciones;
-                oldReceta.Dificultad = receta.Dificultad;
-                // oldReceta.Region = receta.Region;
-                oldReceta.ActiComentarios = receta.ActiComentarios;
-                //oldReceta.NumLikes = receta.NumLikes;
-                //oldReceta.Region = receta.Region;
+            oldReceta.Nombre = receta.Nombre;
+            oldReceta.Descripcion = receta.Descripcion;
+            oldReceta.Tiempo = receta.Tiempo;
+            //oldReceta.Raciones = receta.Raciones;
+            oldReceta.Dificultad = receta.Dificultad;
+            // oldReceta.Region = receta.Region;
+            oldReceta.ActiComentarios = receta.ActiComentarios;
+            //oldReceta.NumLikes = receta.NumLikes;
+            //oldReceta.Region = receta.Region;
 
             var updatedReceta = await this.recetaRepository.UpdateAsync(oldReceta);
             return Ok(updatedReceta);

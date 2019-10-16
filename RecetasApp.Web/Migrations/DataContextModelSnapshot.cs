@@ -150,7 +150,7 @@ namespace RecetasApp.Web.Migrations
 
                     b.Property<int?>("CategoriaComidasId");
 
-                    b.Property<int?>("RecetaId");
+                    b.Property<int>("RecetaId");
 
                     b.HasKey("Id");
 
@@ -169,7 +169,7 @@ namespace RecetasApp.Web.Migrations
 
                     b.Property<string>("Comentari");
 
-                    b.Property<int?>("RecetaId");
+                    b.Property<int>("RecetaId");
 
                     b.Property<string>("UserId");
 
@@ -201,7 +201,7 @@ namespace RecetasApp.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("RecetaId");
+                    b.Property<int>("RecetaId");
 
                     b.Property<string>("UserId");
 
@@ -238,7 +238,7 @@ namespace RecetasApp.Web.Migrations
 
                     b.Property<string>("Observacio");
 
-                    b.Property<int?>("RecetaId");
+                    b.Property<int>("RecetaId");
 
                     b.HasKey("Id");
 
@@ -257,7 +257,7 @@ namespace RecetasApp.Web.Migrations
 
                     b.Property<int>("NumPaso");
 
-                    b.Property<int?>("RecetaId");
+                    b.Property<int>("RecetaId");
 
                     b.HasKey("Id");
 
@@ -290,7 +290,7 @@ namespace RecetasApp.Web.Migrations
 
                     b.Property<int>("Raciones");
 
-                    b.Property<int?>("RegionId");
+                    b.Property<int>("RegionId");
 
                     b.Property<string>("Temporada");
 
@@ -316,17 +316,17 @@ namespace RecetasApp.Web.Migrations
 
                     b.Property<int>("Cantidad");
 
-                    b.Property<int?>("IngredientesId");
+                    b.Property<int>("IngredienteId");
 
-                    b.Property<int?>("MedidasId");
+                    b.Property<int>("MedidaId");
 
-                    b.Property<int?>("RecetaId");
+                    b.Property<int>("RecetaId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IngredientesId");
+                    b.HasIndex("IngredienteId");
 
-                    b.HasIndex("MedidasId");
+                    b.HasIndex("MedidaId");
 
                     b.HasIndex("RecetaId");
 
@@ -454,14 +454,16 @@ namespace RecetasApp.Web.Migrations
 
                     b.HasOne("RecetasApp.Web.Data.Entities.Receta", "Receta")
                         .WithMany("CategoriaComidaRecetas")
-                        .HasForeignKey("RecetaId");
+                        .HasForeignKey("RecetaId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("RecetasApp.Web.Data.Entities.Comentario", b =>
                 {
                     b.HasOne("RecetasApp.Web.Data.Entities.Receta", "Receta")
                         .WithMany("Comentarios")
-                        .HasForeignKey("RecetaId");
+                        .HasForeignKey("RecetaId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("RecetasApp.Web.Data.Entities.User", "User")
                         .WithMany()
@@ -472,7 +474,8 @@ namespace RecetasApp.Web.Migrations
                 {
                     b.HasOne("RecetasApp.Web.Data.Entities.Receta", "Receta")
                         .WithMany("Likes")
-                        .HasForeignKey("RecetaId");
+                        .HasForeignKey("RecetaId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("RecetasApp.Web.Data.Entities.User", "User")
                         .WithMany("Likes")
@@ -483,21 +486,24 @@ namespace RecetasApp.Web.Migrations
                 {
                     b.HasOne("RecetasApp.Web.Data.Entities.Receta", "Receta")
                         .WithMany("Observacions")
-                        .HasForeignKey("RecetaId");
+                        .HasForeignKey("RecetaId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("RecetasApp.Web.Data.Entities.PasosReceta", b =>
                 {
                     b.HasOne("RecetasApp.Web.Data.Entities.Receta", "Receta")
                         .WithMany("PasosRecetas")
-                        .HasForeignKey("RecetaId");
+                        .HasForeignKey("RecetaId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("RecetasApp.Web.Data.Entities.Receta", b =>
                 {
                     b.HasOne("RecetasApp.Web.Data.Entities.Region", "Region")
                         .WithMany("Recetas")
-                        .HasForeignKey("RegionId");
+                        .HasForeignKey("RegionId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("RecetasApp.Web.Data.Entities.User", "User")
                         .WithMany()
@@ -508,15 +514,18 @@ namespace RecetasApp.Web.Migrations
                 {
                     b.HasOne("RecetasApp.Web.Data.Entities.Ingrediente", "Ingredientes")
                         .WithMany("RecetaIngredientes")
-                        .HasForeignKey("IngredientesId");
+                        .HasForeignKey("IngredienteId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("RecetasApp.Web.Data.Entities.Medida", "Medidas")
                         .WithMany("RecetaIngredientes")
-                        .HasForeignKey("MedidasId");
+                        .HasForeignKey("MedidaId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("RecetasApp.Web.Data.Entities.Receta", "Receta")
                         .WithMany("RecetaIngredientes")
-                        .HasForeignKey("RecetaId");
+                        .HasForeignKey("RecetaId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 #pragma warning restore 612, 618
         }

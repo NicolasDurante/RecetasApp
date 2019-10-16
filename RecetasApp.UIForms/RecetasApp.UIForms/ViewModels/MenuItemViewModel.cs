@@ -1,10 +1,8 @@
 ﻿namespace RecetasApp.UIForms.ViewModels
 {
-    using System;
-    using System.Windows.Input;
-    using Common.Models;
     using GalaSoft.MvvmLight.Command;
     using RecetasApp.UIForms.Views;
+    using System.Windows.Input;
     using Xamarin.Forms;
 
     public class MenuItemViewModel : Common.Models.Menu

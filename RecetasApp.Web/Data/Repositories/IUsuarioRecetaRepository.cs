@@ -8,6 +8,6 @@
     {
         Task<IQueryable<Receta>> GetUsuarioRecetasAsync(string userName);
 
-       
+
     }
 }

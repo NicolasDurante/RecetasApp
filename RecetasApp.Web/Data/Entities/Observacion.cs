@@ -6,14 +6,14 @@
     {
         public int Id { get; set; }
 
-      
-        public Receta Receta { get; set; }
+        public int RecetaId { get; set; }
+        public virtual Receta Receta { get; set; }
 
         [Display(Name = "Observacion")]
         public string Observacio { get; set; }
 
 
-        
+
 
 
 

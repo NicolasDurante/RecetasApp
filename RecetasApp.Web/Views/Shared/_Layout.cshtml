@@ -36,12 +36,13 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Inicio</a></li>
-                    
+
                     <li><a asp-area="" asp-controller="Recetas" asp-action="Index">Recetas</a></li>
                     <li><a asp-area="" asp-controller="CategoriaComidas" asp-action="Index">Categorias Comidas</a></li>
                     <li><a asp-area="" asp-controller="Ingredientes" asp-action="Index">Ingredientes</a></li>
                     <li><a asp-area="" asp-controller="Medidas" asp-action="Index">Medidas</a></li>
                     <li><a asp-area="" asp-controller="Regions" asp-action="Index">Regiones</a></li>
+                    <li><a asp-area="" asp-controller="PasosRecetas" asp-action="Index">PasosRecetas</a></li>
 
                     @if (this.User.IsInRole("Admin"))
                     {

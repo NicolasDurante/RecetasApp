@@ -1,10 +1,9 @@
 ﻿namespace RecetasApp.Web.Data.Repositories
 {
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Microsoft.EntityFrameworkCore;
     using RecetasApp.Web.Data.Entities;
     using RecetasApp.Web.Helpers;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public class UsuarioRecetaRepository : GenericRepository<Receta>, IUsuarioRecetaRepository
     {
@@ -28,13 +27,13 @@
             if (await this.userHelper.IsUserInRoleAsync(user, "Admin"))
             {
                 return this.context.Recetas
-                    
-                    
+
+
                     .OrderByDescending(o => o.Nombre);
             }
 
             return this.context.Recetas
-                
+
                 .Where(o => o.User == user)
                 .OrderByDescending(o => o.Nombre);
         }

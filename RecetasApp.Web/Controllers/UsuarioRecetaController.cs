@@ -12,7 +12,7 @@
 
         public UsuarioRecetaController(IUsuarioRecetaRepository usuarioRecetaRepository)
         {
-            this.usuarioRecetaRepository = usuarioRecetaRepository; 
+            this.usuarioRecetaRepository = usuarioRecetaRepository;
         }
 
         public async Task<IActionResult> Index()

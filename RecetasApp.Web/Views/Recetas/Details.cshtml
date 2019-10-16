@@ -48,98 +48,119 @@
             @Html.DisplayFor(model => model.Region.NomRegion)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PasosRecetas.FirstOrDefault().NumPaso)
-        </dt>
-        @foreach (var item in Model.PasosRecetas)
-        {
-            <dd>
-                @Html.DisplayFor(model => item.NumPaso)
-            </dd>
-        }
+        <p style="text-align: center">CategoriaComida</p>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Categoria</th>
+                </tr>
+                @foreach (var item in Model.CategoriaComidaRecetas)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CategoriaComidas.Categoria)
+                        </td>
+
+                    </tr>
+                }
+            </table>
+        </dd>
+
+
+
+        <p style="text-align: center">Ingredientes</p>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Cantidad</th>
+                    <th>Medidas</th>
+                    <th>Ingredientes</th>
+                </tr>
+                @foreach (var item in Model.RecetaIngredientes)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cantidad)
+                            @Html.DisplayFor(modelItem => item.Medidas.Abreviacion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Medidas.Medid)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ingredientes.Ingredient)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
+
+        <p style="text-align: center">Pasos</p>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>NumPaso</th>
+                    <th>Instrucciones</th>
+                </tr>
+                @foreach (var item in Model.PasosRecetas)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NumPaso)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Instrucciones)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+        <p style="text-align: center">Observaciones</p>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Observaciones</th>
+                </tr>
+                @foreach (var item in Model.Observacions)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Observacio)
+                        </td>
+
+                    </tr>
+                }
+            </table>
+        </dd>
+
+
+        <p style="text-align: center">Comentarios</p>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Usuario</th>
+                    <th>Comentario</th>
+                </tr>
+                @foreach (var item in Model.Comentarios)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Comentari)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
+
+
+
 
         <dt>
-            @Html.DisplayNameFor(model => model.PasosRecetas.FirstOrDefault().Instrucciones)
-        </dt>
-        @foreach (var item in Model.PasosRecetas)
-        {
-            <dd>
-                @Html.DisplayFor(model => item.Instrucciones)
-            </dd>
-        }
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RecetaIngredientes.FirstOrDefault().Cantidad)
-        </dt>
-        @foreach (var item in Model.RecetaIngredientes)
-        {
-            <dd>
-                @Html.DisplayFor(model => item.Cantidad)
-            </dd>
-        }
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RecetaIngredientes.FirstOrDefault().Ingredientes.Ingredient)
-        </dt>
-        @foreach (var item in Model.RecetaIngredientes)
-        {
-            <dd>
-                @Html.DisplayFor(model => item.Ingredientes.Ingredient)
-            </dd>
-        }
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RecetaIngredientes.FirstOrDefault().Medidas.Abreviacion)
-        </dt>
-        @foreach (var item in Model.RecetaIngredientes)
-        {
-            <dd>
-                @Html.DisplayFor(model => item.Medidas.Abreviacion)
-            </dd>
-        }
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RecetaIngredientes.FirstOrDefault().Medidas.Medid)
-        </dt>
-        @foreach (var item in Model.RecetaIngredientes)
-        {
-            <dd>
-                @Html.DisplayFor(model => item.Medidas.Medid)
-            </dd>
-        }
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Comentarios.FirstOrDefault().Comentari)
-        </dt>
-        @foreach (var item in Model.Comentarios)
-        {
-            <dd>
-                @Html.DisplayFor(model => item.Comentari)
-            </dd>
-        }
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Observacions.FirstOrDefault().Observacio)
-        </dt>
-        @foreach (var item in Model.Observacions)
-        {
-            <dd>
-                @Html.DisplayFor(model => item.Observacio)
-            </dd>
-        }
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoriaComidaRecetas.FirstOrDefault().CategoriaComidas.Categoria)
-        </dt>
-        @foreach (var item in Model.CategoriaComidaRecetas)
-        {
-            <dd>
-                @Html.DisplayFor(model => item.CategoriaComidas.Categoria)
-            </dd>
-        }
-
-        <dt>
-            #Likes
+            Numero de Likes
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Likes.Count)
@@ -149,7 +170,10 @@
             @Html.DisplayNameFor(model => model.ImagenUrl)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.ImagenUrl)
+            @if (!string.IsNullOrEmpty(Model.ImagenUrl))
+            {
+                <img src="@Url.Content(Model.ImagenUrl)" alt="Image" style="width:300px;height:450px;max-width: 100%; height: auto;" />
+            }
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Temporada)
@@ -169,12 +193,7 @@
         <dd>
             @Html.DisplayFor(model => model.ActiComentarios)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.NumLikes)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.NumLikes)
-        </dd>
+        
     </dl>
 </div>
 <div>

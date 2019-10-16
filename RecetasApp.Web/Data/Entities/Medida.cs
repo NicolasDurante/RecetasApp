@@ -11,9 +11,9 @@
         public string Medid { get; set; }
 
         [Required]
-        public string Abreviacion  { get; set; }
+        public string Abreviacion { get; set; }
 
-        public ICollection<RecetaIngrediente> RecetaIngredientes { get; set; }
+        public virtual ICollection<RecetaIngrediente> RecetaIngredientes { get; set; }
 
     }
 }

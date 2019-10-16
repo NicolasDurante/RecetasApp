@@ -1,9 +1,9 @@
 ﻿namespace RecetasApp.Web.Data
 {
-    using System.Linq;
-    using System.Threading.Tasks;
     using Entities;
     using Microsoft.EntityFrameworkCore;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public class GenericRepository<T> : IGenericRepository<T> where T : class, IEntity
     {

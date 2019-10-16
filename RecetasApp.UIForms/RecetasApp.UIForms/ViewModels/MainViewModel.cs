@@ -50,16 +50,16 @@ namespace RecetasApp.UIForms.ViewModels
 
             this.Menus = new ObservableCollection<MenuItemViewModel>(
                 menus.Select(m => new MenuItemViewModel
-            {
-                Icon = m.Icon,
-                PageName = m.PageName,
-                Title = m.Title
-            }).ToList());
+                {
+                    Icon = m.Icon,
+                    PageName = m.PageName,
+                    Title = m.Title
+                }).ToList());
         }
 
         public static MainViewModel GetInstance()
         {
-            if(instance == null)
+            if (instance == null)
             {
                 return new MainViewModel();
             }

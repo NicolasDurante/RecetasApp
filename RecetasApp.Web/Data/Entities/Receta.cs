@@ -50,24 +50,25 @@
                     return null;
 
                 }
-                return $"http://192.168.0.222/RecetasApp.Web" + this.ImagenUrl.Substring(1);
+                return $"http://192.168.0.11/RecetasApp.Web" + this.ImagenUrl.Substring(1);
             }
         }
 
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
-        public Region Region { get; set; }
+        public int RegionId { get; set; }
+        public virtual Region Region { get; set; }
 
-        public ICollection<PasosReceta> PasosRecetas { get; set; }
+        public virtual ICollection<PasosReceta> PasosRecetas { get; set; }
 
-        public ICollection<RecetaIngrediente> RecetaIngredientes { get; set; }
+        public virtual ICollection<RecetaIngrediente> RecetaIngredientes { get; set; }
 
-        public ICollection<Comentario> Comentarios { get; set; }
+        public virtual ICollection<Comentario> Comentarios { get; set; }
 
-        public ICollection<Observacion> Observacions { get; set; }
+        public virtual ICollection<Observacion> Observacions { get; set; }
 
-        public ICollection<CategoriaComidaReceta> CategoriaComidaRecetas { get; set; }
+        public virtual ICollection<CategoriaComidaReceta> CategoriaComidaRecetas { get; set; }
 
-        public ICollection<Like> Likes { get; set; }
+        public virtual ICollection<Like> Likes { get; set; }
     }
 }

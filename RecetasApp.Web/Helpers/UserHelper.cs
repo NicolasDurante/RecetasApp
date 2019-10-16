@@ -1,12 +1,12 @@
 ﻿namespace RecetasApp.Web.Helpers
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Data.Entities;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using RecetasApp.Web.Models;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public class UserHelper : IUserHelper
     {
@@ -14,7 +14,7 @@
         private readonly SignInManager<User> signInManager;
         private readonly RoleManager<IdentityRole> roleManager;
 
-        public UserHelper( 
+        public UserHelper(
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             RoleManager<IdentityRole> roleManager)
@@ -82,12 +82,12 @@
 
         public async Task<SignInResult> ValidatePasswordAsync(User user, string password)
         {
-            
-                return await this.signInManager.CheckPasswordSignInAsync(
-                    user,
-                    password,
-                    false);
-            
+
+            return await this.signInManager.CheckPasswordSignInAsync(
+                user,
+                password,
+                false);
+
         }
         public async Task<IdentityResult> ConfirmEmailAsync(User user, string token)
         {

@@ -10,7 +10,7 @@
         [Display(Name = "Ingrediente")]
         public string Ingredient { get; set; }
 
-        public ICollection<RecetaIngrediente> RecetaIngredientes { get; set; }
+        public virtual ICollection<RecetaIngrediente> RecetaIngredientes { get; set; }
 
 
     }

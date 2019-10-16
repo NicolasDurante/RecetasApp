@@ -1,10 +1,10 @@
 ﻿namespace RecetasApp.Web.Data
 {
-    using System.Linq;
-    using System.Threading.Tasks;
     using Entities;
     using Microsoft.EntityFrameworkCore;
     using RecetasApp.Web.Models;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public class RecetaRepository : GenericRepository<Receta>, IRecetaRepository
     {
@@ -22,10 +22,10 @@
 
         public IQueryable GetAllWithUsers()
         {
-            return this.context.Recetas.Include(r=> r.User);
+            return this.context.Recetas.Include(r => r.User);
         }
 
-        
-        
+
+
     }
 }

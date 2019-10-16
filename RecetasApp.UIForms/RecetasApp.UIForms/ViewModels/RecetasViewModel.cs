@@ -1,9 +1,9 @@
 ﻿namespace RecetasApp.UIForms.ViewModels
 {
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using RecetasApp.Common.Models;
     using RecetasApp.Common.Services;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using Xamarin.Forms;
 
     public class RecetasViewModel : BaseViewModel
@@ -42,7 +42,7 @@
                 "bearer",
                 MainViewModel.GetInstance().Token.Token);
 
-            
+
 
             this.IsRefreshing = false;
 

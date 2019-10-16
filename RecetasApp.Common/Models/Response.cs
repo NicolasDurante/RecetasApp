@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace RecetasApp.Common.Models
+﻿namespace RecetasApp.Common.Models
 {
     public class Response
     {

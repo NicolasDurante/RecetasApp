@@ -3,10 +3,7 @@
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using RecetasApp.Web.Data.Entities;
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
 
     public class DataContext : IdentityDbContext<User>
     {
@@ -37,7 +34,7 @@
 
         //public object Receta { get; internal set; }
 
-       
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var cascadeFKs = modelBuilder.Model

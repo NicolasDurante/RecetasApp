@@ -1,6 +1,5 @@
 ﻿using RecetasApp.UIForms.ViewModels;
 using RecetasApp.UIForms.Views;
-using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

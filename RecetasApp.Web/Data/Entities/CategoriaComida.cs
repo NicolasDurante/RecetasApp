@@ -10,7 +10,7 @@
         [Display(Name = "Categoria de Comida")]
         public string Categoria { get; set; }
 
-        public ICollection<CategoriaComidaReceta> CategoriaComidaRecetas { get; set; }
+        public virtual ICollection<CategoriaComidaReceta> CategoriaComidaRecetas { get; set; }
 
     }
 }

@@ -6,14 +6,16 @@
     {
         public int Id { get; set; }
 
-      
-        public Receta Receta { get; set; }
+        public int RecetaId { get; set; }
+        public virtual Receta Receta { get; set; }
 
-   
-        public Ingrediente Ingredientes { get; set; }
 
-     
-        public Medida Medidas { get; set; }
+        public int IngredienteId { get; set; }
+        public virtual Ingrediente Ingredientes { get; set; }
+
+
+        public int MedidaId { get; set; }
+        public virtual Medida Medidas { get; set; }
 
         [Required]
         [Display(Name = "Cantidad")]

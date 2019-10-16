@@ -1,5 +1,3 @@
-using System;
-
 namespace RecetasApp.Web.Models
 {
     public class ErrorViewModel

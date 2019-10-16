@@ -1,7 +1,7 @@
 ﻿namespace RecetasApp.Common.Models
 {
-    using System;
     using Newtonsoft.Json;
+    using System;
 
     public class TokenResponse
     {

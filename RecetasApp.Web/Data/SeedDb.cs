@@ -1,11 +1,11 @@
 ﻿namespace RecetasApp.Web.Data
 {
+    using Entities;
+    using Helpers;
+    using Microsoft.AspNetCore.Identity;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Identity;
-    using Entities;
-    using Helpers;
 
     public class SeedDb
     {
@@ -27,11 +27,11 @@
             await this.userHelper.CheckRoleAsync("Admin");
             await this.userHelper.CheckRoleAsync("Customer");
             await CheckRegionsAsync();
-           
+
             await CheckCategoriaComidasAsync();
-            
-           
-            
+
+
+
             await CheckIngredientesAsync();
             await CheckMedidasAsync();
 
@@ -76,7 +76,7 @@
         {
             if (!context.Medidas.Any())
             {
-                context.Medidas.Add(new Medida { Medid= "Unidades", Abreviacion= "ud.",  });
+                context.Medidas.Add(new Medida { Medid = "Unidades", Abreviacion = "ud.", });
                 context.Medidas.Add(new Medida { Medid = "Gramos", Abreviacion = "gr.", });
                 context.Medidas.Add(new Medida { Medid = "Kilos", Abreviacion = "kg.", });
                 context.Medidas.Add(new Medida { Medid = "Mililitros", Abreviacion = "ml.", });
@@ -94,7 +94,7 @@
         {
             if (!context.Ingredientes.Any())
             {
-                context.Ingredientes.Add(new Ingrediente { Ingredient= "Mantequilla" });
+                context.Ingredientes.Add(new Ingrediente { Ingredient = "Mantequilla" });
                 context.Ingredientes.Add(new Ingrediente { Ingredient = "Harina" });
                 context.Ingredientes.Add(new Ingrediente { Ingredient = "Tomate" });
                 context.Ingredientes.Add(new Ingrediente { Ingredient = "Vino blanco" });
@@ -112,12 +112,12 @@
                 await context.SaveChangesAsync();
             }
         }
-        
+
         private async Task CheckCategoriaComidasAsync()
         {
             if (!context.CategoriaComidas.Any())
             {
-                context.CategoriaComidas.Add(new CategoriaComida { Categoria= "Argentinas " });
+                context.CategoriaComidas.Add(new CategoriaComida { Categoria = "Argentinas " });
                 context.CategoriaComidas.Add(new CategoriaComida { Categoria = "Dulces " });
                 context.CategoriaComidas.Add(new CategoriaComida { Categoria = "Fritas " });
                 context.CategoriaComidas.Add(new CategoriaComida { Categoria = "Fáciles " });
@@ -129,11 +129,11 @@
                 context.CategoriaComidas.Add(new CategoriaComida { Categoria = "A la Parrilla" });
                 context.CategoriaComidas.Add(new CategoriaComida { Categoria = "Al Horno" });
                 context.CategoriaComidas.Add(new CategoriaComida { Categoria = "Con Carne" });
-  
+
                 await context.SaveChangesAsync();
             }
         }
-        
+
         private async Task CheckRegionsAsync()
         {
             if (!context.Regions.Any())
@@ -148,21 +148,22 @@
             }
         }
 
-        private void AddReceta(string name, User user) 
-        { 
+        private void AddReceta(string name, User user)
+        {
             this.context.Recetas.Add(new Receta
             {
                 Nombre = name,
-                Descripcion= "pepe",
-                Tiempo= "Media Hora",
+                Descripcion = "pepe",
+                Tiempo = "Media Hora",
                 Raciones = this.random.Next(100),
                 Dificultad = "Facil",
-                Temporada ="Invierno",
+                Temporada = "Invierno",
                 ActiComentarios = true,
                 User = user,
-                
-                
-                
+                RegionId = 2,
+
+
+
 
             });
         }

@@ -1,19 +1,19 @@
 ﻿namespace RecetasApp.Common.Services
 {
+    using Models;
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.Net.Http;
-    using Models;
-    using Newtonsoft.Json;
-    using System.Threading.Tasks;
     using System.Net.Http.Headers;
     using System.Text;
+    using System.Threading.Tasks;
 
     public class ApiService
     {
         public async Task<Response> GetListAsync<T>(
             string urlBase,
-            string servicePrefix, 
+            string servicePrefix,
             string controller)
         {
             try

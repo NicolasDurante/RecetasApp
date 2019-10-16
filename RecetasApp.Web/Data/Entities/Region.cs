@@ -10,7 +10,7 @@
         [Display(Name = "Nombre de Region")]
         public string NomRegion { get; set; }
 
-        public ICollection<Receta> Recetas { get; set; }
+        public virtual ICollection<Receta> Recetas { get; set; }
 
     }
 }

@@ -4,11 +4,10 @@
     using RecetasApp.Common.Models;
     using RecetasApp.Common.Services;
     using RecetasApp.UIForms.Views;
-    using System;
     using System.Windows.Input;
     using Xamarin.Forms;
 
-    public class LoginViewModel :BaseViewModel
+    public class LoginViewModel : BaseViewModel
     {
         private bool isRunning;
         private bool isEnabled;
