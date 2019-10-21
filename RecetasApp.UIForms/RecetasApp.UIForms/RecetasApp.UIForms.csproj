@@ -12,6 +12,9 @@
 
   <ItemGroup>
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.3.0.17" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.3.0.17" />
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="17.3.0.17" />
     <PackageReference Include="Xamarin.Forms" Version="4.0.0.304370-pre8" />
     <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
   </ItemGroup>

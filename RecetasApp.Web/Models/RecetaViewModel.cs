@@ -16,7 +16,7 @@
         //public int NumPaso { get; set; }
 
         //public string Instrucciones { get; set; }
-
+        /*
         public virtual ICollection<PasosReceta> PasosRecetas { get; set; }
 
         public virtual ICollection<RecetaIngrediente> RecetaIngredientes { get; set; }
@@ -28,7 +28,7 @@
         public virtual ICollection<CategoriaComidaReceta> CategoriaComidaRecetas { get; set; }
 
         public virtual ICollection<Like> Likes { get; set; }
-
+        */
 
         [Display(Name = "Image")]
         public IFormFile ImageFile { get; set; }
