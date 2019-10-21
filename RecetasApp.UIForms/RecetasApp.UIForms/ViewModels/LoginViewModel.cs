@@ -1,4 +1,4 @@
-﻿namespace RecetasApp.UIForms.ViewModels
+﻿    namespace RecetasApp.UIForms.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
     using RecetasApp.Common.Models;

@@ -21,28 +21,49 @@ namespace RecetasApp.Common.Models
         public long Raciones { get; set; }
 
         [JsonProperty("imagenUrl")]
-        public string ImagenUrl { get; set; }
-
-        [JsonProperty("urlVideo")]
-        public object UrlVideo { get; set; }
+        public object ImagenUrl { get; set; }
 
         [JsonProperty("temporada")]
-        public object Temporada { get; set; }
+        public string Temporada { get; set; }
 
         [JsonProperty("dificultad")]
         public string Dificultad { get; set; }
 
+        [JsonProperty("actiComentarios")]
+        public bool ActiComentarios { get; set; }
+
+        [JsonProperty("numLikes")]
+        public long NumLikes { get; set; }
+
+        [JsonProperty("imageFullPath")]
+        public object ImageFullPath { get; set; }
+
         [JsonProperty("user")]
         public User User { get; set; }
+
+        [JsonProperty("regionId")]
+        public long RegionId { get; set; }
 
         [JsonProperty("region")]
         public object Region { get; set; }
 
-        [JsonProperty("comentarios")]
-        public bool ActiComentarios { get; set; }
+        [JsonProperty("pasosRecetas")]
+        public object PasosRecetas { get; set; }
 
-        [JsonProperty("imageFullPath")]
-        public Uri ImageFullPath { get; set; }
+        [JsonProperty("recetaIngredientes")]
+        public object RecetaIngredientes { get; set; }
+
+        [JsonProperty("comentarios")]
+        public object Comentarios { get; set; }
+
+        [JsonProperty("observacions")]
+        public object Observacions { get; set; }
+
+        [JsonProperty("categoriaComidaRecetas")]
+        public object CategoriaComidaRecetas { get; set; }
+
+        [JsonProperty("likes")]
+        public object Likes { get; set; }
 
         public override string ToString()
         {

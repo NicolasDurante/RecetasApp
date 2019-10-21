@@ -11,6 +11,18 @@ namespace RecetasApp.Common.Models
         [JsonProperty("lastName")]
         public string LastName { get; set; }
 
+        [JsonProperty("fullName")]
+        public string FullName { get; set; }
+
+        [JsonProperty("emailConfirmed")]
+        public bool EmailConfirmed { get; set; }
+
+        [JsonProperty("isAdmin")]
+        public bool IsAdmin { get; set; }
+
+        [JsonProperty("likes")]
+        public object Likes { get; set; }
+
         [JsonProperty("id")]
         public Guid Id { get; set; }
 
@@ -25,9 +37,6 @@ namespace RecetasApp.Common.Models
 
         [JsonProperty("normalizedEmail")]
         public string NormalizedEmail { get; set; }
-
-        [JsonProperty("emailConfirmed")]
-        public bool EmailConfirmed { get; set; }
 
         [JsonProperty("passwordHash")]
         public string PasswordHash { get; set; }
