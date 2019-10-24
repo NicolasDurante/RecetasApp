@@ -1,7 +1,4 @@
-using  Syncfusion.XForms.iOS.Graphics;
-using Syncfusion.XForms.iOS.Border;
-using Syncfusion.XForms.iOS.Buttons;
-
+﻿
 using Foundation;
 using UIKit;
 
@@ -23,9 +20,6 @@ namespace RecetasApp.UIForms.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            SfGradientViewRenderer.Init();
-            SfBorderRenderer.Init();
-            SfButtonRenderer.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

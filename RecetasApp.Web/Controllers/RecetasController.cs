@@ -21,8 +21,7 @@ namespace RecetasApp.Web.Controllers
         private readonly ICombosHelper _combosHelper;
         private readonly IRecetaRepository _recetaRepository;
 
-        public RecetasController(DataContext context, IUserHelper userHelper, ICombosHelper combosHelper, 
-            IRecetaRepository recetaRepository)
+        public RecetasController(DataContext context, IUserHelper userHelper, ICombosHelper combosHelper, IRecetaRepository recetaRepository)
         {
             _context = context;
             _userHelper = userHelper;
@@ -138,20 +137,11 @@ namespace RecetasApp.Web.Controllers
                 Raciones = view.Raciones,
                 ImagenUrl = path,
                 RegionId = view.RegionId,
-
                 Temporada = view.Temporada,
                 Dificultad = view.Dificultad,
                 User = view.User,
-                ActiComentarios = view.ActiComentarios,
+                Comentarios = view.Comentarios,
                 NumLikes = view.NumLikes,
-                PasosRecetas = view.PasosRecetas.Select(p => new PasosReceta
-                {
-                    Id = p.Id,
-                    RecetaId = view.Id,
-                    NumPaso = p.NumPaso,
-                    Instrucciones = p.Instrucciones,
-
-                }).ToList()
 
 
 

@@ -96,7 +96,6 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -132,9 +131,6 @@
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="Properties\Default.rd.xml" />
-    <Content Include="scale-100\LoginBackground.scale-100.png" />
-    <Content Include="scale-100\LoginBackground.scale-200.png" />
-    <Content Include="scale-100\LoginBackground.scale-400.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -147,17 +143,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Syncfusion.Xamarin.Buttons">
-      <Version>17.3.0.17</Version>
-    </PackageReference>
-    <PackageReference Include="Syncfusion.Xamarin.Core">
-      <Version>17.3.0.17</Version>
-    </PackageReference>
-    <PackageReference Include="Syncfusion.Xamarin.SfComboBox">
-      <Version>17.3.0.17</Version>
-    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.0.0.304370-pre8" />
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.9" />
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.9"/>
     <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
@@ -166,22 +153,6 @@
       <Name>RecetasApp.UIForms</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\UIFontIcons.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\Montserrat-Bold.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\Montserrat-Medium.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\Montserrat-Regular.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\Montserrat-SemiBold.ttf" />
-  </ItemGroup>
-  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

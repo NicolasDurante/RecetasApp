@@ -50,7 +50,7 @@
                     return null;
 
                 }
-                return $"http://192.168.43.171/RecetasApp.Web" + this.ImagenUrl.Substring(1);
+                return $"http://192.168.0.11/RecetasApp.Web" + this.ImagenUrl.Substring(1);
             }
         }
 
