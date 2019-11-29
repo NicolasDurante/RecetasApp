@@ -161,10 +161,6 @@
                 ActiComentarios = true,
                 User = user,
                 RegionId = 2,
-
-
-
-
             });
         }
     }

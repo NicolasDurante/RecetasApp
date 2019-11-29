@@ -9,9 +9,5 @@
 
         public int RecetaId { get; set; }
         public virtual Receta Receta { get; set; }
-
-
-
-
     }
 }

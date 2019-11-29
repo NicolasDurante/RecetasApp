@@ -11,12 +11,5 @@
 
         [Display(Name = "Observacion")]
         public string Observacio { get; set; }
-
-
-
-
-
-
-
     }
 }

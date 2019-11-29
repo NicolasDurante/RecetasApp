@@ -7,7 +7,5 @@
     public interface IUsuarioRecetaRepository : IGenericRepository<Receta>
     {
         Task<IQueryable<Receta>> GetUsuarioRecetasAsync(string userName);
-
-
     }
 }

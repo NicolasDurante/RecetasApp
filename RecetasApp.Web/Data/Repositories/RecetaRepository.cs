@@ -24,8 +24,5 @@
         {
             return this.context.Recetas.Include(r => r.User);
         }
-
-
-
     }
 }

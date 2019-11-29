@@ -23,10 +23,5 @@
         public bool IsAdmin { get; set; }
 
         public virtual ICollection<Like> Likes { get; set; }
-
-
-
-
-
     }
 }

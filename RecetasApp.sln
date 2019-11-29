@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28822.285
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecetasApp.Common", "RecetasApp.Common\RecetasApp.Common.csproj", "{529A4C15-9EE4-4FB5-B201-88E859C534A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecetasApp.Common", "RecetasApp.Common\RecetasApp.Common.csproj", "{529A4C15-9EE4-4FB5-B201-88E859C534A6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{A64952C9-42F1-49CD-B3A6-3EE9F19404C3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{4E5CAADD-3EDE-4439-BAC2-E41BCA8D55BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecetasApp.Web", "RecetasApp.Web\RecetasApp.Web.csproj", "{509B733D-7102-436A-BCE3-FFF4B69D694D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecetasApp.Web", "RecetasApp.Web\RecetasApp.Web.csproj", "{509B733D-7102-436A-BCE3-FFF4B69D694D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Forms", "Forms", "{7A791F79-C20A-4350-8A44-506F20A8C486}"
 EndProject
@@ -21,9 +21,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecetasApp.UIForms.Android"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecetasApp.UIForms.iOS", "RecetasApp.UIForms\RecetasApp.UIForms.iOS\RecetasApp.UIForms.iOS.csproj", "{8F2A6F36-F731-4E49-BBFB-6A9B2C54576A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecetasApp.UIForms", "RecetasApp.UIForms\RecetasApp.UIForms\RecetasApp.UIForms.csproj", "{2B0B0474-B698-4C20-BDBA-8B8FA0A12180}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecetasApp.UIForms", "RecetasApp.UIForms\RecetasApp.UIForms\RecetasApp.UIForms.csproj", "{2B0B0474-B698-4C20-BDBA-8B8FA0A12180}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecetasApp.UIClassic", "RecetasApp.UIClassic\RecetasApp.UIClassic.csproj", "{B9330AB6-0F2F-4E48-A028-39EFF88A3089}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecetasApp.UIClassic", "RecetasApp.UIClassic\RecetasApp.UIClassic.csproj", "{B9330AB6-0F2F-4E48-A028-39EFF88A3089}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecetasApp.UIClassic.Android", "RecetasApp.UIClassic.Android\RecetasApp.UIClassic.Android.csproj", "{C1DDFCC5-EE99-448F-A01F-B0FAD11A3105}"
 EndProject
