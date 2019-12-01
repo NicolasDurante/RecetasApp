@@ -4,6 +4,9 @@
              x:Class="RecetasApp.UIForms.Views.RecetasPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              Title="Recetas">
+    
+    
+    
     <ContentPage.Content>
         <StackLayout
             BindingContext="{Binding Recetas}"

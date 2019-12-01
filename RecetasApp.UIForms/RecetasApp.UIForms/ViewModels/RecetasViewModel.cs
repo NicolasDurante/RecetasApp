@@ -1,7 +1,9 @@
 ﻿namespace RecetasApp.UIForms.ViewModels
 {
+    using Prism.Commands;
     using RecetasApp.Common.Models;
     using RecetasApp.Common.Services;
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using Xamarin.Forms;
@@ -11,6 +13,7 @@
         private readonly ApiService apiService;
         private ObservableCollection<Receta> recetas;
         private bool isRefreshing;
+        private DelegateCommand _addRecetaCommand;
 
         public ObservableCollection<Receta> Recetas
         {
@@ -23,7 +26,8 @@
             set { this.SetValue(ref this.isRefreshing, value); }
         }
 
-
+        public DelegateCommand AddRecetaCommand => _addRecetaCommand ?? (_addRecetaCommand = new DelegateCommand(AddRecetaAsync));
+         
         public RecetasViewModel()
         {
             this.apiService = new ApiService();
@@ -59,5 +63,11 @@
             var myRecetas = (List<Receta>)response.Result;
             this.Recetas = new ObservableCollection<Receta>(myRecetas);
         }
+        private async void AddRecetaAsync()
+        {
+
+        }
+
     }
+
 }

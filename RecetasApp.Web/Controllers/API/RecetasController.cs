@@ -49,12 +49,14 @@
                 Nombre = receta.Nombre,
                 Descripcion = receta.Descripcion,
                 Tiempo = receta.Tiempo,
-                //Raciones = receta.Raciones,
+                Raciones = receta.Raciones,
+                //ImagenUrl
+                Temporada=receta.Temporada,
                 Dificultad = receta.Dificultad,
-                // Region = receta.Region,
-                ActiComentarios = receta.ActiComentarios,
-                //NumLikes = receta.NumLikes,
-                //Region = receta.Region,
+                ActiComentarios=receta.ActiComentarios,
+                NumLikes = receta.NumLikes,
+                RegionId=receta.RegionId,
+                //PasosRecetas=receta.PasosRecetas,
 
                 User = user
             };

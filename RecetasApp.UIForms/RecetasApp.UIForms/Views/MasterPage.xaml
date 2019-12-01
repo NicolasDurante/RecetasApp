@@ -6,6 +6,7 @@
     <MasterDetailPage.Master>
         <pages:MenuPage/>
     </MasterDetailPage.Master>
+    
     <MasterDetailPage.Detail>
         <NavigationPage x:Name="Navigator">
             <x:Arguments>

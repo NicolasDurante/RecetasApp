@@ -14,8 +14,6 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="User" />
 
-
-
             <div class="form-group">
                 <label asp-for="PasosRecetas.FirstOrDefault().RecetaId" class="control-label"></label>
                 <select asp-for="PasosRecetas.FirstOrDefault().RecetaId" class="form-control" asp-items="ViewBag.RecetaId"></select>
@@ -89,9 +87,10 @@
                 <label asp-for="Tiempo" class="control-label"></label>
                 <select asp-for="Tiempo" class="form-control">
                     <option disabled selected></option>
-                    <option value="Menos de una hora">Menos de una hora</option>
-                    <option value="Una hora">Una Hora</option>
-                    <option value="Más de una hora">Más de una hora</option>
+                    <option value="Menos de 15 min">Menos de 15 min</option>
+                    <option value="Entre de 15 y 30 min">Entre de 15 y 30 min</option>
+                    <option value="Entre de 30 min y 1 hora">Entre de 30 min y 1 hora</option>
+                    <option value="Mas de 1 hora">Mas de 1 hora</option>
                 </select>
                 <span asp-validation-for="Tiempo" class="text-danger"></span>
             </div>
@@ -126,7 +125,7 @@
                 <select asp-for="Dificultad" class="form-control">
                     <option disabled selected></option>
                     <option value="Fácil">Fácil</option>
-                    <option value="Media">Media</option>
+                    <option value="Intermedia">Intermedia</option>
                     <option value="Difícil">Difícil</option>
                 </select>
                 <span asp-validation-for="Dificultad" class="text-danger"></span>

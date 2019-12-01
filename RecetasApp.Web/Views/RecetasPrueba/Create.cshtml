@@ -1,0 +1,110 @@
+﻿@model RecetasApp.Web.Models.RecetaViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Receta</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label"></label>
+                <input asp-for="Descripcion" class="form-control" />
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label"></label>
+                <input asp-for="ImageFile" class="form-control" type="file" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Dificultad" class="control-label"></label>
+                <select asp-for="Dificultad" class="form-control">
+                    <option disabled selected></option>
+                    <option value="Fácil">Fácil</option>
+                    <option value="Intermedia">Intermedia</option>
+                    <option value="Difícil">Difícil</option>
+                </select>
+                <span asp-validation-for="Dificultad" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Tiempo" class="control-label"></label>
+                <select asp-for="Tiempo" class="form-control">
+                    <option disabled selected></option>
+                    <option value="Menos de 15 min">Menos de 15 min</option>
+                    <option value="Entre de 15 y 30 min">Entre de 15 y 30 min</option>
+                    <option value="Entre de 30 min y 1 hora">Entre de 30 min y 1 hora</option>
+                    <option value="Mas de 1 hora">Mas de 1 hora</option>
+                </select>
+                <span asp-validation-for="Tiempo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="RegionId" class="control-label"></label>
+                <select asp-for="RegionId" class="form-control" asp-items="ViewBag.RegionId">
+                    <option disabled selected></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Temporada" class="control-label"></label>
+                <select asp-for="Temporada" class="form-control">
+                    <option disabled selected></option>
+                    <option value="Cualquiera">Cualquiera</option>
+                    <option value="Primavera">Primavera</option>
+                    <option value="Verano">Verano</option>
+                    <option value="Otoño">Otoño</option>
+                    <option value="Invierno">Invierno</option>
+                </select>
+                <span asp-validation-for="Temporada" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Raciones" class="control-label"></label>
+                <select asp-for="Raciones" class="form-control">
+                    <option disabled selected></option>
+                    <option value=1>1 Persona</option>
+                    <option value=2>2 Persona</option>
+                    <option value=3>3 Persona</option>
+                    <option value=4>4 Persona</option>
+                    <option value=5>5 Persona</option>
+                    <option value=6>6 Persona</option>
+                    <option value=7>Mas de 6 Persona</option>
+                </select>
+                <span asp-validation-for="Raciones" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="ActiComentarios" /> @Html.DisplayNameFor(model => model.ActiComentarios)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

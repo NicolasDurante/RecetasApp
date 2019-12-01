@@ -36,7 +36,7 @@
             this.apiService = new ApiService();
             this.IsEnabled = true;
             this.Email = "fer-nicolas-durante@hotmail.com";
-            this.Password = "654321";
+            this.Password = "123456";
         }
 
         private async void Login()

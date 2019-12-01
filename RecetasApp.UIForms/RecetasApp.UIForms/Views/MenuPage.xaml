@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
          	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
          	x:Class="RecetasApp.UIForms.Views.MenuPage"
-         	BackgroundColor="Gainsboro"
+         	BackgroundColor="OrangeRed"
          	BindingContext="{Binding Main, Source={StaticResource Locator}}"
          	Title="Menu">
     <ContentPage.Content>
@@ -37,7 +37,7 @@
                                 	Grid.Column="1"
                                 	FontAttributes="Bold"
                                 	VerticalOptions="Center"
-                                	TextColor="Black"
+                                	TextColor="White"
                                 	Text="{Binding Title}">
                                 </Label>
                             </Grid>

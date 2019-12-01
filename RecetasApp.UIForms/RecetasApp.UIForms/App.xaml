@@ -10,7 +10,7 @@
             <infra:InstanceLocator x:Key="Locator"/>
 
             <!-- Parameters -->
-            <x:String x:Key="UrlAPI">http://192.168.0.26/RecetasApp/</x:String>
+            <x:String x:Key="UrlAPI">http://192.168.43.171/RecetasApp/</x:String>
 
 
         </ResourceDictionary>

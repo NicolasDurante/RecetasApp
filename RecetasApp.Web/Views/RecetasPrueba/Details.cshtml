@@ -1,0 +1,125 @@
+﻿@model RecetasApp.Web.Data.Entities.Receta
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Receta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tiempo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tiempo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Raciones)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Raciones)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagenUrl)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ImagenUrl)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Temporada)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Temporada)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Dificultad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Dificultad)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ActiComentarios)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ActiComentarios)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NumLikes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumLikes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Region)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Region.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    <a asp-action="AddIngrediente" asp-route-id="@Model.Id">Añadir ingrediente</a>
+    <a asp-action="Index">Back to List</a>
+</div>
+@if (Model.RecetaIngredientes.Count == 0)
+{
+    <h4>No se añadieron ingredientes aun</h4>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.RecetaIngredientes.FirstOrDefault().Cantidad)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RecetaIngredientes.FirstOrDefault().Medidas)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RecetaIngredientes.FirstOrDefault().Ingredientes)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.RecetaIngredientes)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cantidad)
+                        @Html.DisplayFor(modelItem => item.Medidas.Abreviacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Medidas.Medid)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ingredientes.Ingredient)
+                    </td>
+                    <td>
+                        <a asp-action="EditIngredientes" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="DetailsIngredientes" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="DeleteIngredientes" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

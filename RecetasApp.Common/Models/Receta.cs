@@ -18,7 +18,7 @@ namespace RecetasApp.Common.Models
         public string Tiempo { get; set; }
 
         [JsonProperty("raciones")]
-        public long Raciones { get; set; }
+        public int Raciones { get; set; }
 
         [JsonProperty("imagenUrl")]
         public object ImagenUrl { get; set; }
@@ -33,7 +33,7 @@ namespace RecetasApp.Common.Models
         public bool ActiComentarios { get; set; }
 
         [JsonProperty("numLikes")]
-        public long NumLikes { get; set; }
+        public int NumLikes { get; set; }
 
         [JsonProperty("imageFullPath")]
         public object ImageFullPath { get; set; }
@@ -42,7 +42,7 @@ namespace RecetasApp.Common.Models
         public User User { get; set; }
 
         [JsonProperty("regionId")]
-        public long RegionId { get; set; }
+        public int RegionId { get; set; }
 
         [JsonProperty("region")]
         public object Region { get; set; }

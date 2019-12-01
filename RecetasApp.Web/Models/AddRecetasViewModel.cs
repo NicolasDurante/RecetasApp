@@ -1,9 +1,13 @@
-﻿namespace RecetasApp.Web.Data.Entities
-{
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+﻿using RecetasApp.Web.Data.Entities;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
-    public class Receta : IEntity
+namespace RecetasApp.Web.Models
+{
+    public class AddRecetasViewModel
     {
         public int Id { get; set; }
 
@@ -40,7 +44,6 @@
         [Display(Name = "Numero de Likes")]
         public int NumLikes { get; set; }
 
-
         public string ImageFullPath
         {
             get
@@ -71,5 +74,6 @@
         public virtual ICollection<CategoriaComidaReceta> CategoriaComidaRecetas { get; set; }
 
         public virtual ICollection<Like> Likes { get; set; }
+
     }
 }
