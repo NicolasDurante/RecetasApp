@@ -71,6 +71,32 @@ namespace RecetasApp.Web.Controllers
             return View(receta);
         }
 
+        public async Task<IActionResult> AddIngrediente(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var receta = await _context.Recetas.FindAsync(id.Value);
+                
+
+            if (receta == null)
+            {
+                return NotFound();
+            }
+
+            var model = new PasosViewModel
+            {
+                RecetaId= receta.Id,
+               
+
+
+            };
+
+            return View(model);
+        }
+
 
         // GET: Recetas1/Create
         public IActionResult Create()
@@ -116,6 +142,7 @@ namespace RecetasApp.Web.Controllers
                 // receta.PasosRecetas.Add(pasosReceta);
 
                 await this._recetaRepository.CreateAsync(receta);
+               // _context.Recetas.Add(view);
 
                 await _context.SaveChangesAsync();
 

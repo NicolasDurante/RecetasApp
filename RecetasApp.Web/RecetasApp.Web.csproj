@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Content\**" />
+    <Content Remove="Content\**" />
+    <EmbeddedResource Remove="Content\**" />
+    <None Remove="Content\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="wwwroot\node_modules\bootstrap-datepicker\dist\css\bootstrap-datepicker.css" />
     <Content Include="wwwroot\node_modules\bootstrap-datepicker\dist\css\bootstrap-datepicker.min.css" />
     <Content Include="wwwroot\node_modules\bootstrap-datepicker\dist\css\bootstrap-datepicker.standalone.css" />
