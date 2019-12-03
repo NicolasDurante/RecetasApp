@@ -213,7 +213,7 @@ namespace RecetasApp.Web.Controllers
             return View(receta);
         }
         
-
+        
         public ActionResult Edit(int? id)
         {
             if (id == null)

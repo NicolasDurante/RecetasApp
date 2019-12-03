@@ -1,125 +1,812 @@
 ﻿@model RecetasApp.Web.Data.Entities.Receta
-
 @{
-    ViewData["Title"] = "Details";
-}
+        Layout = null;
+    }
 
-<h2>Details</h2>
+        <!DOCTYPE html>
+        <html lang="en">
 
-<div>
-    <h4>Receta</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Tiempo)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Tiempo)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Raciones)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Raciones)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ImagenUrl)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ImagenUrl)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Temporada)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Temporada)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Dificultad)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Dificultad)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ActiComentarios)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ActiComentarios)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.NumLikes)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.NumLikes)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Region)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Region.Id)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-    <a asp-action="AddIngrediente" asp-route-id="@Model.Id">Añadir ingrediente</a>
-    <a asp-action="Index">Back to List</a>
-</div>
-@if (Model.RecetaIngredientes.Count == 0)
-{
-    <h4>No se añadieron ingredientes aun</h4>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.RecetaIngredientes.FirstOrDefault().Cantidad)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.RecetaIngredientes.FirstOrDefault().Medidas)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.RecetaIngredientes.FirstOrDefault().Ingredientes)
-                </th>
+        <head>
+            <meta charset="UTF-8">
+            <meta name="description" content="">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+            <!-- Title -->
+            <title>RecetApp - Recetas de cocina</title>
 
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.RecetaIngredientes)
+            <!-- Favicon -->
+            <link rel="icon" href="~/img/core-img/favicon.ico">
+
+            <!-- Core Stylesheet -->
+            <link href="~/style.css" rel="stylesheet">
+
+            <!-- Responsive CSS -->
+            <link href="~/css/responsive/responsive.css" rel="stylesheet">
+
+        </head>
+
+        <body>
+            <!-- Preloader Start -->
+            <div id="preloader">
+                <div class="yummy-load"></div>
+            </div>
+
+            <!-- Background Pattern Swither -->
+            @if (this.User.IsInRole("Admin"))
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cantidad)
-                        @Html.DisplayFor(modelItem => item.Medidas.Abreviacion)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Medidas.Medid)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Ingredientes.Ingredient)
-                    </td>
-                    <td>
-                        <a asp-action="EditIngredientes" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="DetailsIngredientes" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="DeleteIngredientes" asp-route-id="@item.Id">Delete</a>
-                    </td>
-                </tr>
+                <div id="pattern-switcher">
+
+                    <a href="~/Account" class="add-btn">Administrador</a>
+                </div>
+                <div id="patter-close">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </div>
             }
-        </tbody>
-    </table>
-}
+            <!-- ****** Top Header Area Start ****** -->
+            <div class="top_header_area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-5 col-sm-6">
+                            <!--  Top Social bar start -->
+                            <div class="top_social_bar">
+                                <a href="https://github.com/NicolasDurante"><i class="fa fa-github-alt" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                        <!--  Login Register Area -->
+                        <div class="col-7 col-sm-6">
+                            <div class="signup-search-area d-flex align-items-center justify-content-end">
+                                <div class="login_register_area d-flex">
+                                    @if (!this.User.Identity.IsAuthenticated)
+                                    {
+                                        <div class="login">
+                                            <a href="~/Account/Register">Registrarse</a>
+                                        </div>
+                                        <div class="register">
+                                            <a href="~/Account/Login">Iniciar sesion</a>
+                                        </div>
+                                    }
+                                    @if (this.User.Identity.IsAuthenticated)
+                                    {
+                                        <div class=fa-user-alt>
+                                            <a asp-area="" asp-controller="Account" asp-action="ChangeUser"> @this.User.Identity.Name</a>
+
+                                        </div>
+                                        <div class="">
+                                            <a asp-area="" asp-controller="Account" asp-action="Logout"><b>(Cerrar sesión)</b></a>
+                                        </div>
+                                    }
+                                </div>
+                                <!-- Search Button Area
+                        <div class="search_button">
+                            <a class="searchBtn" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+                        </div>
+                        <!-- Search Form
+                        <div class="search-hidden-form">
+                            <form action="#" method="get">
+                                <input type="search" name="search" id="search-anything" placeholder="Search Anything...">
+                                <input type="submit" value="" class="d-none">
+                                <span class="searchBtn"><i class="fa fa-times" aria-hidden="true"></i></span>
+                            </form>
+                        </div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ****** Top Header Area End ****** -->
+            <!-- ****** Header Area Start ****** -->
+            <header class="header_area">
+                <div class="container">
+                    <div class="row">
+                        <!-- Logo Area Start -->
+                        <div class="col-12">
+                            <div class="logo_area text-center">
+                                <a href="~/" class="yummy-logo">RecetApp</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <nav class="navbar navbar-expand-lg">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#yummyfood-nav" aria-controls="yummyfood-nav" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars" aria-hidden="true"></i> Menu</button>
+                                <!-- Menu Area Start -->
+                                <div class="collapse navbar-collapse justify-content-center" id="yummyfood-nav">
+                                    <ul class="navbar-nav" id="yummy-nav">
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="~/">Inicio <span class="sr-only">(current)</span></a>
+                                        </li>
+                                        @*<li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
+                                        <div class="dropdown-menu" aria-labelledby="yummyDropdown">
+                                            <a class="dropdown-item" href="index.html">Home</a>
+                                            <a class="dropdown-item" href="archive.html">Archive</a>
+                                            <a class="dropdown-item" href="single.html">Single Blog</a>
+                                            <a class="dropdown-item" href="static.html">Static Page</a>
+                                            <a class="dropdown-item" href="contact.html">Contact</a>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Features</a>
+                                    </li>*@
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/RecetasPrueba">Catálogo de recetas</a>
+                                        </li>
+                                        @if (this.User.Identity.IsAuthenticated)
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="~/ChangeUser">Perfil</a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">Ayuda</a>
+                                            </li>
+                                        }
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/Home/About">Acerca</a>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- ****** Header Area End ****** -->
+            <!-- ****** Breadcumb Area Start ****** -->
+            <div class="breadcumb-area" style="background-color: orangered">
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <div class="bradcumb-title text-center">
+                                <h2>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.Nombre)
+                                    </dd>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="breadcumb-nav">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href=""><i class="fa fa-home" aria-hidden="true"></i> Inicio</a></li>
+                                    <li class="breadcrumb-item"><a href="~/RecetasPrueba">Catálogo de recetas</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">@Html.DisplayFor(model => model.Nombre)</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ****** Breadcumb Area End ****** -->
+            <!-- ****** Single Blog Area Start ****** -->
+            <section class="single_blog_area section_padding_80">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-lg-8">
+                            <div class="row no-gutters">
+
+                                <!-- Single Post Share Info
+                <div class="col-2 col-sm-1">
+                    <div class="single-post-share-info mt-100">
+                        <a href="#" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#" class="googleplus"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                        <a href="#" class="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#" class="pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                    </div>
+                </div>-->
+                                <!-- Single Post -->
+                                <div class="col-10 col-sm-11">
+                                    <div class="single-post">
+                                        <!-- Post Thumb -->
+                                        <div class="post-thumb">
+
+                                            <dd>
+                                                @if (!string.IsNullOrEmpty(Model.ImagenUrl))
+                                                {
+                                                    <img src="@Url.Content(Model.ImagenUrl)" alt="">
+                                                }
+                                            </dd>
+                                        </div>
+
+                                        <!-- Tags Area -->
+                                        <div class="tags-area">
+                                            @foreach (var item in Model.CategoriaComidaRecetas)
+                                            {
+
+                                                <a href="#">@Html.DisplayFor(modelItem => item.CategoriaComidas.Categoria)</a>
+
+                                            }
+
+                                        </div>
+
+
+                                        <!-- Post Content -->
+                                        <div class="post-content">
+                                            <div class="post-meta d-flex">
+                                                <div class="post-author-date-area d-flex">
+                                                    <!-- Post Author -->
+                                                    <div class="post-author">
+                                                        <a href="#">Por @Html.DisplayFor(model => model.User.FullName)</a>
+                                                    </div>
+                                                    <!-- Post Date
+                                    <div class="post-date">
+                                        <a href="#">May 19, 2017</a>
+                                    </div>
+                                        -->
+                                                </div>
+                                                <!-- Post Comment & Share Area -->
+                                                <div class="post-comment-share-area d-flex">
+                                                    <!-- Post Favourite -->
+                                                    <div class="post-favourite">
+                                                        <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> @Html.DisplayFor(model => model.Likes.Count)</a>
+                                                    </div>
+                                                    <!-- Post Comments -->
+                                                    <div class="post-comments">
+                                                        <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> @Html.DisplayFor(model => model.Comentarios.Count)</a>
+                                                    </div>
+
+                                                    <!-- Post Share
+                                    <div class="post-share">
+                                        <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                    </div>
+                                        -->
+                                                </div>
+                                            </div>
+                                            <a href="#">
+                                                <h2 class="post-headline">@Html.DisplayFor(model => model.Nombre)</h2>
+                                            </a>
+
+
+
+                                            <p>@Html.DisplayFor(model => model.Descripcion)</p>
+                                            <br />
+
+                                            <blockquote class="yummy-blockquote mt-30 mb-30">
+                                                <h4 class="text-muted">Ingredientes</h4>
+                                                <h5 class="mb-30">
+                                            </blockquote>
+
+                                            <p style="width=50%"></p>
+                                            <ul class="mb-30">
+                                                @foreach (var item in Model.RecetaIngredientes)
+                                                {
+
+                                                    <li>@Html.DisplayFor(modelItem => item.Cantidad) @Html.DisplayFor(modelItem => item.Medidas.Abreviacion)  @Html.DisplayFor(modelItem => item.Ingredientes.Ingredient)</li>
+
+                                                }
+
+                                            </ul>
+
+                                            <blockquote class="yummy-blockquote mt-30 mb-30">
+                                                <h4 class="text-muted">Pasos</h4>
+                                                <h5 class="mb-30">
+                                            </blockquote>
+
+                                            <table class="table">
+
+                                                @foreach (var item in Model.PasosRecetas)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <h4>@Html.DisplayFor(modelItem => item.NumPaso)</h4>
+                                                        </td>
+                                                        <td>
+                                                            <p>@Html.DisplayFor(modelItem => item.Instrucciones)</p>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </table>
+                                            <!--
+                            <h4>You Can Buy For Less Than A College Degree</h4>
+                            <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+
+                            <img class="br-30 mb-30" src="~/img/blog-img/11.jpg" alt="">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquaLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+
+                            <img class="br-30 mb-30" src="~/img/blog-img/12.jpg" alt="">
+                            <p>Liusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, qui s nostrud exercitation ullamLorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquaLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+                            <img class="br-30 mb-30" src="~/img/blog-img/13.jpg" alt="">
+                            <h4>You Can Buy For Less Than A College Degree</h4>
+                            <p>Liusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, qui s nostrud exercitation ullamLorem ipsum dolor sit amet, consectetur adipisicing elit.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquaLorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                            -->
+                                            <blockquote class="yummy-blockquote mt-30 mb-30">
+                                                <h6 class="text-muted">Observaciones</h6>
+                                                <h5 class="mb-30">
+                                                    <dd>
+                                                        <table class="table">
+
+                                                            @foreach (var item in Model.Observacions)
+                                                            {
+                                                                <tr>
+                                                                    <td>
+                                                                        @Html.DisplayFor(modelItem => item.Observacio)
+                                                                    </td>
+
+                                                                </tr>
+                                                            }
+                                                        </table>
+                                                    </dd>
+                                                </h5>
+
+                                            </blockquote>
+                                        </div>
+                                    </div>
+
+                                    <!-- Comment Area Start -->
+                                    <div class="comment_area section_padding_50 clearfix">
+                                        <h4 class="mb-30">@Html.DisplayFor(model => model.Comentarios.Count) Comentarios</h4>
+
+                                        <ol>
+                                            <!-- Single Comment Area -->
+                                            @foreach (var item in Model.Comentarios)
+                                            {
+                                                <li class="single_comment_area">
+                                                    <div class="comment-wrapper d-flex">
+                                                        <!-- Comment Meta -->
+                                                        <div class="comment-author">
+                                                            <img src="~/images/Anotación 2019-12-02 235042.png" alt="">
+
+                                                        </div>
+                                                        <!-- Comment Content -->
+
+
+
+                                                        <div class="comment-content">
+                                                            <span class="comment-date text-muted"></span>
+                                                            <h5>@Html.DisplayFor(model => model.User.FullName)</h5>
+
+                                                            <p>@Html.DisplayFor(modelItem => item.Comentari)</p>
+                                                        </div>
+
+
+                                                    </div>
+
+                                                </li>
+
+                                            }
+
+                                        </ol>
+                                    </div>
+
+                                    <!-- Leave A Comment -->
+                                    <div class="leave-comment-area section_padding_50 clearfix">
+                                        <div class="comment-form">
+                                            <h4 class="mb-30">Deja tu comentario</h4>
+
+                                            <!-- Comment Form -->
+                                            <form action="#" method="post">
+                                                <div class="form-group">
+                                                    <textarea class="form-control" name="message" id="message" cols="30" rows="10" placeholder="Mensaje"></textarea>
+                                                </div>
+                                                <button type="submit" class="btn contact-btn">Dejar comentario</button>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ****** Blog Sidebar ******
+        <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+            <div class="blog-sidebar mt-5 mt-lg-0">
+
+
+                <!-- Single Widget Area
+                <div class="single-widget-area popular-post-widget">
+                    <div class="widget-title text-center">
+                        <h6>Recetas populares</h6>
+                    </div>
+
+                    <!-- Single Popular Post
+                    <div class="single-populer-post d-flex">
+                        <img src="~/img/sidebar-img/1.jpg" alt="">
+                        <div class="post-content">
+                            <a href="#">
+                                <h6>Top Wineries To Visit In England</h6>
+                            </a>
+                            <p>Tuesday, October 3, 2017</p>
+                        </div>
+                    </div>
+                    <!-- Single Popular Post
+                    <div class="single-populer-post d-flex">
+                        <img src="~/img/sidebar-img/2.jpg" alt="">
+                        <div class="post-content">
+                            <a href="#">
+                                <h6>The 8 Best Gastro Pubs In Bath</h6>
+                            </a>
+                            <p>Tuesday, October 3, 2017</p>
+                        </div>
+                    </div>
+                    <!-- Single Popular Post
+                    <div class="single-populer-post d-flex">
+                        <img src="~/img/sidebar-img/3.jpg" alt="">
+                        <div class="post-content">
+                            <a href="#">
+                                <h6>Zermatt Unplugged the best festival</h6>
+                            </a>
+                            <p>Tuesday, October 3, 2017</p>
+                        </div>
+                    </div>
+                    <!-- Single Popular Post
+                    <div class="single-populer-post d-flex">
+                        <img src="~/img/sidebar-img/4.jpg" alt="">
+                        <div class="post-content">
+                            <a href="#">
+                                <h6>Harrogate's Top 10 Independent Eats</h6>
+                            </a>
+                            <p>Tuesday, October 3, 2017</p>
+                        </div>
+                    </div>
+                    <!-- Single Popular Post
+                    <div class="single-populer-post d-flex">
+                        <img src="~/img/sidebar-img/5.jpg" alt="">
+                        <div class="post-content">
+                            <a href="#">
+                                <h6>Eating Out On A Budget In Oxford</h6>
+                            </a>
+                            <p>Tuesday, October 3, 2017</p>
+                        </div>
+                    </div>-->
+                    </div>
+
+
+                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- ****** Single Blog Area End ****** -->
+            <!-- ****** Instagram Area Start ****** -->
+            <div class="instargram_area owl-carousel section_padding_100_0 clearfix" id="portfolio">
+
+                <!-- Instagram Item -->
+                <div class="instagram_gallery_item">
+                    <!-- Instagram Thumb -->
+                    <img src="~/img/instagram-img/1.jpg" alt="">
+                    <!-- Hover -->
+
+                </div>
+
+                <!-- Instagram Item -->
+                <div class="instagram_gallery_item">
+                    <!-- Instagram Thumb -->
+                    <img src="~/img/instagram-img/2.jpg" alt="">
+
+                </div>
+
+                <!-- Instagram Item -->
+                <div class="instagram_gallery_item">
+                    <!-- Instagram Thumb -->
+                    <img src="~/img/instagram-img/3.jpg" alt="">
+
+                </div>
+
+                <!-- Instagram Item -->
+                <div class="instagram_gallery_item">
+                    <!-- Instagram Thumb -->
+                    <img src="~/img/instagram-img/4.jpg" alt="">
+
+                </div>
+
+                <!-- Instagram Item -->
+                <div class="instagram_gallery_item">
+                    <!-- Instagram Thumb -->
+                    <img src="~/img/instagram-img/5.jpg" alt="">
+
+                </div>
+
+                <!-- Instagram Item -->
+                <div class="instagram_gallery_item">
+                    <!-- Instagram Thumb -->
+                    <img src="~/img/instagram-img/6.jpg" alt="">
+
+                </div>
+
+            </div>
+            <!-- ****** Our Creative Portfolio Area End ****** -->
+            <!-- ****** Footer Social Icon Area Start ****** -->
+            <div class="social_icon_area clearfix">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="footer-social-area d-flex">
+
+                                <div class="single-icon">
+                                    <a href="https://www.linkedin.com/in/nicolas-durante-95b785140/"><i class="fa fa-linkedin-square" aria-hidden="true"></i><span>linkedin</span></a>
+                                </div>
+                                <div class="single-icon">
+                                    <a href="https://github.com/NicolasDurante"><i class="fa fa-github" aria-hidden="true"></i><span>GitHub</span></a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ****** Footer Social Icon Area End ****** -->
+            <!-- ****** Footer Menu Area Start ****** -->
+            <footer class="footer_area">
+
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- Copywrite Text -->
+                            <div class="copy_right_text text-center">
+                                <p>RecetApp - Copyright 2019 Todos los derechos reservados </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+            <!-- ****** Footer Menu Area End ****** -->
+            <!-- Jquery-2.2.4 js -->
+            <script src="~/js/jquery/jquery-2.2.4.min.js"></script>
+            <!-- Popper js -->
+            <script src="~/js/bootstrap/popper.min.js"></script>
+            <!-- Bootstrap-4 js -->
+            <script src="~/js/bootstrap/bootstrap.min.js"></script>
+            <!-- All Plugins JS -->
+            <script src="~/js/others/plugins.js"></script>
+            <!-- Active JS -->
+            <script src="~/js/active.js"></script>
+        </body>
+
+
+
+        @*
+    <div>
+        <h4>Receta</h4>
+        <hr />
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ImagenUrl)
+            </dt>
+            <dd>
+                @if (!string.IsNullOrEmpty(Model.ImagenUrl))
+                {
+                    <img src="@Url.Content(Model.ImagenUrl)" alt="Image" style="width:300px;height:450px;max-width: 100%; height: auto;" />
+                }
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Descripcion)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.User.FullName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.User.FullName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Tiempo)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Tiempo)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Raciones)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Raciones)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Region.NomRegion)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Region.NomRegion)
+            </dd>
+
+            <p style="text-align: center">CategoriaComida</p>
+            <dd>
+                <table class="table">
+                    <tr>
+                        <th>Categoria</th>
+                    </tr>
+                    @foreach (var item in Model.CategoriaComidaRecetas)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CategoriaComidas.Categoria)
+                            </td>
+
+                        </tr>
+                    }
+                </table>
+            </dd>
+
+
+
+            <p style="text-align: center">Ingredientes</p>
+            <dd>
+                <table class="table">
+                    <tr>
+                        <th>Cantidad</th>
+                        <th>Medidas</th>
+                        <th>Ingredientes</th>
+                    </tr>
+                    @foreach (var item in Model.RecetaIngredientes)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cantidad)
+                                @Html.DisplayFor(modelItem => item.Medidas.Abreviacion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Medidas.Medid)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Ingredientes.Ingredient)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </dd>
+
+
+            <p style="text-align: center">Pasos</p>
+            <dd>
+                <table class="table">
+                    <tr>
+                        <th>NumPaso</th>
+                        <th>Instrucciones</th>
+                    </tr>
+                    @foreach (var item in Model.PasosRecetas)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NumPaso)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Instrucciones)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </dd>
+            <p style="text-align: center">Observaciones</p>
+            <dd>
+                <table class="table">
+                    <tr>
+                        <th>Observaciones</th>
+                    </tr>
+                    @foreach (var item in Model.Observacions)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Observacio)
+                            </td>
+
+                        </tr>
+                    }
+                </table>
+            </dd>
+
+
+            <p style="text-align: center">Comentarios</p>
+            <dd>
+                <table class="table">
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Comentario</th>
+                    </tr>
+                    @foreach (var item in Model.Comentarios)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.FullName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Comentari)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Temporada)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Temporada)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Dificultad)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Dificultad)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ActiComentarios)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ActiComentarios)
+            </dd>
+
+
+            <dt>
+                Numero de Likes
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Likes.Count)
+            </dd>
+
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    @if (Model.RecetaIngredientes.Count == 0)
+    {
+        <h4>No se añadieron ingredientes aun</h4>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RecetaIngredientes.FirstOrDefault().Cantidad)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RecetaIngredientes.FirstOrDefault().Medidas)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RecetaIngredientes.FirstOrDefault().Ingredientes)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.RecetaIngredientes)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cantidad)
+                            @Html.DisplayFor(modelItem => item.Medidas.Abreviacion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Medidas.Medid)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ingredientes.Ingredient)
+                        </td>
+                        <td>
+                            <a asp-action="EditIngredientes" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="DetailsIngredientes" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="DeleteIngredientes" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+        *@

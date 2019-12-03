@@ -196,7 +196,7 @@ namespace RecetasApp.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Descripcion,Tiempo,Raciones,ImagenUrl,Temporada,Dificultad,ActiComentarios,NumLikes,RegionId")] Receta receta)
+        public async Task<IActionResult> Edit(int id, RecetaViewModel receta)
         {
             if (id != receta.Id)
             {
