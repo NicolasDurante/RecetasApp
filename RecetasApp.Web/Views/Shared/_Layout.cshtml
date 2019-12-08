@@ -1,81 +1,258 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - RecetasApp.Web</title>
 
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link href="~/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-        <link href="~/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet" />
-        <link rel="stylesheet" href="~/css/site.css" />
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    
+    <!-- Favicon -->
+    <link rel="icon" href="~/img/core-img/favicon.ico">
 
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-        <link href="~/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" rel="stylesheet" />
-        <link href="~/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    </environment>
+    <!-- Core Stylesheet -->
+    <link href="~/style.css" rel="stylesheet">
+
+    <!-- Responsive CSS -->
+    <link href="~/css/responsive/responsive.css" rel="stylesheet">
+
+    
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <!-- Preloader Start
+    <div id="preloader">
+        <div class="yummy-load"></div>
+    </div>-->
+    <!-- Background Pattern Swither -->
+    @if (this.User.IsInRole("Admin"))
+    {
+        <div id="pattern-switcher">
+
+            <a href="~/Account" class="add-btn" style="background-color:red; color:aliceblue">Administrador</a>
+        </div>
+        
+    }
+    <!-- ****** Top Header Area Start ****** -->
+    <div class="top_header_area">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">RecetApp</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Inicio</a></li>
+            <div class="row">
+                <div class="col-5 col-sm-6">
+                    <!--  Top Social bar start -->
+                    <div class="top_social_bar">
+                        <a href="https://github.com/NicolasDurante"><i class="fa fa-github-alt" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <!--  Login Register Area -->
+                <div class="col-7 col-sm-6">
+                    <div class="signup-search-area d-flex align-items-center justify-content-end">
+                        <div class="login_register_area d-flex">
+                            @if (!this.User.Identity.IsAuthenticated)
+                            {
+                                <div class="login">
+                                    <a href="~/Account/Register">Registrarse</a>
+                                </div>
+                                <div class="register">
+                                    <a href="~/Account/Login">Iniciar sesion</a>
+                                </div>
+                            }
+                            @if (this.User.Identity.IsAuthenticated)
+                            {
+                                <div class=fa-user-alt>
+                                    <a asp-area="" asp-controller="Account" asp-action="ChangeUser"> @this.User.Identity.Name</a>
 
-                    <li><a asp-area="" asp-controller="Recetas" asp-action="Index">Recetas</a></li>
-                    <li><a asp-area="" asp-controller="CategoriaComidas" asp-action="Index">Categorias Comidas</a></li>
-                    <li><a asp-area="" asp-controller="Ingredientes" asp-action="Index">Ingredientes</a></li>
-                    <li><a asp-area="" asp-controller="Medidas" asp-action="Index">Medidas</a></li>
-                    <li><a asp-area="" asp-controller="Regions" asp-action="Index">Regiones</a></li>
-                    <li><a asp-area="" asp-controller="RecetasPrueba" asp-action="Index">RecetasPrueba</a></li>
-                    <li><a asp-area="" asp-controller="PasosRecetas" asp-action="Index">PasosRecetas</a></li>
-
-                    @if (this.User.IsInRole("Admin"))
-                    {
-                        <li><a asp-area="" asp-controller="Account" asp-action="Index">Usuarios</a></li>
-                    }
-
-
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    @if (this.User.Identity.IsAuthenticated)
-                    {
-                        <li><a asp-area="" asp-controller="Account" asp-action="ChangeUser">@this.User.Identity.Name</a></li>
-                        <li><a asp-area="" asp-controller="Account" asp-action="Logout">Cerrar sesión</a></li>
-                    }
-                    else
-                    {
-                        <li><a asp-area="" asp-controller="Account" asp-action="Login">Acceder</a></li>
-                    }
-                </ul>
+                                </div>
+                                <div class="">
+                                    <a asp-area="" asp-controller="Account" asp-action="Logout"><b>(Cerrar sesión)</b></a>
+                                </div>
+                            }
+                        </div>
+                        <!-- Search Button Area
+                        <div class="search_button">
+                            <a class="searchBtn" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+                        </div>
+                        <!-- Search Form
+                        <div class="search-hidden-form">
+                            <form action="#" method="get">
+                                <input type="search" name="search" id="search-anything" placeholder="Search Anything...">
+                                <input type="submit" value="" class="d-none">
+                                <span class="searchBtn"><i class="fa fa-times" aria-hidden="true"></i></span>
+                            </form>
+                        </div>-->
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
-
-    <partial name="_CookieConsentPartial" />
-
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2019 - por Nico</p>
-        </footer>
     </div>
+    <!-- ****** Top Header Area End ****** -->
+    <!-- ****** Header Area Start ****** -->
+    <header class="header_area">
+        <div class="container">
+            <div class="row">
+                <!-- Logo Area Start -->
+                <div class="col-12">
+                    <div class="logo_area text-center">
+                        <a href="~/" class="yummy-logo">RecetApp</a>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </header>
+
+    @*
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">RecetApp</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Inicio</a></li>
+
+                        <li><a asp-area="" asp-controller="Recetas" asp-action="Index">Recetas</a></li>
+                        <li><a asp-area="" asp-controller="CategoriaComidas" asp-action="Index">Categorias Comidas</a></li>
+                        <li><a asp-area="" asp-controller="Ingredientes" asp-action="Index">Ingredientes</a></li>
+                        <li><a asp-area="" asp-controller="Medidas" asp-action="Index">Medidas</a></li>
+                        <li><a asp-area="" asp-controller="Regions" asp-action="Index">Regiones</a></li>
+                        <li><a asp-area="" asp-controller="RecetasPrueba" asp-action="Index">RecetasPrueba</a></li>
+                        <li><a asp-area="" asp-controller="PasosRecetas" asp-action="Index">PasosRecetas</a></li>
+
+                        @if (this.User.IsInRole("Admin"))
+                        {
+                            <li><a asp-area="" asp-controller="Account" asp-action="Index">Usuarios</a></li>
+                        }
+
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        @if (this.User.Identity.IsAuthenticated)
+                        {
+                            <li><a asp-area="" asp-controller="Account" asp-action="ChangeUser">@this.User.Identity.Name</a></li>
+                            <li><a asp-area="" asp-controller="Account" asp-action="Logout">Cerrar sesión</a></li>
+                        }
+                        else
+                        {
+                            <li><a asp-area="" asp-controller="Account" asp-action="Login">Acceder</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <partial name="_CookieConsentPartial" />
+    *@
+<div class="container body-content">
+    @RenderBody()
+    <hr />
+    <!-- ****** Instagram Area Start ****** -->
+    <div class="instargram_area owl-carousel section_padding_100_0 clearfix" id="portfolio">
+
+        <!-- Instagram Item -->
+        <div class="instagram_gallery_item">
+            <!-- Instagram Thumb -->
+            <img src="~/img/instagram-img/1.jpg" alt="">
+            <!-- Hover -->
+
+        </div>
+
+
+
+        <!-- Instagram Item -->
+        <div class="instagram_gallery_item">
+            <!-- Instagram Thumb -->
+            <img src="~/img/instagram-img/2.jpg" alt="">
+
+        </div>
+
+        <!-- Instagram Item -->
+        <div class="instagram_gallery_item">
+            <!-- Instagram Thumb -->
+            <img src="~/img/instagram-img/3.jpg" alt="">
+
+        </div>
+
+        <!-- Instagram Item -->
+        <div class="instagram_gallery_item">
+            <!-- Instagram Thumb -->
+            <img src="~/img/instagram-img/4.jpg" alt="">
+
+        </div>
+
+        <!-- Instagram Item -->
+        <div class="instagram_gallery_item">
+            <!-- Instagram Thumb -->
+            <img src="~/img/instagram-img/5.jpg" alt="">
+
+        </div>
+
+        <!-- Instagram Item -->
+        <div class="instagram_gallery_item">
+            <!-- Instagram Thumb -->
+            <img src="~/img/instagram-img/6.jpg" alt="">
+
+        </div>
+
+    </div>
+    <!-- ****** Our Creative Portfolio Area End ****** -->
+    <!-- ****** Footer Social Icon Area Start ****** -->
+    <div class="social_icon_area clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="footer-social-area d-flex">
+
+                        <div class="single-icon">
+                            <a href="https://www.linkedin.com/in/nicolas-durante-95b785140/"><i class="fa fa-linkedin-square" aria-hidden="true"></i><span>linkedin</span></a>
+                        </div>
+                        <div class="single-icon">
+                            <a href="https://github.com/NicolasDurante"><i class="fa fa-github" aria-hidden="true"></i><span>GitHub</span></a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ****** Footer Social Icon Area End ****** -->
+    <!-- ****** Footer Menu Area Start ****** -->
+    <footer class="footer_area">
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Copywrite Text -->
+                    <div class="copy_right_text text-center">
+                        <p>RecetApp - Copyright 2019 Todos los derechos reservados </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ****** Footer Menu Area End ****** -->
+    <!-- Jquery-2.2.4 js -->
+    <script src="~/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="~/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap-4 js -->
+    <script src="~/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins JS -->
+    <script src="~/js/others/plugins.js"></script>
+    <!-- Active JS -->
+    <script src="~/js/active.js"></script>
+</div>
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -101,5 +278,7 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
+
+    
 </body>
-</html>
+</htmllang="en">

@@ -3,165 +3,118 @@
 @{
     ViewData["Title"] = "Index";
 }
-@*
-<h2>Receta</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User.FullName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tiempo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Raciones)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Region.NomRegion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImagenUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Temporada)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Dificultad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ActiComentarios)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumLikes)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Descripcion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.User.FullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Tiempo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Raciones)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Region.NomRegion)
-                </td>
-
-                <td>
-                    @if (!string.IsNullOrEmpty(item.ImagenUrl))
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+<br />
+<div class="row">
+    <div class="col-12">
+        <nav class="navbar navbar-expand-lg">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#yummyfood-nav" aria-controls="yummyfood-nav" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars" aria-hidden="true"></i> Menu</button>
+            <!-- Menu Area Start -->
+            <div class="collapse navbar-collapse justify-content-center" id="yummyfood-nav">
+                <ul class="navbar-nav" id="yummy-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/">Inicio <span class="sr-only">(current)</span></a>
+                    </li>
+                    @*<li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
+                            <div class="dropdown-menu" aria-labelledby="yummyDropdown">
+                                <a class="dropdown-item" href="index.html">Home</a>
+                                <a class="dropdown-item" href="archive.html">Archive</a>
+                                <a class="dropdown-item" href="single.html">Single Blog</a>
+                                <a class="dropdown-item" href="static.html">Static Page</a>
+                                <a class="dropdown-item" href="contact.html">Contact</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>
+                        </li>*@
+                    <li class="nav-item active">
+                        <a class="nav-link" href="~/RecetasPrueba">Catálogo de recetas</a>
+                    </li>
+                    @if (this.User.Identity.IsAuthenticated)
                     {
-                        <img src="@Url.Content(item.ImagenUrl)" alt="Image" style="width:75px;height:75px;max-width: 100%; height: auto;" />
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/ChangeUser">Perfil</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Ayuda</a>
+                        </li>
                     }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Temporada)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Dificultad)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ActiComentarios)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NumLikes)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-*@
-    <section class="blog_area section_padding_0_80">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-8">
-                    <div class="row">
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Home/About">Acerca</a>
+                    </li>
 
-                        <!-- Single Post
-                    <div class="col-12">
-                        <div class="single-post wow fadeInUp" data-wow-delay=".2s">
-                            <!-- Post Thumb
-                            <div class="post-thumb">
-                                <img src="~/img/blog-img/1.jpg" alt="">
-                            </div>
-                            <!-- Post Content
-                            <div class="post-content">
-                                <div class="post-meta d-flex">
-                                    <div class="post-author-date-area d-flex">
-                                        <!-- Post Author
-                                        <div class="post-author">
-                                            <a href="#">By Marian</a>
-                                        </div>
-                                        <!-- Post Date
-                                        <div class="post-date">
-                                            <a href="#">May 19, 2017</a>
-                                        </div>
-                                    </div>
-                                    <!-- Post Comment & Share Area
-                                    <div class="post-comment-share-area d-flex">
-                                        <!-- Post Favourite
-                                        <div class="post-favourite">
-                                            <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 10</a>
-                                        </div>
-                                        <!-- Post Comments
-                                        <div class="post-comments">
-                                            <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
-                                        </div>
-                                        <!-- Post Share
-                                        <div class="post-share">
-                                            <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="#">
-                                    <h2 class="post-headline">Boil The Kettle And Make A Cup Of Tea Folks, This Is Going To Be A Big One!</h2>
-                                </a>
-                                <p>Tiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat.</p>
-                                <a href="#" class="read-more">Continue Reading..</a>
-                            </div>
-                        </div>
-                    </div>-->
-                        <!-- Single Post -->
 
-                        <div class="col-12 col-md-6">
-                            @foreach (var item in Model)
-                            {
-                                <div class="single-post wow fadeInUp" data-wow-delay=".4s">
-                                    <!-- Post Thumb -->
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <p>
+        
+    </p>
+</div>
+<div style="margin: 0 auto; text-align: center">
+    @if (!this.User.Identity.IsAuthenticated)
+    {
+        <p>
+            <a href="~/Account/Register" class="btn btn-primary" 
+               style="background-color:orangered;
+                font-size:large;border-color:orangered;
+                border-radius: 15px; width:200px;
+                height:60px; line-height:40px "><i class="glyphicon glyphicon-plus"></i>Publicar una receta
+            </a>
+        </p>
+     }
+    else
+    {
+        <a asp-action="Create" class="btn btn-primary"
+           style="background-color:orangered;
+                        font-size:large;border-color:orangered;
+                        border-radius: 15px; width:200px;
+                        height:60px; line-height:40px ">
+            <i class="glyphicon glyphicon-plus"></i>Publicar una receta
+        </a>
+    }
+    </div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+               
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover table-responsive table-striped" id="RecetasTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nombre)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.Tiempo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Temporada)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Dificultad)
+                            </th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
                                     <div class="post-thumb">
-                                        @if (!string.IsNullOrEmpty(item.ImagenUrl))
-                                        {
-                                            <img src="@Url.Content(item.ImagenUrl)" alt="">
-                                        }
 
+                                        <img src="@Url.Content(item.ImagenUrl)" alt="Image" style="width:200px;height:200px;max-width: 100%; height: auto;">
                                     </div>
                                     <!-- Post Content -->
                                     <div class="post-content">
@@ -169,237 +122,69 @@
                                             <div class="post-author-date-area d-flex">
                                                 <!-- Post Author -->
                                                 <div class="post-author">
-                                                    <a href="#">@Html.DisplayFor(modelItem => item.User.FullName)</a>
+                                                    <a href="#" >@Html.DisplayFor(modelItem => item.User.FullName)</a>
                                                 </div>
-                                                <!-- Post Date
-                                            <div class="post-date">
-                                                <a href="#">May 19, 2017</a>
-                                            </div>-->
+
                                             </div>
                                             <!-- Post Comment & Share Area -->
                                             <div class="post-comment-share-area d-flex">
                                                 <!-- Post Favourite -->
                                                 <div class="post-favourite">
-                                                    <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> @Html.DisplayFor(modelItem => item.Likes.Count)</a>
+                                                    <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i>@Html.DisplayFor(modelItem => item.Likes.Count) </a>
                                                 </div>
                                                 <!-- Post Comments -->
                                                 <div class="post-comments">
-                                                    <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> @Html.DisplayFor(modelItem => item.Comentarios.Count)</a>
+                                                    <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i>@Html.DisplayFor(modelItem => item.Comentarios.Count)</a>
                                                 </div>
-                                                <!-- Post Share
-                                            <div class="post-share">
-                                                <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-                                            </div>-->
+
                                             </div>
                                         </div>
-                                        <a href="#">
-                                            <h4 class="post-headline">@Html.DisplayFor(modelItem => item.Nombre)</h4>
+                                        <a asp-action="Details" asp-route-id="@item.Id">
+                                            <h4 class="post-headline" >@Html.DisplayFor(modelItem => item.Nombre)</h4>
                                         </a>
                                     </div>
-                                </div>
-                            }
+                                </td>
+                                
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Tiempo)
+                                </td>
 
-                        </div>
-
-
-
-                        <!-- Single Post -->
-                        <div class="col-12 col-md-6">
-                            <div class="single-post wow fadeInUp" data-wow-delay=".6s">
-                                <!-- Post Thumb -->
-                                <div class="post-thumb">
-                                    <img src="~/img/blog-img/3.jpg" alt="">
-                                </div>
-                                <!-- Post Content -->
-                                <div class="post-content">
-                                    <div class="post-meta d-flex">
-                                        <div class="post-author-date-area d-flex">
-                                            <!-- Post Author -->
-                                            <div class="post-author">
-                                                <a href="#">By Marian</a>
-                                            </div>
-                                            <!-- Post Date -->
-                                            <div class="post-date">
-                                                <a href="#">May 19, 2017</a>
-                                            </div>
-                                        </div>
-                                        <!-- Post Comment & Share Area -->
-                                        <div class="post-comment-share-area d-flex">
-                                            <!-- Post Favourite -->
-                                            <div class="post-favourite">
-                                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 10</a>
-                                            </div>
-                                            <!-- Post Comments -->
-                                            <div class="post-comments">
-                                                <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
-                                            </div>
-                                            <!-- Post Share -->
-                                            <div class="post-share">
-                                                <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a href="#">
-                                        <h4 class="post-headline">The Top Breakfast And Brunch Spots In Hove, Brighton</h4>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Post -->
-                        <div class="col-12 col-md-6">
-                            <div class="single-post wow fadeInUp" data-wow-delay=".8s">
-                                <!-- Post Thumb -->
-                                <div class="post-thumb">
-                                    <img src="~/img/blog-img/4.jpg" alt="">
-                                </div>
-                                <!-- Post Content -->
-                                <div class="post-content">
-                                    <div class="post-meta d-flex">
-                                        <div class="post-author-date-area d-flex">
-                                            <!-- Post Author -->
-                                            <div class="post-author">
-                                                <a href="#">By Marian</a>
-                                            </div>
-                                            <!-- Post Date -->
-                                            <div class="post-date">
-                                                <a href="#">May 19, 2017</a>
-                                            </div>
-                                        </div>
-                                        <!-- Post Comment & Share Area -->
-                                        <div class="post-comment-share-area d-flex">
-                                            <!-- Post Favourite -->
-                                            <div class="post-favourite">
-                                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 10</a>
-                                            </div>
-                                            <!-- Post Comments -->
-                                            <div class="post-comments">
-                                                <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
-                                            </div>
-                                            <!-- Post Share -->
-                                            <div class="post-share">
-                                                <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a href="#">
-                                        <h4 class="post-headline">The 10 Best Pubs In The Lake District, Cumbria</h4>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Post -->
-                        <div class="col-12 col-md-6">
-                            <div class="single-post wow fadeInUp" data-wow-delay="1s">
-                                <!-- Post Thumb -->
-                                <div class="post-thumb">
-                                    <img src="~/img/blog-img/5.jpg" alt="">
-                                </div>
-                                <!-- Post Content -->
-                                <div class="post-content">
-                                    <div class="post-meta d-flex">
-                                        <div class="post-author-date-area d-flex">
-                                            <!-- Post Author -->
-                                            <div class="post-author">
-                                                <a href="#">By Marian</a>
-                                            </div>
-                                            <!-- Post Date -->
-                                            <div class="post-date">
-                                                <a href="#">May 19, 2017</a>
-                                            </div>
-                                        </div>
-                                        <!-- Post Comment & Share Area -->
-                                        <div class="post-comment-share-area d-flex">
-                                            <!-- Post Favourite -->
-                                            <div class="post-favourite">
-                                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 10</a>
-                                            </div>
-                                            <!-- Post Comments -->
-                                            <div class="post-comments">
-                                                <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 12</a>
-                                            </div>
-                                            <!-- Post Share -->
-                                            <div class="post-share">
-                                                <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a href="#">
-                                        <h4 class="post-headline">The 10 Best Brunch Spots In Newcastle, England</h4>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-
-
-
-
-                <!-- Single Widget Area -->
-                <div class="single-widget-area popular-post-widget">
-                    <div class="widget-title text-center">
-                        <h6>Recetas populares</h6>
-                    </div>
-                    <!-- Single Popular Post -->
-                    <div class=" col-md-6">
-                        <div class="single-populer-post d-flex">
-                            <img src="~/img/sidebar-img/1.jpg" alt="">
-                            <div class="post-content">
-                                <a href="#">
-                                    <h6>Top Wineries To Visit In England</h6>
-                                </a>
-                                <p>Tuesday, October 3, 2017</p>
-                            </div>
-                        </div>
-                        <!-- Single Popular Post -->
-                        <div class="single-populer-post d-flex">
-                            <img src="~/img/sidebar-img/2.jpg" alt="">
-                            <div class="post-content">
-                                <a href="#">
-                                    <h6>The 8 Best Gastro Pubs In Bath</h6>
-                                </a>
-                                <p>Tuesday, October 3, 2017</p>
-                            </div>
-                        </div>
-                        <!-- Single Popular Post -->
-                        <div class="single-populer-post d-flex">
-                            <img src="~/img/sidebar-img/3.jpg" alt="">
-                            <div class="post-content">
-                                <a href="#">
-                                    <h6>Zermatt Unplugged the best festival</h6>
-                                </a>
-                                <p>Tuesday, October 3, 2017</p>
-                            </div>
-                        </div>
-                        <!-- Single Popular Post -->
-                        <div class="single-populer-post d-flex">
-                            <img src="~/img/sidebar-img/4.jpg" alt="">
-                            <div class="post-content">
-                                <a href="#">
-                                    <h6>Harrogate's Top 10 Independent Eats</h6>
-                                </a>
-                                <p>Tuesday, October 3, 2017</p>
-                            </div>
-                        </div>
-                        <!-- Single Popular Post -->
-                        <div class="single-populer-post d-flex">
-                            <img src="~/img/sidebar-img/5.jpg" alt="">
-                            <div class="post-content">
-                                <a href="#">
-                                    <h6>Eating Out On A Budget In Oxford</h6>
-                                </a>
-                                <p>Tuesday, October 3, 2017</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Temporada)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Dificultad)
+                                </td>
+                 
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
-        </div>
-    </section>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#RecetasTable').DataTable({
+                "language": {
+                "lengthMenu": "Mostrar _MENU_ recetas por página",
+                "zeroRecords": "No se encontro receta alguna",
+                "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                "infoEmpty": "Receta no disponible",
+                    "infoFiltered": "(Filtrado de un maximo de _MAX_ recetas)",
+                    "search": "Buscar recetas",
+                    
+        }
+
+
+            });
+
+        });
+    </script>
+}
+
+

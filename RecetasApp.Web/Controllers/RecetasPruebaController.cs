@@ -28,12 +28,28 @@ namespace RecetasApp.Web.Controllers
             _recetaRepository = recetaRepository;
 
         }
-
+        
         public IActionResult Index()
         {
             return View(_context.Recetas
                 .Include(r => r.User)
                 .Include(r => r.Region)
+                .Include(r => r.PasosRecetas)
+
+                .Include(r => r.RecetaIngredientes)
+                .ThenInclude(i => i.Ingredientes)
+
+                .Include(r => r.RecetaIngredientes)
+                .ThenInclude(i => i.Medidas)
+
+                .Include(r => r.Comentarios)
+                .Include(r => r.Observacions)
+                .Include(r => r.CategoriaComidaRecetas)
+
+                .ThenInclude(c => c.CategoriaComidas)
+                .Include(r => r.Likes)
+
+
                 );
         }
         public async Task<IActionResult> Details(int? id)

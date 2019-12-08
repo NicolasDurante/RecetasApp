@@ -114,7 +114,7 @@
                                 <!-- Menu Area Start -->
                                 <div class="collapse navbar-collapse justify-content-center" id="yummyfood-nav">
                                     <ul class="navbar-nav" id="yummy-nav">
-                                        <li class="nav-item active">
+                                        <li class="nav-item">
                                             <a class="nav-link" href="~/">Inicio <span class="sr-only">(current)</span></a>
                                         </li>
                                         @*<li class="nav-item dropdown">
@@ -130,7 +130,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">Features</a>
                                     </li>*@
-                                        <li class="nav-item">
+                                        <li class="nav-item active">
                                             <a class="nav-link" href="~/RecetasPrueba">Catálogo de recetas</a>
                                         </li>
                                         @if (this.User.Identity.IsAuthenticated)
@@ -157,7 +157,7 @@
             </header>
             <!-- ****** Header Area End ****** -->
             <!-- ****** Breadcumb Area Start ****** -->
-            <div class="breadcumb-area" style="background-color: orangered">
+            <div class="breadcumb-area" style="background-color: red">
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
                         <div class="col-12">
@@ -249,7 +249,7 @@
                                                 <div class="post-comment-share-area d-flex">
                                                     <!-- Post Favourite -->
                                                     <div class="post-favourite">
-                                                        <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> @Html.DisplayFor(model => model.Likes.Count)</a>
+                                                        <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> @Html.DisplayFor(model => model.Likes.Count) </a>
                                                     </div>
                                                     <!-- Post Comments -->
                                                     <div class="post-comments">

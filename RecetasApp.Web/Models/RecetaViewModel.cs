@@ -27,6 +27,7 @@
 
         public virtual ICollection<CategoriaComidaReceta> CategoriaComidaRecetas { get; set; }
 
+
         public virtual ICollection<Like> Likes { get; set; }
 
 
