@@ -1,20 +1,23 @@
-﻿@model IEnumerable<RecetasApp.Web.Data.Entities.Region>
+﻿@model IEnumerable<RecetasApp.Web.Data.Entities.Comentario>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h2>Regiones</h2>
+<h2>Comentarios</h2>
 <br />
 <p>
-    <a asp-action="Create" class="btn btn-success">Agregar regiones</a>
+    <a asp-action="Create" class="btn btn-success">Agregar comentarios</a>
 
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.NomRegion)
+                @Html.DisplayNameFor(model => model.Receta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comentari)
             </th>
             <th></th>
         </tr>
@@ -24,7 +27,10 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NomRegion)
+                    @Html.DisplayFor(modelItem => item.Receta.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comentari)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Editar</a> |

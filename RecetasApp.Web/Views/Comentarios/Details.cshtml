@@ -1,0 +1,30 @@
+﻿@model RecetasApp.Web.Data.Entities.Comentario
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Comentario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Receta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Receta.Descripcion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Comentari)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Comentari)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
