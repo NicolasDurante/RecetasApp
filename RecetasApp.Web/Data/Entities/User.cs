@@ -7,6 +7,7 @@
     public class User : IdentityUser
     {
         [Display(Name = "Nombre")]
+       
         public string FirstName { get; set; }
 
         [Display(Name = "Apellido")]

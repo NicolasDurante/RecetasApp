@@ -32,16 +32,16 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="~/RecetasPrueba">Catálogo de recetas</a>
                     </li>
+                    
                     @if (this.User.Identity.IsAuthenticated)
                     {
                         <li class="nav-item">
-                            <a class="nav-link" href="~/ChangeUser">Perfil</a>
+                            <a class="nav-link" href="~/Account/ChangeUser">Perfil</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Ayuda</a>
-                        </li>
+                        
                     }
+                        
                     <li class="nav-item">
                         <a class="nav-link" href="~/Home/About">Acerca</a>
                     </li>

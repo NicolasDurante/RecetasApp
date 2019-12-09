@@ -1,36 +1,46 @@
 ﻿@model RecetasApp.Web.Models.ChangeUserViewModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Perfil";
 }
 
-<h2>Update User</h2>
 
-<div class="row">
-    <div class="col-md-4 offset-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly"></div>
+    <div class="card-body" style="background-color:whitesmoke; text-align:center; 10px; width:500px; padding:20px; margin:0 auto;">
+        <h2>Perfil de Usuario</h2>
+        
+    </div>
+            <div <div class="card-body" style="background-color:white; text-align:center; width:600px; margin:0 auto;">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly"></div>
 
-            <div class="form-group">
-                <label asp-for="FirstName">Nombre</label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-warning"></span>
-            </div>
+                    <div class="form-group">
+                        <label asp-for="FirstName">Nombre</label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-warning"></span>
+                    </div>
 
-            <div class="form-group">
-                <label asp-for="LastName">Apellido</label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-warning"></span>
-            </div>
+                    <div class="form-group">
+                        <label asp-for="LastName">Apellido</label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-warning"></span>
+                    </div>
 
-            <div class="form-group">
-                <input type="submit" value="Update" class="btn btn-primary" />
+                    <div class="form-group">
+                        <input type="submit" value="Actualizar" class="btn btn-primary" />
+                        
+                    </div>
+
+                    <div class="text-success">@ViewBag.UserMessage</div>
+                </form>
                 <a asp-action="ChangePassword" class="btn btn-success">Cambiar contraseña</a>
             </div>
+        
+        </div>
 
-            <div class="text-success">@ViewBag.UserMessage</div>
-        </form>
-    </div>
-</div>
+
+
+
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
