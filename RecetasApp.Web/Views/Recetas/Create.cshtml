@@ -10,36 +10,13 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create" enctype="multipart/form-data">
+        <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="User" />
-
-            <div class="form-group">
-                <label asp-for="PasosRecetas.FirstOrDefault().RecetaId" class="control-label"></label>
-                <select asp-for="PasosRecetas.FirstOrDefault().RecetaId" class="form-control" asp-items="ViewBag.RecetaId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="PasosRecetas.FirstOrDefault().NumPaso" class="control-label"></label>
-                <input asp-for="PasosRecetas.FirstOrDefault().NumPaso" class="form-control" />
-                <span asp-validation-for="PasosRecetas.FirstOrDefault().NumPaso" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PasosRecetas.FirstOrDefault().Instrucciones" class="control-label"></label>
-                <input asp-for="PasosRecetas.FirstOrDefault().Instrucciones" class="form-control" />
-                <span asp-validation-for="PasosRecetas.FirstOrDefault().Instrucciones" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-
-
-
             <div class="form-group">
                 <label asp-for="Nombre" class="control-label"></label>
                 <input asp-for="Nombre" class="form-control" />
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
-
             <div class="form-group">
                 <label asp-for="Descripcion" class="control-label"></label>
                 <input asp-for="Descripcion" class="form-control" />
@@ -47,41 +24,21 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="RegionId" class="control-label"></label>
-                <select asp-for="RegionId" class="form-control" asp-items="ViewBag.RegionId"></select>
+                <label asp-for="ImageFile" class="control-label"></label>
+                <input asp-for="ImageFile" class="form-control" type="file" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="PasosRecetas" class="control-label"></label>
-                <input asp-for="PasosRecetas" class="form-control" />
-                <span asp-validation-for="PasosRecetas" class="text-danger"></span>
+                <label asp-for="Dificultad" class="control-label"></label>
+                <select asp-for="Dificultad" class="form-control">
+                    <option disabled selected></option>
+                    <option value="Fácil">Fácil</option>
+                    <option value="Intermedia">Intermedia</option>
+                    <option value="Difícil">Difícil</option>
+                </select>
+                <span asp-validation-for="Dificultad" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="RecetaIngredientes" class="control-label"></label>
-                <input asp-for="RecetaIngredientes" class="form-control" />
-                <span asp-validation-for="RecetaIngredientes" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Comentarios" class="control-label"></label>
-                <input asp-for="Comentarios" class="form-control" />
-                <span asp-validation-for="Comentarios" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Observacions" class="control-label"></label>
-                <input asp-for="Observacions" class="form-control" />
-                <span asp-validation-for="Observacions" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CategoriaComidaRecetas" class="control-label"></label>
-                <input asp-for="CategoriaComidaRecetas" class="form-control" />
-                <span asp-validation-for="CategoriaComidaRecetas" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Likes" class="control-label"></label>
-                <input asp-for="Likes" class="form-control" />
-                <span asp-validation-for="Likes" class="text-danger"></span>
-            </div>
-
 
             <div class="form-group">
                 <label asp-for="Tiempo" class="control-label"></label>
@@ -96,41 +53,39 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Raciones" class="control-label"></label>
-                <input asp-for="Raciones" class="form-control" />
-                <span asp-validation-for="Raciones" class="text-danger"></span>
+                <label asp-for="RegionId" class="control-label"></label>
+                <select asp-for="RegionId" class="form-control" asp-items="ViewBag.RegionId">
+                    <option disabled selected></option>
+                </select>
             </div>
-
-            <div class="form-group">
-                <label asp-for="ImageFile" class="control-label"></label>
-                <input asp-for="ImageFile" class="form-control" type="file" />
-                <span asp-validation-for="ImageFile" class="text-danger"></span>
-            </div>
-
 
             <div class="form-group">
                 <label asp-for="Temporada" class="control-label"></label>
                 <select asp-for="Temporada" class="form-control">
                     <option disabled selected></option>
-                    <option value="Verano">Verano</option>
+                    <option value="Cualquiera">Cualquiera</option>
                     <option value="Primavera">Primavera</option>
-                    <option value="Invierno">Invierno</option>
+                    <option value="Verano">Verano</option>
                     <option value="Otoño">Otoño</option>
+                    <option value="Invierno">Invierno</option>
                 </select>
                 <span asp-validation-for="Temporada" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Dificultad" class="control-label"></label>
-                <select asp-for="Dificultad" class="form-control">
+                <label asp-for="Raciones" class="control-label"></label>
+                <select asp-for="Raciones" class="form-control">
                     <option disabled selected></option>
-                    <option value="Fácil">Fácil</option>
-                    <option value="Intermedia">Intermedia</option>
-                    <option value="Difícil">Difícil</option>
+                    <option value=1>1 Persona</option>
+                    <option value=2>2 Persona</option>
+                    <option value=3>3 Persona</option>
+                    <option value=4>4 Persona</option>
+                    <option value=5>5 Persona</option>
+                    <option value=6>6 Persona</option>
+                    <option value=7>Mas de 6 Persona</option>
                 </select>
-                <span asp-validation-for="Dificultad" class="text-danger"></span>
+                <span asp-validation-for="Raciones" class="text-danger"></span>
             </div>
-
 
             <div class="form-group">
                 <div class="checkbox">
@@ -139,35 +94,186 @@
                     </label>
                 </div>
             </div>
-
-
-
             <div class="form-group">
-                <button type="submit" class="btn btn-primary"><i class="fa fa-save" id="btnConfirm"></i> Create</button>
-                <a asp-action="Index" class="btn btn-success"><i class="fa fa-chevron-left"></i> Back to List</a>
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
-
-            <div id="confirmDialog" class="modal fade">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-window-close"></i></button>
-                            <h4 class="modal-title">Confirm</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>Do you want to confirm the order?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" id="btnYes">Yes</button>
-                            <button type="button" class="btn btn-success" id="btnNo">No</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
         </form>
     </div>
 </div>
 
+
+@*
+        @model RecetasApp.Web.Models.RecetaViewModel
+
+    @{
+        ViewData["Title"] = "Create";
+    }
+
+    <h2>Create</h2>
+
+    <h4>Receta</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="User" />
+
+                <div class="form-group">
+                    <label asp-for="PasosRecetas.FirstOrDefault().RecetaId" class="control-label"></label>
+                    <select asp-for="PasosRecetas.FirstOrDefault().RecetaId" class="form-control" asp-items="ViewBag.RecetaId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PasosRecetas.FirstOrDefault().NumPaso" class="control-label"></label>
+                    <input asp-for="PasosRecetas.FirstOrDefault().NumPaso" class="form-control" />
+                    <span asp-validation-for="PasosRecetas.FirstOrDefault().NumPaso" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PasosRecetas.FirstOrDefault().Instrucciones" class="control-label"></label>
+                    <input asp-for="PasosRecetas.FirstOrDefault().Instrucciones" class="form-control" />
+                    <span asp-validation-for="PasosRecetas.FirstOrDefault().Instrucciones" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+
+
+
+                <div class="form-group">
+                    <label asp-for="Nombre" class="control-label"></label>
+                    <input asp-for="Nombre" class="form-control" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Descripcion" class="control-label"></label>
+                    <input asp-for="Descripcion" class="form-control" />
+                    <span asp-validation-for="Descripcion" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="RegionId" class="control-label"></label>
+                    <select asp-for="RegionId" class="form-control" asp-items="ViewBag.RegionId"></select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="PasosRecetas" class="control-label"></label>
+                    <input asp-for="PasosRecetas" class="form-control" />
+                    <span asp-validation-for="PasosRecetas" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="RecetaIngredientes" class="control-label"></label>
+                    <input asp-for="RecetaIngredientes" class="form-control" />
+                    <span asp-validation-for="RecetaIngredientes" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Comentarios" class="control-label"></label>
+                    <input asp-for="Comentarios" class="form-control" />
+                    <span asp-validation-for="Comentarios" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Observacions" class="control-label"></label>
+                    <input asp-for="Observacions" class="form-control" />
+                    <span asp-validation-for="Observacions" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CategoriaComidaRecetas" class="control-label"></label>
+                    <input asp-for="CategoriaComidaRecetas" class="form-control" />
+                    <span asp-validation-for="CategoriaComidaRecetas" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Likes" class="control-label"></label>
+                    <input asp-for="Likes" class="form-control" />
+                    <span asp-validation-for="Likes" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="Tiempo" class="control-label"></label>
+                    <select asp-for="Tiempo" class="form-control">
+                        <option disabled selected></option>
+                        <option value="Menos de 15 min">Menos de 15 min</option>
+                        <option value="Entre de 15 y 30 min">Entre de 15 y 30 min</option>
+                        <option value="Entre de 30 min y 1 hora">Entre de 30 min y 1 hora</option>
+                        <option value="Mas de 1 hora">Mas de 1 hora</option>
+                    </select>
+                    <span asp-validation-for="Tiempo" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Raciones" class="control-label"></label>
+                    <input asp-for="Raciones" class="form-control" />
+                    <span asp-validation-for="Raciones" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ImageFile" class="control-label"></label>
+                    <input asp-for="ImageFile" class="form-control" type="file" />
+                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="Temporada" class="control-label"></label>
+                    <select asp-for="Temporada" class="form-control">
+                        <option disabled selected></option>
+                        <option value="Verano">Verano</option>
+                        <option value="Primavera">Primavera</option>
+                        <option value="Invierno">Invierno</option>
+                        <option value="Otoño">Otoño</option>
+                    </select>
+                    <span asp-validation-for="Temporada" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Dificultad" class="control-label"></label>
+                    <select asp-for="Dificultad" class="form-control">
+                        <option disabled selected></option>
+                        <option value="Fácil">Fácil</option>
+                        <option value="Intermedia">Intermedia</option>
+                        <option value="Difícil">Difícil</option>
+                    </select>
+                    <span asp-validation-for="Dificultad" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input asp-for="ActiComentarios" /> @Html.DisplayNameFor(model => model.ActiComentarios)
+                        </label>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-save" id="btnConfirm"></i> Create</button>
+                    <a asp-action="Index" class="btn btn-success"><i class="fa fa-chevron-left"></i> Back to List</a>
+                </div>
+
+                <div id="confirmDialog" class="modal fade">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-window-close"></i></button>
+                                <h4 class="modal-title">Confirm</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Do you want to confirm the order?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" id="btnYes">Yes</button>
+                                <button type="button" class="btn btn-success" id="btnNo">No</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </form>
+        </div>
+    </div>
+
+*@

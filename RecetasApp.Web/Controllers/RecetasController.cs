@@ -84,7 +84,7 @@ namespace RecetasApp.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(RecetaViewModel view, [Bind("Id,RecetaId,NumPaso,Instrucciones")] PasosReceta pasosReceta)
+        public async Task<IActionResult> Create(RecetaViewModel view)
         {
             if (ModelState.IsValid)
             {
@@ -112,15 +112,10 @@ namespace RecetasApp.Web.Controllers
                 var receta = this.ToReceta(view, path);
 
 
-
                 receta.User = await this._userHelper.GetUserByEmailAsync(this.User.Identity.Name);
-                // receta.PasosRecetas.Add(pasosReceta);
-
                 await this._recetaRepository.CreateAsync(receta);
-                _context.Add(pasosReceta);
-                await _context.SaveChangesAsync();
-
                 return RedirectToAction(nameof(Index));
+
             }
 
             return View(view);
@@ -131,17 +126,16 @@ namespace RecetasApp.Web.Controllers
             return new RecetaViewModel
             {
                 Id = view.Id,
-                Nombre = view.Nombre,
+                ImagenUrl = path,              
+                Comentarios = view.Comentarios,
                 Descripcion = view.Descripcion,
-                Tiempo = view.Tiempo,
+                Dificultad = view.Dificultad,               
+                Nombre = view.Nombre,               
                 Raciones = view.Raciones,
-                ImagenUrl = path,
                 RegionId = view.RegionId,
                 Temporada = view.Temporada,
-                Dificultad = view.Dificultad,
-                User = view.User,
-                Comentarios = view.Comentarios,
-                NumLikes = view.NumLikes,
+                Tiempo = view.Tiempo,              
+                User = view.User
 
 
 
