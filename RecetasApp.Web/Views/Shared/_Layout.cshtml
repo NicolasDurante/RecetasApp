@@ -28,15 +28,7 @@
     <div id="preloader">
         <div class="yummy-load"></div>
     </div>-->
-    <!-- Background Pattern Swither -->
-    @if (this.User.IsInRole("Admin"))
-    {
-        <div id="pattern-switcher">
-
-            <a href="~/Account" class="add-btn" style="background-color:red; color:aliceblue">Administrador</a>
-        </div>
-        
-    }
+    
     <!-- ****** Top Header Area Start ****** -->
     <div class="top_header_area">
         <div class="container">
@@ -44,13 +36,28 @@
                 <div class="col-5 col-sm-6">
                     <!--  Top Social bar start -->
                     <div class="top_social_bar">
-                        <a href="https://github.com/NicolasDurante"><i class="fa fa-github-alt" aria-hidden="true"></i></a>
+
+                        <a href="https://github.com/NicolasDurante"><i class="fa fa-github-alt" aria-hidden="true" style="padding-right:40px"></i></a>
+
+                        @if (this.User.IsInRole("Admin"))
+                        {
+                            <p style=" padding-left:80px;">
+                                <a href="~/Account" class="btn btn-primary"
+                                   style="background-color:blue;
+                                        font-size:large;border-color:blue;
+                                        border-radius: 15px; width:200px;
+                                        height:40px; line-height:20px; ">
+                                    <i class="glyphicon glyphicon-plus"></i>Administrador
+                                </a>
+                            </p>
+                         }
                     </div>
                 </div>
                 <!--  Login Register Area -->
                 <div class="col-7 col-sm-6">
                     <div class="signup-search-area d-flex align-items-center justify-content-end">
                         <div class="login_register_area d-flex">
+                           
                             @if (!this.User.Identity.IsAuthenticated)
                             {
                                 <div class="login">

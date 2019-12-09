@@ -33,17 +33,7 @@
         <div class="yummy-load"></div>
     </div>
 
-    <!-- Background Pattern Swither -->
-    @if (this.User.IsInRole("Admin"))
-    {
-        <div id="pattern-switcher">
-
-            <a href="~/Account" class="add-btn">Administrador</a>
-        </div>
-        <div id="patter-close">
-            <i class="fa fa-times" aria-hidden="true"></i>
-        </div>
-    }
+   
     <!-- ****** Top Header Area Start ****** -->
     <div class="top_header_area">
         <div class="container">
@@ -52,6 +42,18 @@
                     <!--  Top Social bar start -->
                     <div class="top_social_bar">
                         <a href="https://github.com/NicolasDurante"><i class="fa fa-github-alt" aria-hidden="true"></i></a>
+                        @if (this.User.IsInRole("Admin"))
+                        {
+                            <p style=" padding-left:80px;">
+                                <a href="~/Account" class="btn btn-primary"
+                                   style="background-color:blue;
+                                        font-size:large;border-color:blue;
+                                        border-radius: 15px; width:200px;
+                                        height:40px; line-height:20px; ">
+                                    <i class="glyphicon glyphicon-plus"></i>Administrador
+                                </a>
+                            </p>
+                        }
                     </div>
                 </div>
                 <!--  Login Register Area -->
@@ -161,8 +163,8 @@
     <h2 align="center" class="post-headline">¿Qué cocinamos hoy? </h2>
     <div style="margin: 0 auto; text-align: center">
         <p>
-            <a href="~/RecetasPrueba" class="btn btn-primary" style="border-color:limegreen; font-size:x-large;  border-radius: 15px; width:500px; height:60px; background-color:limegreen; line-height:40px "><i class="glyphicon glyphicon-plus"></i>Buscar una receta</a>
-            
+            <a href="~/RecetasPrueba" class="btn btn-primary" style="border-color:limegreen; font-size:x-large;  border-radius: 15px; width:400px; height:55px; background-color:limegreen; line-height:40px "><i class="glyphicon glyphicon-plus"></i>Buscar una receta</a>
+
         </p>
     </div>
 

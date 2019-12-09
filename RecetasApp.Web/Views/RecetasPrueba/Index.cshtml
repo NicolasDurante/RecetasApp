@@ -110,53 +110,61 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    <div class="post-thumb">
+                        <tr>
+                            <td>
+                                <div class="post-thumb">
 
-                                        <img src="@Url.Content(item.ImagenUrl)" alt="Image" style="width:200px;height:200px;max-width: 100%; height: auto;">
-                                    </div>
-                                    <!-- Post Content -->
-                                    <div class="post-content">
-                                        <div class="post-meta d-flex">
-                                            <div class="post-author-date-area d-flex">
-                                                <!-- Post Author -->
-                                                <div class="post-author">
-                                                    <a href="#" >@Html.DisplayFor(modelItem => item.User.FullName)</a>
-                                                </div>
-
+                                    <img src="@Url.Content(item.ImagenUrl)" alt="Image" style="width:200px;height:200px;max-width: 100%; height: auto;">
+                                </div>
+                                <!-- Post Content -->
+                                <div class="post-content">
+                                    <div class="post-meta d-flex">
+                                        <div class="post-author-date-area d-flex">
+                                            <!-- Post Author -->
+                                            <div class="post-author">
+                                                <a href="#">@Html.DisplayFor(modelItem => item.User.FullName)</a>
                                             </div>
-                                            <!-- Post Comment & Share Area -->
-                                            <div class="post-comment-share-area d-flex">
-                                                <!-- Post Favourite -->
-                                                <div class="post-favourite">
-                                                    <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i>@Html.DisplayFor(modelItem => item.Likes.Count) </a>
-                                                </div>
-                                                <!-- Post Comments -->
-                                                <div class="post-comments">
-                                                    <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i>@Html.DisplayFor(modelItem => item.Comentarios.Count)</a>
-                                                </div>
 
-                                            </div>
                                         </div>
-                                        <a asp-action="Details" asp-route-id="@item.Id">
-                                            <h4 class="post-headline" >@Html.DisplayFor(modelItem => item.Nombre)</h4>
-                                        </a>
-                                    </div>
-                                </td>
-                                
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Tiempo)
-                                </td>
+                                        <!-- Post Comment & Share Area -->
+                                        <div class="post-comment-share-area d-flex">
+                                            <!-- Post Favourite -->
+                                            <div class="post-favourite">
+                                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i>@Html.DisplayFor(modelItem => item.Likes.Count) </a>
+                                            </div>
+                                            <!-- Post Comments -->
+                                            <div class="post-comments">
+                                                <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i>@Html.DisplayFor(modelItem => item.Comentarios.Count)</a>
+                                            </div>
 
+                                        </div>
+                                    </div>
+                                    <a asp-action="Details" asp-route-id="@item.Id">
+                                        <h4 class="post-headline">@Html.DisplayFor(modelItem => item.Nombre)</h4>
+                                    </a>
+                                </div>
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Tiempo)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Temporada)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Dificultad)
+                            </td>
+                            @if (this.User.IsInRole("Admin"))
+                            {
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Temporada)
+                                    <a asp-action="Edit" class="btn btn-dark" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i>Editar </a>
+
+                                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i> Eliminar </a>
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Dificultad)
-                                </td>
-                 
+                            }
                             </tr>
+
                         }
                     </tbody>
                 </table>

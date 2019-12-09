@@ -1,0 +1,190 @@
+﻿@model IEnumerable<RecetasApp.Web.Data.Entities.Receta>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+<br />
+<div class="row">
+    <div class="col-12">
+        <nav class="navbar navbar-expand-lg">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#yummyfood-nav" aria-controls="yummyfood-nav" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars" aria-hidden="true"></i> Menu</button>
+            <!-- Menu Area Start -->
+            <div class="collapse navbar-collapse justify-content-center" id="yummyfood-nav">
+                <ul class="navbar-nav" id="yummy-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/">Inicio <span class="sr-only">(current)</span></a>
+                    </li>
+                    @*<li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
+                            <div class="dropdown-menu" aria-labelledby="yummyDropdown">
+                                <a class="dropdown-item" href="index.html">Home</a>
+                                <a class="dropdown-item" href="archive.html">Archive</a>
+                                <a class="dropdown-item" href="single.html">Single Blog</a>
+                                <a class="dropdown-item" href="static.html">Static Page</a>
+                                <a class="dropdown-item" href="contact.html">Contact</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>
+                        </li>*@
+                    <li class="nav-item active">
+                        <a class="nav-link" href="~/RecetasPrueba">Catálogo de recetas</a>
+                    </li>
+                    @if (this.User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/ChangeUser">Perfil</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Ayuda</a>
+                        </li>
+                    }
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Home/About">Acerca</a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <p>
+        
+    </p>
+</div>
+<div style="margin: 0 auto; text-align: center">
+    @if (!this.User.Identity.IsAuthenticated)
+    {
+        <p>
+            <a href="~/Account/Register" class="btn btn-primary" 
+               style="background-color:orangered;
+                font-size:large;border-color:orangered;
+                border-radius: 15px; width:200px;
+                height:60px; line-height:40px "><i class="glyphicon glyphicon-plus"></i>Publicar una receta
+            </a>
+        </p>
+     }
+    else
+    {
+        <a asp-action="Create" class="btn btn-primary"
+           style="background-color:orangered;
+                        font-size:large;border-color:orangered;
+                        border-radius: 15px; width:200px;
+                        height:60px; line-height:40px ">
+            <i class="glyphicon glyphicon-plus"></i>Publicar una receta
+        </a>
+    }
+    </div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+               
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover table-responsive table-striped" id="RecetasTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nombre)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.Tiempo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Temporada)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Dificultad)
+                            </th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="post-thumb">
+
+                                        <img src="@Url.Content(item.ImagenUrl)" alt="Image" style="width:200px;height:200px;max-width: 100%; height: auto;">
+                                    </div>
+                                    <!-- Post Content -->
+                                    <div class="post-content">
+                                        <div class="post-meta d-flex">
+                                            <div class="post-author-date-area d-flex">
+                                                <!-- Post Author -->
+                                                <div class="post-author">
+                                                    <a href="#" >@Html.DisplayFor(modelItem => item.User.FullName)</a>
+                                                </div>
+
+                                            </div>
+                                            <!-- Post Comment & Share Area -->
+                                            <div class="post-comment-share-area d-flex">
+                                                <!-- Post Favourite -->
+                                                <div class="post-favourite">
+                                                    <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i>@Html.DisplayFor(modelItem => item.Likes.Count) </a>
+                                                </div>
+                                                <!-- Post Comments -->
+                                                <div class="post-comments">
+                                                    <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i>@Html.DisplayFor(modelItem => item.Comentarios.Count)</a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <a asp-action="Details" asp-route-id="@item.Id">
+                                            <h4 class="post-headline" >@Html.DisplayFor(modelItem => item.Nombre)</h4>
+                                        </a>
+                                    </div>
+                                </td>
+                                
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Tiempo)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Temporada)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Dificultad)
+                                </td>
+                 
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#RecetasTable').DataTable({
+                "language": {
+                "lengthMenu": "Mostrar _MENU_ recetas por página",
+                "zeroRecords": "No se encontro receta alguna",
+                "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                "infoEmpty": "Receta no disponible",
+                    "infoFiltered": "(Filtrado de un maximo de _MAX_ recetas)",
+                    "search": "Buscar recetas",
+                    
+        }
+
+
+            });
+
+        });
+    </script>
+}
+
+
