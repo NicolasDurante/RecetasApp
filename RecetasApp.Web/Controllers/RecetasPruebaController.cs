@@ -158,10 +158,10 @@ namespace RecetasApp.Web.Controllers
                 // receta.PasosRecetas.Add(pasosReceta);
 
                 await this._recetaRepository.CreateAsync(receta);
-               // _context.Recetas.Add(view);
+                
 
                 await _context.SaveChangesAsync();
-
+                
                 return RedirectToAction(nameof(Index));
             }
 

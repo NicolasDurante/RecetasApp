@@ -24,7 +24,7 @@
 
                     <div class="form-group">
                         <label asp-for="Username">Email</label>
-                        <input asp-for="Username" class="form-control" style="width:460px"/>
+                        <input asp-for="Username" class="form-control" style="width:460px" />
                         <span asp-validation-for="Username" class="text-warning"></span>
                     </div>
 
@@ -41,7 +41,15 @@
                     </div>
                     <br />
                     <div class="form-group">
-                        <input type="submit" value="Registrar nuevo usuario" class="btn btn-primary" />
+                        <input type="submit" value="Registrar nuevo usuario" class="btn btn-success"style="width:440px;" />
+                    </div>
+                    
+                    
+                    <div class="form-group">
+                        <br />
+                        <p><h6 style="width:440px" ;>¿Ya tienes una cuenta?</h6style="width:440px"></p>
+                        
+                        <a href="~/Account/Login" class="btn btn-primary" style="width:440px">Iniciar sesion</a>
                     </div>
                 </form>
             </div>
