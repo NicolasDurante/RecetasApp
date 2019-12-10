@@ -158,7 +158,7 @@ namespace RecetasApp.Web.Controllers
                 // receta.PasosRecetas.Add(pasosReceta);
 
                 await this._recetaRepository.CreateAsync(receta);
-                
+               
 
                 await _context.SaveChangesAsync();
                 
